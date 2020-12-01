@@ -22,13 +22,14 @@ The scripts are completely described in the study mentioned above and can be exe
 <li>TreeDistMatrix.run</li>
 <li>xxx.run</li>
 </ol>
-
+<br/>
+<br/>
 ### 1. CompileGenes.run
 This script allows the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT windows menu version, a dialog box is opened to define the settings (Fig. 2). In linux, mac and windows command TNT versions, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig2.png" alt="alt text" width="600" height="342">
 </p>
-
+<br/>
 **Figure 2.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
 
 ### 2. GeneOccupancy.run
@@ -38,22 +39,22 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 </p>
 
 **Figure 3.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
-
+<br/>
 ### 3. PhylogenomicSearches.run
 ...
-
+<br/>
 ### 4. PhylogenomicSupport.run
 ...
-
+<br/>
 ### 5. SearchGeneTrees.run
 ...
-
+<br/>
 ### 6. GeneSupFrequency.run
 ...
-
+<br/>
 ### 7. TreeDistMatrix.run
 ...
-
+<br/>
 ### 8. xxx.run
 ...
 
