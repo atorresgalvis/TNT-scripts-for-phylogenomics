@@ -19,7 +19,7 @@ The scripts are completely described in the study mentioned above. However, the 
 ### 1. CompileGenes.run
 This script allows the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT windows menu version, a dialog box is opened to define the settings (Fig. 1). In linux, mac and windows command TNT versions, the script should be run with arguments (see the help of the script).
 
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig1.png" alt="alt text" width="400" height="228" align=center>
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig1.png" alt="alt text" width="600" height="342" align="center">
 
 **Figure 1.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
 
