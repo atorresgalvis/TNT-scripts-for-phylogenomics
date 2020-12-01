@@ -4,7 +4,7 @@ The scripts are completely described in the study mentioned above. However, the 
 
     run NameOfTheScript.run help;
 
-## List of the scripts included
+## List of scripts
 <ol>
 <li>CompileGenes.run</li>
 <li>GeneOccupancy.run</li>
