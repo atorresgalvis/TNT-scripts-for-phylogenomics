@@ -21,7 +21,6 @@ This script allows the user to concatenate any number of data files into a singl
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig1.png" alt="alt text" width="600" height="342">
 </p>
-
 **Figure 1.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
 
 ### 2. GeneOccupancy.run
