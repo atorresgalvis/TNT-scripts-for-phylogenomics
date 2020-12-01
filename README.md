@@ -11,6 +11,7 @@ The scripts are completely described in the study mentioned above and can be exe
 **Figure 1.** Opening input files in the TNT Windows menu version.
 <br/>
 <br/>
+
 ## List of scripts
 <ol>
 <li>CompileGenes.run</li>
@@ -30,8 +31,9 @@ This script allows the user to concatenate any number of data files into a singl
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig2.png" alt="alt text" width="600" height="342">
 </p>
-<br/>
+
 **Figure 2.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
+<br/>
 
 ### 2. GeneOccupancy.run
 Generates submatrices with sampling of taxa/genes that present a level of occupancy defined by the user. Two different conditions can be determined: (i) percentage of species a gene must present to be sampled, (ii) percentage of genes a species must present to be sampled.The script produces a submatrix in TNT format and a SVG file with information about taxon/gene occupancy (Fig. 3). This script should be executed using arguments in Linux, Mac and Windows command TNT versions (for more information see the help of the script).
@@ -41,21 +43,27 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 
 **Figure 3.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
 <br/>
+
 ### 3. PhylogenomicSearches.run
 ...
 <br/>
+
 ### 4. PhylogenomicSupport.run
 ...
 <br/>
+
 ### 5. SearchGeneTrees.run
 ...
 <br/>
+
 ### 6. GeneSupFrequency.run
 ...
 <br/>
+
 ### 7. TreeDistMatrix.run
 ...
 <br/>
+
 ### 8. xxx.run
 ...
 
