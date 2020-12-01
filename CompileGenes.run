@@ -1,0 +1,322 @@
+macro=;
+/* HELP OF THE SCRIPT AT THE END OF THE FILE */
+macreport- ; 
+report-; 
+sil=all;
+cls; clb; xwipe;
+var:caras
+	arg_one[10]
+	arg_two[10]
+	arg_thr[10]
+	gename[300] 
+	output_file [50] 
+	ext[3]
+	spec_num 
+	isgappy
+	isprot
+	vta
+	lala
+	typedial
+	dde
+	contargs
+	parce
+	helped
+	i j cual guichnum
+;
+ 
+taxname +300;
+set + ; 
+set spec_num 0 ; 
+set isprot 0 ; 
+set output_file 0 ; 
+set isgappy 0 ; 
+set typedial 0 ; 
+set output_file $concatenated.tnt ; 
+if (windows && (argnumber == 0)  ) 
+  opendlg 100 100 520 270 Choose option... ; 
+    frame   5 5 250 85  ;
+    frame   260 5 250 85 ;
+    frame   260 85 250 100 ;
+    frame   5 85 250 60  ;
+    
+    showtxt 12 14 100 15 Type of data;
+    choose isprot 15 32 150 20 Nucleotides
+                  15 52 150 20 Aminoacids ;
+    showtxt 262 14 100 15 Treatment of gaps ; 
+    choose isgappy 270 32 150 20 Missing
+                   270 52 150 20 5th state ;    
+    showtxt 262 97 150 15 Total number of species  ; 
+    choose spec_num  270 110 160 20 Specify number of species 
+                     +  spin 4 32767 guichnum 280 132 120 20 ; =   
+                   270 160 230 20 Use the number of sp from first block ; 
+    showtxt 12 95 150 20 Name of output file ;
+    gettxt output_file 20 117 150 20  ;
+    frame   5 140 250 95  ;
+    showtxt 12 150 150 20 Type of file ;
+    choose  typedial 20 170 150 20 Fasta
+             20 190 150 20 TNT    
+             20 210 150 20 Nexus;
+  closedlg ;
+  if (!exstatus)
+    sil-all; quote Procedure cancelled ; 
+     proc/; 
+   end 
+  
+   if ('typedial' == 0) 
+     set ext $fas ; 
+   else
+     if ('typedial' == 1 ) 
+      set ext $tnt ; 
+     else
+      set ext $nex ; 
+     end
+   end 
+
+else
+  if (!argnumber)
+	lquote=; lquote[;
+	errmsg &10&10Must indicate all arguments to run the script (use &34run CompileGenes&46run help&59&34&32 for help) &10&10;
+	lquote -;      
+  end
+  
+  set helped 0;
+  if ( (argnumber == 1) && (isinstring [ %1 help ]) ) 
+	goto = %0 ;
+	goto AYUDA;
+  end
+  if ('helped' == 1)
+	proc/;
+  end
+
+  if (argnumber < 6)
+	lquote=; lquote[;
+	errmsg &10&10Must indicate all arguments to run the script (use &34run CompileGenes&46run help&59&34&32 for help) &10&10;
+	lquote -;      
+  end    
+
+  set contargs 0;
+  loop=parseo 1 argnumber
+	if ('contargs' > 2)
+		endloop;
+	else	
+		if ( isinstring [ %(#parseo) format ] )
+			set parce #parseo + 1;
+			set arg_one $%('parce') ;
+			set contargs ++;
+		end 
+		if ( isinstring [ %(#parseo) type ] )
+			set parce #parseo + 1;
+			set arg_two $%('parce') ;
+			set contargs ++;
+		end 
+		if ( isinstring [ %(#parseo) species ] )
+			set parce #parseo + 1;		 
+			set arg_thr %('parce') ;
+			set contargs ++;
+		end
+	end
+  stop	
+   
+  set output_file $concatenated.tnt ; 	
+
+  if (isinstring [ fas $arg_one])
+    set ext $fas ; 
+    set cual 1 ; 
+  else
+   if (isinstring [ tnt $arg_one])
+     set ext $tnt ;
+     set cual 2 ; 
+   else 
+    if (isinstring [ nex $arg_one])
+     set ext $nex ; 
+     set cual 3  ; 
+    else 
+     sil-all;  errmsg  Error in arguments. 1st argument should be the format file to be read ("fas", "tnt" or "nex")  ; sil=all; 
+    end
+   end
+  end
+  if (isinstring [ prot $arg_two ] )
+      set isprot 1 ; 
+  else
+   if (isinstring [ dna $arg_two])
+    set isprot 0 ; 
+   else
+     sil-all;  errmsg  Error in arguments. 2nd argument should be the data type ("prot" or "dna")  ; sil=all; 
+   end  
+  end  
+  set guichnum 'arg_thr' ; 
+end
+
+ 
+
+if ('isprot' ) 
+ nstates prot ;
+else
+ nstates dna ; 
+end 
+if ('spec_num' == 1 )
+ forfiles *.$ext
+  set gename $$curfile   ;
+   if (isinstring [ fas $ext ])
+     p &$gename ;
+   else
+     p $gename ;
+  end
+  set guichnum ntax + 1 ; 
+  killfiles; 
+ stop
+end
+
+set caras 0 ;
+set lala 0 ; 
+forfiles *.$ext 
+  set gename $$curfile   ;
+  if (isinstring [ fas $ext ])
+    p &$gename ;
+  else
+    p $gename ;
+  end 
+  set caras 'caras' + nchar + 1 ; 
+stop
+ 
+
+
+set vta 0;
+sil=all ;  
+log $output_file ;  
+sil-file;  quote mxram [ .,   ; sil=all ;  
+
+forfiles *.$ext
+  
+   set gename $$curfile ;
+    if (isinstring [$gename  $output_file])
+      continue 
+    end  
+   if ('vta' == 0 ) 
+     if ('isprot')
+       sil-file;  quote nstates prot ., ; sil=all ;  
+     else 
+      sil-file;   quote nstates DNA.,  ; 
+     end
+     if ('isgappy')
+      sil-file; quote nstates gaps ., ;sil=all ; 
+     else
+      sil-file; quote nstates nogaps .,  ; sil=all ; 
+     end
+     nstates gaps ; 
+     sil-file; quote xread 'caras' 'guichnum' ; sil=all; 
+   end
+   
+     if (isinstring [ fas $ext])
+       p &$gename ;
+     else
+       p $gename ;
+   end
+ 
+   if ('isprot') 
+    sil-file; quote &[prot /$gename ] ; sil=all; 
+   else
+     sil-file; quote &[DNA /$gename ] ; sil=all; 
+   end
+ 
+   sil-file; xread! ; 
+   sil=all;
+  
+    set vta ++ ; 
+stop 
+set vta 0 ; 
+sil-file; quote .,   ;sil=all;
+
+/*forfiles *.$ext
+   if ('vta' == 0 ) 
+    sil-file; quote cnames ; sil=all;  
+   end
+   set vta ++ ; 
+   
+   sil-file;  quote [ 'vta'  ., ; sil=all; 
+stop 
+*/
+sil-file; quote ., proc/.,   ;sil=all;
+log/; 
+
+si-all ; 
+quote Script CompileGenes.run run with the following settings : ;
+if ('cual' == 0 )
+  quote  -Compiling Fasta files ;
+else
+  if ('cual' == 1 ) 
+    quote -Compiling TNT files  ;  
+  else
+   quote -Compiling Nexus files  ;  
+  end
+end
+
+if ('isprot') 
+ quote  -Reading data as aminoacids ;  
+else
+ quote  -Reading data as nucleotides ;  
+end
+if ('isgappy') 
+ quote  -Gaps treated as 5th state ;  
+else
+ quote  -Gaps treated as missing ;  
+end
+if ('spec_num') 
+ quote  -Total number of species defined from first block: 'guichnum';  
+else
+ quote  -Total number of species defined by the user:'guichnum'  ;  
+end
+quote  -Dataset generated: $output_file ; 
+sil-all;  quote Done!   ; 
+
+
+
+
+
+proc/;
+
+
+label AYUDA ;
+lquote=; lquote[;
+sil - all ;
+/* =======================  HELP OF THE SCRIPT  ======================= */	
+quote
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+TNT script:  CompileGenes.run                                                              
+Updated:     2020-11-29.                                                                 
+Author:      Santiago A. Catalano & Ambrosio Torres.                                                        
+Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
+Depends:     TNT version 1.5 
+             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
+License:     GPL (3). Citation: Torres et al. 2020 (Cladistics)                          
+Description: This script allows the user to concatenate any number of data 
+             files into a single matrix in TNT format. The script can 
+             merge fasta, nexus (no interleave) and tnt files, though 
+             only one format at a time. The script determines the format 
+             of the input files following the extensions of the files, 
+             those being "*.fas", "*.nex" and "*.tnt". No other 
+             extensions are allowed. All input files and the script must 
+             be in the same folder. When the script is run from TNT 
+             windows menu version, a dialog box is open to define the 
+             settings. In linux, mac and windows command TNT versions, 
+             the script should be run with arguments (see below). The 
+             script allows parsing amino-acids and nucleotide sequences,
+             though only one type of data each time the script is 
+             called. To combine amino acids and nucleotides in the same 
+             file, run this script one time for each type of data and 
+             merge both generated files with the TNT command dmerge. 
+             The same approach can be followed to combine nexus, fasta 
+             and tnt files.                                                          
+Example:     run CompileGenes&46run format tnt type dna species 45 &59                  
+Arguments:   format   format of the input files (&34fas&34&32 for Fasta, 
+                      &34tnt&34&32 for TNT and &34nex&34&32 for Nexus files).                                                             
+             type     data type (&34prot&34&32 for amino acids and 
+                      &34dna&34&32 for nucleotides).             
+             species  total number of species. If not sure, indicate a 
+                      value higher than the dataset may have.                                                        
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+&10;
+lquote -;
+set helped 1;
+proc/;
+/* ==================================================================== */ 
