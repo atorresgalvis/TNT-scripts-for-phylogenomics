@@ -4,6 +4,12 @@ The scripts are completely described in the study mentioned above and can be exe
 
     run NameOfTheScript.run help;
 
+<p align="center">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig1.png" alt="alt text" width="600" height="342">
+</p>
+
+**Figure 1.** Opening input files in the TNT Windows menu version.
+
 ## List of scripts
 <ol>
 <li>CompileGenes.run</li>
