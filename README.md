@@ -9,8 +9,8 @@ The scripts are completely described in the study mentioned above and can be exe
 </p>
 
 **Figure 1.** Opening input files in the TNT Windows menu version.
-
-
+<br/>
+<br/>
 ## List of scripts
 <ol>
 <li>CompileGenes.run</li>
