@@ -278,7 +278,8 @@ Description: This script allows the user to concatenate any number of data
              merge both generated files with the TNT command dmerge. 
              The same approach can be followed to combine nexus, fasta 
              and tnt files.                                                          
-Example:     run CompileGenes&46run format tnt type dna species 45 &59                  
+Example:     run CompileGenes&46run format tnt type dna species 45 
+                       output concatenated.tnt &59                  
 Arguments:   format   format of the input files (&34fas&34&32 for Fasta, 
                       &34tnt&34&32 for TNT and &34nex&34&32 for Nexus files).                                                             
              type     data type (&34prot&34&32 for amino acids and 
