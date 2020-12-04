@@ -487,7 +487,7 @@ Description: this script calculates the gene trees from a TNT dataset
              with arguments. The level of searching thoroughness ranges 
              from 0 to 10 (see below).
 Example:     run SearchGeneTrees.run  input dataset.tnt search nt level 2 &10
-             &32&32&32&32 weigths range strength 12 blocks all&59                  
+             &32&32&32&32 weigths range strength 12 blocks all output tnt&59                  
 Arguments:   input    input file name.
              search   (optional argument) type of search (&34nt&34&32 for New 
                       Techs. search and &34tra&34&32 for traditional search).
