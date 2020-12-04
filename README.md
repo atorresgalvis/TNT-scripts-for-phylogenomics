@@ -55,7 +55,7 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 ### 5. SearchGeneTrees.run
 ...
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig6.png" alt="alt text" width="600" height="322">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig6.png" alt="alt text" width="500" height="322">
 </p>
 
 **Figure 6.** Dialog box available when running *SearchGeneTrees.run* from TNT windows menu version.
