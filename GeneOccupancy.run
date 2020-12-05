@@ -267,7 +267,7 @@ Description: Generates submatrices with sampling of taxa/genes that
              presence/absence of each gene for each species. Within the 
              svg file, genes and species are ordered following a 
              decreasing value of occupancy. In addition black lines 
-             indicates the taxon/gene sampling included in the matrix 
+             indicate the taxon/gene sampling included in the matrix 
              generated.                                                          
 Example:     run GeneOccupancy.run  species 60 genes 70 &59                  
 Arguments:   species  (optional argument) percentage of species a gene 
