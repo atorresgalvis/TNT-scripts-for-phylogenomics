@@ -491,10 +491,10 @@ Example:     run SearchGeneTrees.run  input dataset.tnt search nt level 2 &10
 Arguments:   input    input file name.
              search   (optional argument) type of search (&34nt&34&32 for New 
                       Techs. search and &34tra&34&32 for traditional search).
-             level    (optional argument) level of  searching 
+             level    (optional argument) level of searching 
                       thoroughness (from 0 to 10). 0 is the fastest and 
                       less accurate search and 10 is the slowest and 
-                      more accurate search 
+                      more accurate search.
              weights  (optional argument) weighting against homplasiuos 
                       characters (&34equal&34&32 to assign equal weights to all 
                       characters&59&32 &34k&34&32 for implied weighting using a K 
