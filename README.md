@@ -53,7 +53,7 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 <br/>
 
 ### 5. SearchGeneTrees.run
-...
+This script calculates the gene trees from a TNT dataset where each gene is included as a different block. When the script is run from TNT windows menu version, a dialog box is opened to define the settings (Fig. 6). In linux, mac and windows command TNT versions, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig6.png" alt="alt text" width="500" height="322">
 </p>
