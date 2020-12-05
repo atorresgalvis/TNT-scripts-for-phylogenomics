@@ -482,7 +482,7 @@ Description: this script calculates the gene trees from a TNT dataset
              after collapsing the trees with TBR. The user has the 
              possibility of restricting the search to a subset of blocks. 
              When the script is run from TNT windows menu version, a 
-             dialog box is opened to define the settings.In linux, mac 
+             dialog box is opened to define the settings. In linux, mac 
              and windows command TNT versions, the script should be run 
              with arguments. The level of searching thoroughness ranges 
              from 0 to 10 (see below).
