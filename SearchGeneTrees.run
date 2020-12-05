@@ -495,7 +495,7 @@ Arguments:   input    input file name.
                       thoroughness (from 0 to 10). 0 is the fastest and 
                       less accurate search and 10 is the slowest and 
                       more accurate search.
-             weights  (optional argument) weighting against homplasiuos 
+             weights  (optional argument) weighting against homoplasious 
                       characters (&34equal&34&32 to assign equal weights to all 
                       characters&59&32 &34k&34&32 for implied weighting using a K 
                       value defined by the user and&59&32 &34range&34&32 for using a 
