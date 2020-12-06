@@ -63,10 +63,20 @@ This script calculates the gene trees from a TNT dataset where each gene is incl
 
 ### 6. GeneSupFrequency.run
 ...
+<p align="center">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig7.png" alt="alt text" width="500" height="322">
+</p>
+
+**Figure 7.** ...
 <br/>
 
 ### 7. TreeDistMatrix.run
 ...
+<p align="center">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig8.png" alt="alt text" width="500" height="322">
+</p>
+
+**Figure 8.** Example of graphical output from *TreeDistMatrix.run*.
 <br/>
 
 ### 8. xxx.run
