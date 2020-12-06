@@ -73,7 +73,7 @@ This script calculates the gene trees from a TNT dataset where each gene is incl
 ### 7. TreeDistMatrix.run
 ...
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig8.png" alt="alt text" width="412" height="422">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig8.png" alt="alt text" width="408" height="422">
 </p>
 
 **Figure 8.** Example of graphical output from *TreeDistMatrix.run*.
