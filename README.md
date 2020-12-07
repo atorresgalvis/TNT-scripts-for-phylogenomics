@@ -41,7 +41,7 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig3.png" alt="alt text" width="600" height="332">
 </p>
 
-**Figure 3.** Dialog box available when running *CompileGenes.run* from TNT windows menu version.
+**Figure 3.** Example of graphical output from *GeneOccupancy.run*.
 <br/>
 
 ### 3. PhylogenomicSearches.run
