@@ -62,12 +62,12 @@ This script calculates the gene trees from a TNT dataset where each gene is incl
 <br/>
 
 ### 6. GeneSupFrequency.run
-...
+Calculates the percentage of single gene trees supporting the nodes of a reference tree (e.g. concatenation-based tree). Some authors referred to this measure as Gene Support Frequency (GSF. Gadagkar et al. 2005 doi: 10.1002/jez.b.21026&59; Salichos et al., 2014 doi: 10.1093/molbev/msu061). This script presents the GSF values in three different ways (Fig.7).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig7.png" alt="alt text" width="600" height="522">
 </p>
 
-**Figure 7.** ...
+**Figure 7.** Example of graphical outputs from *GeneSupFrequency.run*. (a) Heatmap of the GSF for the Species tree (concatenation-based tree). Nodes supported by the gene tree (green box); nodes supported by the gene tree, but with some of the descendants missing in the gene tree (yellow box); nodes not supported by the gene tree (red box). The information is also presented as stacked bar plots (Nd= node number; Bl= block/gene tree; Supp= supported). (b) Species tree with values of Gene-support frequency. Labels above branches = node number (Nd). Labels below branches =   frequency of gene trees in agreement with reference tree (Yellow + green in heatmap ) | frequency of gene trees that present the node (Green in heatmap; Gene-support frequency).(c) Description of the definitions and color code of clades showing full matching, agreement with and in contradiction to the reference tree.
 <br/>
 
 ### 7. TreeDistMatrix.run
