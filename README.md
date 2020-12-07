@@ -73,7 +73,7 @@ Calculates the percentage of single gene trees supporting the nodes of a referen
 ### 7. TreeDistMatrix.run
 ...
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig8.png" alt="alt text" width="404" height="400">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig8.png" alt="alt text" width="404" height="390">
 </p>
 
 **Figure 8.** Example of graphical output from *TreeDistMatrix.run*.
