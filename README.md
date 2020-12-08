@@ -71,7 +71,7 @@ Calculates the percentage of single gene trees supporting the nodes of a referen
 <br/>
 
 ### 7. TreeDistMatrix.run
-...
+Calculates a distance matrix for a set of trees. The users could choose among four different metrics (SPR moves, SPR difference, normalized Robinson-Foulds and the distortion coefficient). Two outputs are produced: the distance matrix in CSV format and a heat map in SVG format (Fig. 8).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig8.png" alt="alt text" width="404" height="380">
 </p>
