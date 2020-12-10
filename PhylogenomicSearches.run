@@ -1,0 +1,547 @@
+macro = ;
+silent = all ; 
+macreport - ; 
+report - ;
+					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
+var - ; 
+xwipe ; piwe - ;
+goto = %0 ;
+cls ; clbuffer; 
+var:   alto[4]           ancho[4] 
+       arg_one[10]       arg_two[10] 
+       arg_thr[10]       gename[30] 
+       input_file[50]    output_consense[30] 
+       output_file[50]   output_mpts[30] 
+       output_svg[30]    start_x[4]
+       start_y[4]        zbusqueda[100]
+       zgaps[100]        znew[100] 
+       zpesos[100]       zratio[100] 
+       zvalue[100]
+       a                 altotot 
+       anchotot          b 
+       caras             contargs 
+       donewick          dosvg 
+       guchisch          guichschlvl 
+       guichpiwe         guichval 
+       helped            hmrepls
+       isgappy           ispiwe 
+       isprot            iswith_k 
+       k                 kval 
+       las               lis
+       lolim             n 
+       nval              parce 
+       r                 ris 
+       savempts          savNelsen 
+       size_tot          spec_num
+       uplim             which_str 
+       whichwt           antipiwe
+       origlev           jold
+       ultimo            dnw
+       ;
+taxname +20 ;
+costs < ; 
+mxram [ ;
+set + ; 
+set jold 1000 ; 
+set spec_num 33 ; 
+set isprot 0 ; 
+set isgappy 0 ; 
+set size_tot 1; 
+set ispiwe 0 ; 
+set guichpiwe 2 ;  
+set guichval 1 ; 
+set kval 5 ; 
+set nval 15 ;  
+set guchisch 0 ; 
+set guichschlvl 2 ; 
+set hmrepls 2 ; 
+set savNelsen 1 ;  
+set donewick 0 ; 
+set dosvg 1 ; 
+set savempts 1 ; 
+set antipiwe 1 ; 
+set input_file $Concatenated.tnt ; 
+set output_consense $StrictConsensus.tre ; 
+set output_mpts  $MPT_trees.tre ; 
+set output_svg  $StrictConsensus.svg ; 
+if (windows && (argnumber == 0))
+	set ancho[0] 375 ; set ancho [1] 375 ; 
+	set ancho[2] 375 ; set ancho [3] 375 ; 
+	set alto[0] 140 ; set alto [1]  140 ; 
+	set alto[2] 140 ; set alto [3] 210 ; 
+	set start_x[0] 8 ; set start_x [1] 390 ; 
+	set start_x[2] 8 ; set start_x [3] 390 ; 
+	set start_y[0] 8 ; set start_y [1] 8 ; 
+	set start_y[2] 145 ; set start_y[3] 145 ; 
+	set anchotot 780 ; 
+	set altotot 430 ; 
+	getfname input_file read CHOOSE DATASET FILE  ; 
+	opendlg 50 50 'anchotot' 'altotot' Phylogenomic Searches... ;
+	
+	frame   'start_x[0]' 'start_y[0]' 'ancho[0]' 'alto[0]'  ;
+	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 390 20 Name of TNT Input file ;
+	gettxt input_file ('start_x[0]' + 15) ('start_y[0]'+ 30) 150 20  ;
+	
+	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 60)  150 20 Gap Treatment ;
+	choose isgappy ('start_x[0]' + 12) ('start_y[0]'+ 80)  150 20 Missing
+					('start_x[0]' + 12) ('start_y[0]'+ 100) 150 20 All gaps as additional state ; 
+					
+	frame   'start_x[2]' 'start_y[2]' 'ancho[2]' 'alto[2]' ;
+	showtxt ('start_x[2]'+5) ('start_y[2]'+12) 250 25 WEIGHTING against more homoplasiuos characters ; 
+	choose antipiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 (Implied Weighting)  
+						+ subdlg ('start_x[2]' + 25) ('start_y[2]'+ 80) 120 20 Define settings ;
+							290 175 450 290  Settings ; 
+							showtxt 7 7 290 15 Choose weighting scheme  ; 
+							choose guichpiwe 10 27 290 15 Weight by gene (Extended Implied weighting)
+							10 57 290 15 Weight by 1st,2nd,3rd positions (Extended Implied weighting)
+							10 87 290 15 Weight individual sites (Implied weighting) ;
+			showtxt 7 107 290 15 Strength weighting against homoplasy  ; 
+			choose guichval 11 130 11 11 . 
+								+ showtxt       140 130 250 30 Defined by a K value (Concavity value) 
+								spin 1 99 kval  37 127 20 20 ;=
+							11 167 11 11 . ;
+						+ showtxt 140 167 250 40 Defined by N value (Accepted range of weights)
+							spin 50 50 nval  37 167 20 20 ;=
+						closedlg ; =
+	         	('start_x[2]' + 12) ('start_y[2]'+ 30)  250 20 Use equal weighting (Traditional Parsimony) ; 
+		
+	frame   'start_x[1]' 'start_y[1]' 'ancho[1]' 'alto[1]' ;   
+		showtxt ('start_x[1]' + 8)  ('start_y[1]'+ 10)  150 20 Search Settings ;
+		choose guchisch ('start_x[1]' + 8) ('start_y[1]'+ 35) 200 15 New Technologies Searches  
+						+ spin 0 10 guichschlvl  ('start_x[1]' + 55) ('start_y[1]'+ 55) 50 20 Level  ;
+						=
+					('start_x[1]' + 8) ('start_y[1]'+ 85) 200 15 Traditional Searches (Wag+TBR); 
+						+ spin 0 10 hmrepls  ('start_x[1]' + 55) ('start_y[1]'+ 105) 50 20 Level;=
+		frame   'start_x[3]' 'start_y[3]' 'ancho[3]' 'alto[3]' ;                    
+		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  150 20 Save Best trees in a file ;
+					+  gettxt output_mpts ('start_x[3]' + 20) ('start_y[3]'+ 45) 150 20  ;=
+			check  savNelsen ('start_x[3]'+  8)  ('start_y[3]' + 75)  200 20 Calculate Strict Consensus and save it ;
+		+gettxt output_consense ('start_x[3]' + 18) ('start_y[3]'+ 95) 150 20  ;
+                check dosvg ('start_x[3]' + 8)  ('start_y[3]'+ 180)  300 20 Generate svg with strict consensus topology ;=
+       		
+   		
+		choose donewick    ( 'start_x[3]'  + 8) ('start_y[3]' + 120 )  200 30  Save trees in TNT format   
+						( 'start_x[3]'  + 8) ('start_y[3]' + 142 )  200 30  Save trees in Newick format   ; 
+	closedlg ;
+	if (!exstatus)
+		silent - all ; quote Procedure cancelled ; 
+		procedure / ; 
+	end 
+else
+	silent - all ;
+	if (!argnumber)
+		lquote = ; lquote [ ;
+		quote Use &34run PhylogenomicSearches&46run help&59&34&32 for help&46&10 ;
+		lquote - ;
+		errmsg No arguments were indicated by the user. 
+		The script requires at least one argument to run: the name of the input file. ;
+	end
+	set helped 0;
+	if ((argnumber == 1) && (isinstring [ %1 help ])) 
+		goto = %0 ;
+		goto AYUDA ;
+	end
+	if ('helped' == 1)
+		procedure / ;
+	end
+	if ((argnumber == 2) && (isinstring [ %1 input ]))
+		set input_file $%2 ;
+		set guchisch 0 ;		
+		set ispiwe 0 ;		
+		set guichschlvl 2 ;
+		set isgappy 0 ;
+		set guichpiwe 3 ; 
+		lquote = ; lquote [ ;
+		quote WARNING:&10;
+		quote &32&32&32&32Running the script with $input_file&32as input file.&10 ;
+		quote &32&32&32&32Running with type of search by default &40&61New technology search&41&46 &10 ;
+		quote &32&32&32&32Running with search level by default &40level &61&32 2&41&46 &10 ;
+		quote &32&32&32&32Running using weights by default &40weights &61&32 equal&41&46 &10 ;
+		quote &32&32&32&32Running with gaps treatment by default &40gaps as missing&41&46 &10 ;
+		quote &32&32&32&32Resulting trees saved in TNT format&46 &10 ;
+		lquote - ;
+	end
+	if ((argnumber == 3) | (argnumber == 5) | (argnumber == 7) | (argnumber == 9) | (argnumber == 11) | (argnumber == 13) | (argnumber == 15))
+		lquote = ; lquote [ ;
+		errmsg Arguments are not well indicated. &10
+		Use &34run PhylogenomicSearches&46run help&59&34&32 for help&46&10 ; 
+		lquote - ;
+	end
+	set zgaps $missing entries;
+	set zbusqueda $new technology search ;
+	set zpesos $equally weighted parsimony ;
+	set zvalue 'nval' ;
+	set znew $resulting trees saved as TNT format ;
+	if (argnumber > 2)
+		set contargs 0 ;
+		loop=parseo 1 argnumber
+			if ('contargs' > 6)
+				endloop ;
+			else	
+				if (isinstring [ %(#parseo) input ])
+					set parce #parseo + 1 ;
+					set input_file $%('parce') ;
+					set contargs ++ ;
+				end 
+				if (isinstring [ %(#parseo) level ])
+					set parce #parseo + 1 ;
+					set hmrepls %('parce') ;
+					set guichschlvl %('parce') ;
+					set contargs ++ ;
+				end
+				if (isinstring [ %(#parseo) search ])
+					set parce #parseo + 1 ;
+					set zbusqueda $new technology search ;
+						if (isinstring [ %('parce') tra ])
+							set guchisch 1 ;
+							set zbusqueda $traditional search ;
+						end	
+					set contargs ++ ;
+				end
+				if (isinstring [ %(#parseo) weights ])
+					set parce #parseo + 1 ;
+					if (isinstring [ %('parce') equal ])
+						set guichpiwe 3 ;
+						set ispiwe 0 ;
+					else
+						set guichval 0 ;
+						set zratio $(weights defined by a K value [Concavity value]);
+						if (isinstring [ %('parce') n- ])
+							set guichval 1;
+							set zratio $(weights Defined by N value [Accepted range of weights]);
+						end
+						if (isinstring [ %('parce') blocks ])
+							set ispiwe 1 ;
+							set guichpiwe 0 ;
+							set zvalue 'kval' ;
+							set zvalue 'nval' ;
+							set zpesos $extended implied weigthing by blocks (e.g. genes). See strength ;
+						end
+						if (isinstring [ %('parce') cp ])
+							set ispiwe 1 ;
+							set guichpiwe 1 ;
+							set zvalue 'kval' ;
+							set zvalue 'nval' ;
+							set zpesos $extended implied weigthing by codon positions. See strength ;
+						end
+						if (isinstring [ %('parce') sites ])
+							set ispiwe 1 ;
+							set guichpiwe 2 ;
+							set zvalue 'kval' ;
+							set zvalue 'nval' ;
+							set zpesos $implied weigthing by sites. See strength ;
+						end
+					end	
+					set contargs ++ ;
+				end
+				if (isinstring [ %(#parseo) strength ])
+					set parce #parseo + 1 ;
+					set zvalue %('parce') ;
+					set kval %('parce') ;
+					set nval %('parce') ;
+					set contargs ++ ;
+				end
+				if (isinstring [ %(#parseo) output ])
+					set parce #parseo + 1 ;
+					set donewick 0; 
+					if (isinstring [ %('parce') newick ])
+						set donewick 1;
+						set znew $resulting trees saved as Newick format;
+					end
+					set contargs ++ ;
+				end
+				if (isinstring [ %(#parseo) gaps ])
+					set parce #parseo + 1 ;
+					if (isinstring [ %('parce') new ])
+						set isgappy 1 ;
+						set zgaps $a new state (e.g. 5th state for DNA) ;
+					end	
+					set contargs ++ ;
+				end											
+			end
+		stop
+		lquote = ; lquote [ ;
+		if ('contargs' == 7)
+			quote Running the script with all the arguments indicated by the user&58 &10 ;
+		else
+			quote Running the script with 'contargs' arguments indicated by the user&58 &10 ;
+		end
+		quote &32&32&32&32Input file &61&32 $input_file &10;
+		quote &32&32&32&32Type of search &61&32 $zbusqueda &10;
+		quote &32&32&32&32Level of search &61&32 'guichschlvl' &10;
+		quote &32&32&32&32Weighting against homoplasy &61&32 $zpesos &10;
+		if ('ispiwe' == 1)
+			quote &32&32&32&32Strength of weighting &61&32 'zvalue' $zratio &10;
+		end
+		quote &32&32&32&32Gaps are treated as $zgaps &10;
+		quote &32&32&32&32Output &61&32 $znew &10;
+		lquote - ;
+	end     
+	set output_file $ResultingTrees.tre ; 
+	set savNelsen 1 ; 
+	set savempts 1 ; 
+	set dosvg 1 ; 
+end
+
+
+
+/* DEFINE SETTINGS */ 
+if ('antipiwe') 
+ set ispiwe 0 ; 
+else
+ set ispiwe 1 ; 
+end 
+
+if ('isgappy' == 0) 
+	nstates nogaps ; 
+else
+	nstates gaps ; 
+end
+if ('ispiwe' == 1) 
+	piwe = ;
+end 
+
+
+/* READ DATASET */ 
+procedure $input_file ; 
+hold 'jold'/'jold' ;   
+
+
+
+/* DEFINE WEIGHTING */ 
+if ('ispiwe' > 0)
+	if ('guichpiwe' == 0)
+		xpiwe = ;
+		xpiwe ] ;  
+	end
+	if ('guichpiwe' == 1)
+		xpiwe = ;
+		xpiwe [ . /12:3 ;  
+	end
+	if ('guichpiwe' == 2)
+		xpiwe - ;  
+	end
+	if ('guichval' == 1) 
+		goto CALCULATE_R ; 
+	else
+		piwe = 'kval' ; 
+	end 
+end
+
+
+/* PERFORM SEARCHES */ 
+set origlev 'hmrepls' ; 
+if ('hmrepls' == 0)
+	set hmrepls 1 ;
+else
+	set hmrepls ('hmrepls' * 10) ;
+end
+report = ; 
+if ('guchisch' == 1 ) ; 
+	mult = repl 'hmrepls' hold 3 ; 
+else
+	xmult = level 'guichschlvl' ; 
+end
+bbreak = fillonly ;
+ report- ; 
+silent - all ;  quote Done!! ;  silent = all ; 
+
+
+sil-all ; quote - Input file: $input_file ; sil=all ;
+if ('isgappy')
+ sil-all; quote - Gaps are treated as missing ;
+else
+  sil-all; quote - Gaps are treated as a different state ; sil=all; 
+end
+if ('ispiwe')
+   sil-all ; quote - Running using Implied Weighting ; sil-all; 
+   if ('guichpiwe' == 2 ) 
+     sil-all ;quote - Weighting according the homoplasy of individual sites ; sil=all; 
+   end
+   if ('guichpiwe' == 0 ) 
+     sil-all ;quote - Weighting according to the average homoplasy of each gene (Extended Implied weighting) ; sil=all; 
+   end
+   if ('guichpiwe' == 1 ) 
+    sil-all ; quote - Weighting 1st,2nd and 3rd codon position according to the average homoplasy of each position (Extended Implied weighting); sil=all; 
+   end
+  if ('guichval' == 0 ) 
+     sil-all ;quote - Weighting strength using K = 'kval'; sil=all; 
+  else
+     sil-all ;quote - Weighting strength using range N = 'nval'; sil=all; 
+  end
+else
+ sil-all ; quote - Running under equal weighting (Traditional Parsimony); sil=all; 
+end
+if ('guchisch' == 1 ) ; 
+   sil-all ; quote - Using level 'origlev' of Traditional Searches ; sil=all; 
+else
+   sil-all ; quote - Using level 'guichschlvl' of New Technologies Searches ; sil=all; 
+end
+/* GENERATE OUTPUT */ 
+
+if ('savempts')
+    set dnw 1 ;
+    if ('donewick')
+      silent - all ; quote - Trees saved in Newick format ; silent = all ;
+    else
+      silent - all ; quote - Trees saved in TNT format ; silent = all ;
+    end 
+     silent - all ; quote - Most parsimonious trees save in $output_mpts ; silent = all ; 
+	if ('donewick')
+		export = $output_mpts ; 
+	else 
+		tsave * $output_mpts; save ; tsave / ; 
+ 	end
+end
+ 
+if ( 'savNelsen' )
+        if ('dnw' == 0 )
+         if('donewick')
+          silent - all ; quote - Trees saved in Newick format ; silent = all ;
+         else
+          silent - all ; quote - Trees saved in TNT format ; silent = all ;
+         end
+        end
+        set ultimo ntrees  ; 
+   	if (('ultimo'+1) == 'jold' ) 
+   	 set ultimo ('ultimo' - 1) ; 
+   	 tc 0.'ultimo' ; 
+   	end
+     	report= ;nelsen * ; report - ; ; 
+   	set ultimo ntrees ; 
+	silent - all ; quote - Keeping in memory all MPTs ('ultimo' trees) + strict consensus (last tree) ; silent = all ; 
+	tvault > .  ;
+	tc / ;  
+	if ('dosvg')
+	  ttags = ; ttags * 0 ; 
+	  ttags & $output_svg ; 
+        end
+	if ('donewick')
+	  export = $output_consense ; 
+	else 
+	  tsave * $output_consense ; save ; tsave / ; 
+	end
+   	k 0 ; 
+	tvault < . ;
+ else
+	silent - all ; quote - Keeping in memory all MPTs  ; silent = all ; 
+end
+
+goto - ; 
+silent - all ; 
+report = ; 
+tt- ; 
+procedure / ; 
+     
+
+label CALCULATE_R
+set n -999999 ; 
+loop=la 0 nchar 
+	if ( 'n' < maxstepsact[#la] ) 
+		set n maxstepsact[#la] ; 
+	end 
+stop 
+set r 'nval' ;   /*   ***** THIS IS THE WEIGHT RANGE!!   ***  */ 
+set k 20 ; 
+set lolim 0.001 ; 
+set uplim 10000 ; 
+loop 1 1 
+	set lis 1 / ( 'k' + 1 ) ; 
+	set ris 'r' * 
+	( ( 'k' / ( 'k' + 'n' ) ) - ( 'k' / ( 'k' + 'n' + 1 ) ) ) ; 
+	if ( 'lis' == 'ris' ) 
+		endloop ; 
+	end
+	if ( 'lis' > 'ris' ) 
+		if ( 'lis' < ( 'ris' + 0.0001 ) )
+			endloop;
+		end 
+		set lolim 'k' ; 
+		set k ( 'k' + 'uplim' ) / 2 ; 
+	else 
+		if ( 'ris' < ( 'lis' + 0.0001) )
+			endloop;
+		end 
+		set uplim 'k' ; 
+		set k ( 'k' + 'lolim' ) / 2 ; 
+	end 
+	setloop 1 ; 
+stop 
+piwe = 'k' ; 	
+procedure / ;
+
+
+label AYUDA ;
+cls ; clbuffer; 
+lquote = ; lquote [ ;
+silent - all ;
+/* =======================  HELP OF THE SCRIPT  ======================= */	
+quote
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&10
+TNT script:  PhylogenomicSearches.run                                                              
+Updated:     2020-12-08.                                                                 
+Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
+Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
+Depends:     TNT version 1.5 
+             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
+License:     GPL (3). Citation: Torres et al. 2020 (Cladistics)                          
+Description: performs phylogenetic inference for phylogenomic datasets. 
+             The script allows the users to define multiple settings in 
+             a very simple way (e.g. the treatment of the gaps in the 
+             alignments, the use of different implied weighting schemes, 
+             the format of the output files, etc.) When the script is run 
+             from TNT windows menu version, a dialog box is opened to 
+             define the settings. In linux, mac and windows command TNT 
+             versions, the script should be run with arguments. The level 
+             of searching thoroughness ranges from 0 to 10 (see below).
+Example:     run PhylogenomicSearches.run input dataset.tnt search nt
+             &32&32&32&32 level 2 weights sites strength 12 gaps miss
+             &32&32&32&32 output tnt &59                  
+Arguments:   input    input file name.
+             search   (optional argument) type of search (&34nt&34&32 for New 
+                      Techs. search and &34tra&34&32 for traditional search).
+             level    (optional argument) level of searching 
+                      thoroughness (from 0 to 10). 0 is the fastest and 
+                      less accurate search and 10 is the slowest and 
+                      more accurate search.
+             weights  (optional argument) weighting against homoplasious 
+                      characters. &34equal&34&32 is used to assign equal 
+                      weights to all characters (traditional parsimony).
+                      &34k-sites&34&32 is used to weight the sites 
+                      against the homoplasy they contain (implied 
+                      weighting by sites). &34k-blocks&34&32 is used to 
+                      weight the sites against the average homoplasy of 
+                      the gene they belong (extended implied weighting 
+                      by genes). &34k-cp&34&32 is used to weight the 
+                      sites against the average homoplasy of the codon 
+                      positions they belong (extended implied weights by 
+                      codon position). The concavity value K is defined 
+                      with the argument &34strength&34&32 (see below).
+                      The user is also able to define the K value setting 
+                      a range of weights (the maximum possible ratio for 
+                      the implied weights cannot exceed a certain value, 
+                      thus determining the admitted range of weights. 
+                      See Goloboff et al. 2008. 
+                      doi: 10.1111/j.1096-0031.2008.00209.x). If this is 
+                      the case, use &34n-&34&32 instead of &34k-&34&32
+                      (e.g. &34n-blocks&34, &34n-sites&34 and &34n-cp&34).
+                      Have in mind that if &34n-&34&32 is used, the value
+                      of the argument &34strength&34&32 corresponds to the 
+                      maximum possible ratio of weigths N. Otherwise 
+                      &34strength&34&32 is the concavity value K per se. 
+             strength (optional argument) the K (or N) value used when 
+                      any kind of implied weighting scheme is performed. 
+                      If equally weigthed parsimony is used, this 
+                      argument is skipped.
+             gaps     (optional argument) treatment of the gaps (&34miss&34&32
+                      for treat the gaps as missing entries&59&32 &34new&34&32 
+                      for treat the gaps as a new character state). 
+             output   (optional argument) output format of the resulting 
+                      trees (&34tnt&34&32 for TNT format and &34newick&34&32 
+                      for Newick format).
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+&10 ;
+lquote - ;
+set helped 1;
+procedure / ;
+/* ==================================================================== */
