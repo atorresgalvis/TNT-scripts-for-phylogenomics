@@ -470,7 +470,7 @@ quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&10
 TNT script:  SearchGeneTrees.run                                                              
 Updated:     2020-12-03.                                                                 
-Author:      Santiago A. Catalano & Ambrosio Torres.                                                        
+Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
 Depends:     TNT version 1.5 
              (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
