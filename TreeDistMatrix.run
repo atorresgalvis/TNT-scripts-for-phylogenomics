@@ -316,7 +316,7 @@ quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&10
 TNT script:  TreeDistMatrix.run                                                              
 Updated:     2020-12-05.                                                                 
-Author:      Ambrosio Torres & Santiago A. Catalano                                                         
+Author:      Ambrosio Torres, Santiago A. Catalano and Pablo A. Goloboff.                                                         
 Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
 Depends:     TNT version 1.5 
              (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
