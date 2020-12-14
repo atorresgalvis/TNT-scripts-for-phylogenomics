@@ -1,0 +1,1030 @@
+macro - ;
+macreport - ; 
+report - ; 
+macro [ 10000 ; 
+macro *20 20000 ; 
+macro = ; 
+					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
+var - ; 
+xwipe ; 
+goto = %0 ; 
+macreport - ; 
+report - ; 
+silent = all ;  
+var:   absterm[1000]          alto[5]                ancho[5]
+       arg_one[10]            arg_thr[10]            arg_two[10] 
+       bolas[30]              gename[300]            input_file[300]
+       input_treefile[300]    lista[200]             measure_a[1000] 
+       measure_b[1000]        measure_g[1000]        measure_s[1000]
+       ordered[1000]          output_consense[50]    output_file[50]
+       output_mpts[50]        output_svg[50]         relterm[1000] 
+       schparam[40]           start_x[5]             start_y[5] 
+       tipo[5]                zbusqueda[100]         zdisper[100]
+       zgaps[100]             zmetric[100]           znew[100] 
+       zpesos[100]            zratio[100]            zvalue[100] 
+       zx[100]
+       a                      anchotot               altotot 
+       b                      bloques                bol 
+       caras                  corte                  delpro 
+       dde                    disper                 dobrem
+       dobremer               domultdele             donewick 
+       dos                    dosvg                  end 
+       fff                    fin                    guchisch
+       guer                   guich                  guichpiwe 
+       guichschlvl            guichsup               guichval 
+       half                   hmrepls                isgappy 
+       ispiwe                 isprot                 iswith_k 
+       k                      kval                   las 
+       last                   level                  lis 
+       lolim                  maximo                 n
+       notresa                numero                 nval
+       probgen                probsit                r 
+       reftree                replicas               repliya 
+       res                    ris                    sampgenes 
+       sampsites              sano                   savempts 
+       saveNelsen             star                   start 
+       size_tot               spec_num               target 
+       tipos                  tot 
+       uplim                  vta                    which_str 
+       whichwt                xboost                 xxx
+       zcontargs              zhelped                zparce
+       cambio 		      forres 		     forbre
+       ;
+set tot 1000 ; 
+subopt 0 ;
+warn - ; 
+taxname +200 ;
+set + ; 
+piwe - ; 
+set spec_num 33 ; 
+set isprot 0 ; 
+set isgappy 0 ; 
+set size_tot 1; 
+set ispiwe 1 ; 
+set guichpiwe 0 ;  
+set guichval 0 ; 
+set kval 12 ; 
+set nval 12 ;
+set disper 0;
+set guchisch 0 ; 
+set guichschlvl 0 ; 
+set guichsup 1 ;
+set hmrepls 1 ; 
+set saveNelsen 1 ;  
+set donewick 0 ; 
+set dosvg 1 ; 
+set savempts 1 ; 
+set dobremer 0 ; 
+set sampgenes 0 ;
+set sampsites 1 ;
+set replicas 100 ;
+set probsit 90 ;
+set probgen 90 ; 
+set domultdele 0 ; 
+set input_treefile $ReferenceTree.tre ; 
+set input_file $sds.tnt ; 
+set output_consense $Strict.tre ; 
+set output_mpts  $SupportTree.tre ; 
+set output_svg  $SupportTree.svg ; 
+set xboost 0 ; 
+set notresa 0 ; 
+set zgaps $missing entries;
+set zbusqueda $new technology search;
+set zpesos $equally weighted parsimony;
+set zvalue 'nval';
+set znew $resulting trees saved as TNT format;
+set zx $using full searches for each replication;
+set zmetric $jackknifing by sites;			
+set zdisper $no;
+set zratio $(weights defined by a K value [Concavity value]);
+cls; clbuffer;
+set ancho[0] 375 ; set ancho[4] 375 ;
+set ancho[2] 375 ; set ancho[3] 375 ; 
+set ancho[1] 375 ; 
+set alto[0] 190 ;  
+set alto[2] 110 ; set alto[4] 296 ; 
+set alto[1] 120 ; set alto[3] 120 ;
+set start_x[0] 8 ;   
+set start_x[2] 8 ; set start_x[4] 390 ;
+set start_x[1] 8 ; set start_x[3] 390 ;
+set start_y[0] 8 ; set start_y [4] 8 ; 
+set start_y[2] 195 ; set start_y[3] 305 ; 
+set start_y[1] 305 ; 
+set anchotot 780 ; 
+set altotot 500 ;
+
+if (windows && (argnumber == 0))
+  
+	getfname input_file read CHOOSE DATASET FILE ; 
+	getfname input_treefile read CHOOSE REFERENCE TREE  ; 
+	if (isinstring [ $input_treefile ReferenceTree.tre ] ) 
+		set reftree 1 ; 
+	else
+		set reftree 0 ; 
+	end
+	
+	opendlg 50 50 'anchotot' 'altotot' Phylogenomic Support... ;
+	frame   'start_x[4]' 'start_y[4]' 'ancho[4]' 'alto[4]' ;   
+	showtxt ('start_x[4]' + 8)  ('start_y[4]'+ 10) 350 20 Support Analyses ;
+	check sampsites ('start_x[4]' + 15)  ('start_y[4]'+ 30) 190 20 Resampling Individual Sites   ;
+		+        choose guichsup ('start_x[4]' + 30) ('start_y[4]'+50) 150 20 Bootstrapping
+										('start_x[4]' + 30) ('start_y[4]'+70) 150 20 Jackknifing 
+										('start_x[4]' + 30) ('start_y[4]'+90) 150 20  Symmetric  
+										('start_x[4]' + 30) ('start_y[4]'+110) 250 20 Approximate values using abs. and rel. Bremer ;     
+										+  check disper ('start_x[4]' + 45) ('start_y[4]'+130) 250 20 Disperse values ; = 
+		spin 1 100 probsit ('start_x[4]' + 20)  ('start_y[4]'+ 155) 200 20 Deletion Probability ;      =                 
+	check sampgenes ('start_x[4]' + 15)  ('start_y[4]'+180)  250 20 Resampling Genes (Jackknifing) ; 
+						
+		+spin 1 100 probgen  ('start_x[4]' + 20)  ('start_y[4]'+ 205) 200 20 Deletion Probability ; = 
+		spin 4 1000 replicas  ('start_x[4]' + 15)  ('start_y[4]'+ 240) 200 20 Number of replicates ; 
+		check dobremer ('start_x[4]' + 8)  ('start_y[4]'+ 270) 230 20 Calculate Relative Bremer Support;
+	
+		frame   'start_x[0]' 'start_y[0]' 'ancho[0]' 'alto[0]' ;
+		showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 350 20 Name of TNT Input file ;
+		gettxt input_file ('start_x[0]' + 25) ('start_y[0]'+ 30) 150 20 ;
+		showtxt  ('start_x[0]' + 15)  ('start_y[0]'+ 60) 190 20 Name of Reference tree file   
+			 gettxt input_treefile ('start_x[0]' + 25) ('start_y[0]'+ 80) 150 20  ;
+	
+		showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 115)  150 20 Gap Treatment ;
+		choose isgappy ('start_x[0]' + 12) ('start_y[0]'+ 135)  150 20 Missing
+					('start_x[0]' + 12) ('start_y[0]'+ 155) 150 20 All gaps as 5th state ; 
+	
+	frame   'start_x[2]' 'start_y[2]' 'ancho[2]' 'alto[2]' ;
+		showtxt ('start_x[2]'+5) ('start_y[2]'+12) 250 25 WEIGHTING against more homoplasiuos characters ; 
+		choose ispiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 (Implied Weighting)  
+						+ subdlg ('start_x[2]' + 25) ('start_y[2]'+ 80) 120 20 Define settings ;
+							290 175 450 290  Settings ; 
+							showtxt 7 7 290 15 Choose weighting scheme ; 
+							choose guichpiwe 10 27 290 15 Weight by gene (Extended Implied weighting)
+								10 57 290 15 Weight by 1st,2nd,3rd positions (Extended Implied weighting)
+								10 87 290 15 Weight individual sites (Implied weighting) ;
+				showtxt 7 107 290 15 Strength weighting against homoplasy ; 
+				choose guichval 11 130 11 11 . 
+								+ showtxt       140 130 250 30 Defined by a K value (Concavity value) 
+								spin 1 99 kval  37 127 20 20 ;=
+							11 167 11 11 . ;
+						+ showtxt 140 167 250 40 Defined by N value (Accepted range of weights)
+							spin 50 50 nval  37 167 20 20 ;=
+							closedlg ; =
+						('start_x[2]' + 12) ('start_y[2]'+ 30)  250 20 Use equal weighting (Traditional Parsimony) ; 
+						
+	frame   'start_x[1]' 'start_y[1]' 'ancho[1]' 'alto[1]' ;   
+		showtxt ('start_x[1]' + 8)  ('start_y[1]'+ 10)  150 20 Search Settings ;
+			choose xboost ('start_x[1]' + 8) ('start_y[1]'+ 55) 200 15 Perform a full search in each replicate 
+							+  subdlg ('start_x[1]' + 25 ) ('start_y[1]'+ 80) 120 20 Define settings ;
+								290 175 250 220  Settings ; 
+								showtxt 7 7 290 15 Search Settings ;
+													choose guchisch 10 27 290 15 New Technologies Searches  
+													+ spin 0 10 guichschlvl  30 47 290 15  Level ;
+														=
+														10 67 290 15  Traditional Searches (Wag+TBR) ; 
+								+ spin 0 10 hmrepls 30 87 290 15  Level ;=
+								closedlg ;= 
+							('start_x[1]' + 8) ('start_y[1]'+ 35) 280 15 Use Xboost approximation (Fast) ;
+		frame   'start_x[3]' 'start_y[3]' 'ancho[3]' 'alto[3]' ;                    
+		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  280 20 Generate svg file with labeled reference tree ;
+			 +  gettxt output_mpts ('start_x[3]' + 20)  ('start_y[3]'+ 45) 150 20 ;=
+		choose donewick                ('start_x[3]'  + 15) ('start_y[3]' + 65 )  180 30  Save labeled tree in TNT format   
+			                       ('start_x[3]'  + 15) ('start_y[3]' + 85 )  200 30  Save labeled trees in Newick format ; 
+		closedlg ;
+	
+	if ('sampsites') 
+		set tipo[0] 'guichsup' ; 
+	else
+		set tipo[0] 0 ;  
+	end 
+	set tipo[1] 'sampgenes' ; 
+	set tipo[2] 'dobremer' ; 
+	if (('sampsites' == 0) && ('tipo[1]' == 0) && ('tipo[2]' == 0))
+		errmsg Error in Menu selection. No support analysis has been selected ; 
+	end  
+	if (!exstatus)
+		silent - all ; quote Procedure cancelled ; 
+		procedure / ;
+	end 
+	
+else
+    silent - all ;
+	if (!argnumber)
+		lquote = ; lquote [ ;
+		quote Use &34run PhylogenomicSupport&46run help&59&34&32 for help&46&10 ;
+		lquote - ;
+		errmsg No arguments were indicated by the user. 
+		The script requires at least two arguments to run: the name of the input file (input) and the name of the reference tree (reftree). ;
+	end
+	set zhelped 0;
+	if ((argnumber == 1) && (isinstring [ %1 help ])) 
+		goto = %0 ;
+		goto AYUDA ;
+	end
+	if ('zhelped' == 1)
+		procedure / ;
+	end
+	if (argnumber == 4)
+		set zcontargs 0 ;
+		loop=parseo 1 argnumber
+			if ('zcontargs' > 1)
+				endloop ;
+			else
+				if (isinstring [ %(#parseo) input ])
+					set zparce #parseo + 1 ;
+					set input_file $%('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) reftree ])
+					set zparce #parseo + 1 ;
+					set input_treefile $%('zparce') ;
+					set zcontargs ++ ;
+				end
+			end
+		stop
+		if ('zcontargs' == 2)
+			set xboost 0 ;
+			lquote = ; lquote [ ;
+		else
+			lquote = ; lquote [ ;
+			quote Use &34run PhylogenomicSupport&46run help&59&34&32 for help&46&10 ;
+			lquote - ;
+			errmsg Arguments are not well indicated. 
+			The script requires at least two arguments to run: the name of the input file (input) and the name of the reference tree (reftree). ;
+		end	
+	end
+	if ((argnumber == 3) | (argnumber == 5) | (argnumber == 7)) 
+		| (argnumber == 9) | (argnumber == 11) | (argnumber == 13) 
+		| (argnumber == 15)| (argnumber == 17) | (argnumber == 19)
+		| (argnumber == 21)| (argnumber == 23)| (argnumber == 25))
+		lquote = ; lquote [ ;
+		errmsg Arguments are not well indicated. &10
+		Use &34run PhylogenomicSupport&46run help&59&34&32 for help&46&10 ; 
+		lquote - ;
+	end
+	if (argnumber > 4)
+		set zcontargs 0 ;
+		loop=parseo 1 argnumber
+			if ('zcontargs' > 11)
+				endloop ;
+			else	
+				if (isinstring [ %(#parseo) input ])
+					set zparce #parseo + 1 ;
+					set input_file $%('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) reftree ])
+					set zparce #parseo + 1 ;
+					set input_treefile $%('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) metric ])
+					set zparce #parseo + 1 ;
+					if (isinstring [ %('zparce') x- ])
+						set xboost 1;
+					end
+					if (isinstring [ %('zparce') boot ])
+						set guichsup 0 ;
+						set sampsites 1 ; set sampgenes 0; set dobremer 0;
+					end
+					if (isinstring [ %('zparce') jaksites ])
+						set guichsup 1 ;
+						set sampsites 1 ; set sampgenes 0; set dobremer 0;
+					end
+					if (isinstring [ %('zparce') jakblocks ])
+						set guichsup 1 ;
+						set sampsites 0 ; set sampgenes 1; set dobremer 0;
+					end
+					if (isinstring [ %('zparce') sym ])
+						set guichsup 2 ;
+						set sampsites 1 ; set sampgenes 0; set dobremer 0;
+					end
+					if (isinstring [ %('zparce') resbremer ])
+						set guichsup 3 ;
+						set sampsites 1 ; set sampgenes 0; set dobremer 0;
+					end
+					if (isinstring [ %('zparce') relbremer ])
+						set guichsup 3 ;
+						set sampsites 0 ; set sampgenes 0; set dobremer 1;
+					end
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) gaps ])
+					set zparce #parseo + 1 ;
+					if (isinstring [ %('zparce') new ])
+						set isgappy 1 ;
+					end	
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) replic ])
+					set zparce #parseo + 1 ;
+					set replicas %('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) delprob ])
+					set zparce #parseo + 1 ;
+					set probsit %('zparce') ;
+					set probgen %('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) search ])
+					set zparce #parseo + 1 ;
+						if (isinstring [ %('zparce') tra ])
+							set guchisch 1 ;
+						end	
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) level ])
+					set zparce #parseo + 1 ;
+					set guichschlvl %('zparce') ;
+					set hmrepls %('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) disper ])
+					set zparce #parseo + 1 ;
+						if (isinstring [ %('zparce') yes ])
+							set disper 1 ;
+						end	
+					set zcontargs ++ ;
+				end				
+				if (isinstring [ %(#parseo) weights ])
+					set zparce #parseo + 1 ;
+					if (isinstring [ %('zparce') equal ])
+						set ispiwe 1 ;
+					else
+						if (isinstring [ %('zparce') n- ])
+							set guichval 1;
+						end
+						if (isinstring [ %('zparce') blocks ])
+							set ispiwe 0 ;
+							set guichpiwe 0 ;
+						end
+						if (isinstring [ %('zparce') cp ])
+							set ispiwe 0 ;
+							set guichpiwe 1 ;
+						end
+						if (isinstring [ %('zparce') sites ])
+							set ispiwe 0 ;
+							set guichpiwe 2 ;
+						end
+					end	
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) strength ])
+					set zparce #parseo + 1 ;
+					set zvalue %('zparce') ;
+					set kval %('zparce') ;
+					set nval %('zparce') ;
+					set zcontargs ++ ;
+				end
+				if (isinstring [ %(#parseo) output ])
+					set zparce #parseo + 1 ;
+					if (isinstring [ %('zparce') newick ])
+						set donewick 1;
+					end
+					set zcontargs ++ ;
+				end										
+			end
+		stop
+	end
+    set saveNelsen 1 ; 
+    set savempts 1 ; 
+    set dosvg 1 ; 
+end
+
+if ('xboost' && 'reftree' ) 
+	silent - all ;  Errmsg A reference tree is required to use Xboost approach ; silent = all ; 
+	procedure / ;
+end  
+if ('guichsup' == 0)    /*jack*/
+	set tipo[0] 1 ; 
+end
+if ('guichsup' == 1)    
+	set tipo[0] 2 ;     /*boot*/
+end
+if ('guichsup' == 2)    
+	set tipo[0] 3 ;     /*sym*/ 
+end
+if ('sampgenes') 
+	set tipo[1] 1 ; 
+end
+if ('dobremer')
+	set tipo[2] 1 ; 
+end
+
+if ('hmrepls' == 0)
+	set hmrepls 1 ;
+else
+	set hmrepls ('hmrepls' * 10) ;
+end
+
+silent - console;
+lquote = ; lquote [ ;
+quote WARNING:&10;
+if (windows)
+	/* do nothing */
+else
+	if ('zcontargs' == 12)
+		quote &32&32Running the script with all the arguments indicated by the user&58&10;
+	else
+		quote &32&32Running the script with 'zcontargs' arguments indicated by the user&58&10;
+	end
+end	
+
+quote &32&32&32&32Input file &61&32 $input_file &10;
+quote &32&32&32&32Reference tree &61&32 $input_treefile &10;
+if ('guchisch' == 1) set zbusqueda $traditional search; end
+if ('xboost' == 1 ) set zx $using a express approximation for each replication; end
+quote &32&32&32&32Type of search &61&32 $zbusqueda&32&40$zx&41&10;
+quote &32&32&32&32Level of search &61&32 'guichschlvl' &10;
+if ('ispiwe' == 0)
+	if ('guichpiwe' == 0)
+		set zpesos $extended implied weigthing by blocks (e.g. genes). See strength ;
+	end
+	if ('guichpiwe' == 1)
+		set zpesos $extended implied weigthing by codon positions. See strength ;
+	end
+	if ('guichpiwe' == 2)
+		set zpesos $implied weigthing by sites. See strength ;
+	end		
+end
+quote &32&32&32&32Weighting against homoplasy &61&32 $zpesos &10;
+set zvalue 'nval' ; 
+if ('guichval' ==  1)
+	set zratio $(weights Defined by N value [Accepted range of weights]);
+end	
+if ('ispiwe' == 0)
+	quote &32&32&32&32Strength of weighting &61&32 'zvalue' $zratio &10;
+end
+if ('isgappy' == 1) set zgaps $a new state (e.g. 5th state for DNA); end
+quote &32&32&32&32Gaps are treated as $zgaps &10;
+if ('sampsites' == 1)
+	if('guichsup' == 0)
+		set zmetric $bootstrapping by sites;
+	end
+	if('guichsup' == 2)
+		set zmetric $symmetric resampling by sites;
+	end
+	if('guichsup' == 3)
+		set zmetric $combined (rel. and abs.) Bremer to approximate resampling support values;
+		if (('disper' == 1))
+			set zdisper $yes;
+		end	
+		quote &32&32&32&32Dispersion of high support values &61&32 $zdisper&10;
+	end
+end
+if ('dobremer' == 1)
+	set zmetric $relative Bremer;
+end
+if ('sampgenes' == 1)
+	set zmetric $ jackknifing by blocks (e.g. genes);
+	quote &32&32&32&32Number of replications &61&32 'replicas' &10 ;
+	quote &32&32&32&32Deletion probability &61&32 'probsit' &10 ;	
+end
+quote &32&32Running with support metric &61&32 $zmetric &10 ;
+if (('dobremer' == 0) && ('sampgenes' == 0) && ('guichsup' != 3))
+	quote &32&32&32&32Number of replications &61&32 'replicas' &10 ;
+	if ('guichsup' != 0)
+		quote &32&32&32&32Deletion probability &61&32 'probsit' &10 ;
+	end	
+end
+if ('donewick' == 1) set znew $resulting trees saved as Newick format ; end
+quote &32&32Output &61&32 $znew &10;
+quote &10&10;
+lquote - ;
+silent = console;
+
+
+/* DEFINE SETTINGS */ 
+if ('isgappy' == 0) 
+	nstates nogaps ; 
+else
+	nstates gaps ; 
+end
+
+
+/* READ DATASET AND REFERENCE TREE*/ 
+if (!'ispiwe') 
+	piwe = ; 
+end
+mxram [ ; 
+costs < ; 
+procedure $input_file ; 
+hold 10000 ;   
+if ('reftree' == 0 ) 
+	procedure $input_treefile ;
+end 
+ 
+ 
+ 
+ 
+
+/* DEFINE WEIGHTING */ 
+if (!'ispiwe' )
+	if ('guichval' == 1 ) 
+		goto CALCULATE_R ; 
+	else
+		piwe = 'kval' ;
+	end
+	if ('ispiwe'> 1)
+		xpiwe = ; 
+		if ('ispiwe' == 2 )  
+			xpiwe ] ; 
+		else
+			xpiwe [ . /12:3 ;  
+		end
+	end 
+end
+set maximo ('replicas' * 3  + 1000) ;
+hold 'maximo'/'maximo' ;
+set target ntrees ;
+
+
+/* DEFINE SEARCH SETTINGS */ 
+report = ;  
+if ('guchisch' == 2)
+	xmult : level 'level' ;  
+else
+	if ('guchisch' == 1) ; 
+		set schparam $ mult = tbr rep 'hmrepls' ; 
+	else
+		set schparam $ xmult = level 'guichschlvl' ; 
+	end
+end
+
+ 
+
+
+
+
+if (('sampsites' > 0) && ('guichsup' < 3))
+	goto SITIOS ;
+end
+set bol ntrees + 1  ; 
+if ('tipo[1]' == 1) 
+	goto BLOQUES ;
+end
+ 
+set bol ntrees + 1 ; 
+set forbre 0 ; 
+if ( 'tipo[2]' == 1 )  
+        set forbre 1 ; 
+	goto BREMER ;
+	subopt 0; 
+end
+set forres 0 ; set forbre 0 ; 
+if ('guichsup' == 3 )
+   set forres 1 ; 
+   goto BREMER ;
+   subopt 0; 
+end
+
+
+report - ; 
+macfloat 3 ; 
+collapse tbr ; condense 0  ; 
+set fin nnodes [0 ] ; 
+
+
+ttags * 0 ;
+ttags [ c ; 
+
+
+if (windows && (argnumber == 0))
+	if ('donewick') 
+		loop=nd (root+1) nnodes [0] 
+			ttags < #nd ; 
+			if (('sampsites'> 0) && ('tipo[1]'> 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd 'measure_s[#nd]'_'measure_g[#nd]'_'measure_b[#nd]' ;  
+			end
+			macfloat 0 ; 
+			if (('sampsites'> 0) && ('tipo[1]'> 0 ) && ('tipo[2]'==0 ))
+				ttags +#nd 'measure_s[#nd]'_'measure_g[#nd]'  ;  
+			end
+			if (('sampsites'== 0) && ('tipo[1]'> 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd 'measure_g[#nd]'_'measure_b[#nd]' ;  
+			end
+			if (('sampsites'> 0) && ('tipo[1]'== 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd 'measure_s[#nd]'_'measure_b[#nd]' ;  
+			end
+			if (('sampsites' == 0) && ('tipo[1]'== 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd 'measure_b[#nd]' ;  
+			end
+			if (('sampsites'> 0) && ('tipo[1]'== 0 ) && ('tipo[2]'== 0 ))
+				ttags +#nd 'measure_s[#nd]' ;  
+			end
+			if (('sampsites'== 0) && ('tipo[1]'> 0 ) && ('tipo[2]'== 0 ))
+				ttags +#nd 'measure_g[#nd]';
+			end
+		stop 
+		export < $output_mpts   ; 
+	else
+		loop=nd (root+1) nnodes [0] 
+			ttags < #nd ; 
+			if (('sampsites'> 0) && ('tipo[1]'> 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd 'measure_s[#nd]'|'measure_g[#nd]' \ 'measure_b[#nd]' ;  
+			end
+			macfloat 0 ; 
+			if (('sampsites'> 0) && ('tipo[1]'> 0 ) && ('tipo[2]'==0 ))
+				ttags +#nd 'measure_s[#nd]'|'measure_g[#nd]' \ -  ;  
+			end
+			if (('sampsites'== 0) && ('tipo[1]'> 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd - | 'measure_g[#nd]' \ 'measure_b[#nd]' ;  
+			end
+			if (('sampsites'> 0) && ('tipo[1]'== 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd 'measure_s[#nd]'| - \ 'measure_b[#nd]' ;  
+			end
+			if (('sampsites' == 0) && ('tipo[1]'== 0 ) && ('tipo[2]'> 0 ))
+				ttags +#nd - | -  \ 'measure_b[#nd]' ;  
+			end
+			if (('sampsites'> 0) && ('tipo[1]'== 0 ) && ('tipo[2]'== 0 ))
+				ttags +#nd 'measure_s[#nd]'| - \ - ;  
+			end
+			if (('sampsites'== 0) && ('tipo[1]'> 0 ) && ('tipo[2]'== 0 ))
+				ttags +#nd - |'measure_g[#nd]' \ - ;
+			end 
+		stop
+		if ('savempts')
+			tsave *$output_mpts ; save * ; tsave / ; 
+		end 
+	end
+else
+	loop=nd (root+1) nnodes [0] 
+		if ('sampsites'> 0)
+			ttags +#nd 'measure_s[#nd]' ;
+		end
+		if ('tipo[1]'> 0 ) 
+			ttags +#nd 'measure_g[#nd]'  ;  
+		end
+		if('tipo[2]'> 0)
+			ttags +#nd 'measure_b[#nd]'  ;  
+		end
+	stop
+	if ('donewick') 
+		export < $output_mpts ;
+	else
+		tsave *$output_mpts ; save * ; tsave / ;
+	end	
+	
+end
+
+if ('dosvg')
+	ttags & $output_svg  bheight 40 legup 10 txtsep 20 blength 80 ; 
+end	
+
+goto - ; 
+silent - all ; 
+report = ;
+procedure / ;
+
+
+label CALCULATE_R 
+set n -999999 ; 
+loop=la 0 nchar 
+	if ( 'n' < maxstepsact[#la] ) 
+		set n maxstepsact[#la] ; 
+	end 
+stop 
+set r 'nval' ;   /*   ***** THIS IS THE WEIGHT RANGE!!   ***  */ 
+set k 20 ; 
+set lolim 0.001 ; 
+set uplim 10000 ; 
+loop 1 1 
+	set lis 1 / ( 'k' + 1 ) ; 
+	set ris 'r' * 
+	( ( 'k' / ( 'k' + 'n' ) ) - ( 'k' / ( 'k' + 'n' + 1 ) ) ) ; 
+	if ( 'lis' == 'ris' ) 
+		endloop; 
+	end
+	if ( 'lis' > 'ris' ) 
+		if ( 'lis' < ( 'ris' + 0.0001 ) )
+			endloop;
+		end 
+		set lolim 'k' ; 
+		set k ( 'k' + 'uplim' ) / 2 ; 
+	else 
+		if ( 'ris' < ( 'lis' + 0.0001) )
+			endloop;
+		end 
+		set uplim 'k' ; 
+		set k ( 'k' + 'lolim' ) / 2 ; 
+	end 
+	setloop 1 ; 
+stop 
+piwe = 'k' ; 	
+procedure / ; 
+  
+  
+/*JACKKNIFE, BOOTSTRAP AND SYMMETRIC RESAMPLING*/
+label SITIOS
+ 
+
+if ('tipo[0]' == 3  )
+	set corte $sym ;
+	if ('probsit' > 50)
+		errmsg  ERROR: deletion probability for symmetric resampling cannot be more than 50. ;
+	end
+	outgroup 0 ; 
+	reroot ; 
+	tvault >0 ; 
+	keep 0 ; 
+	if ('xboost') 
+		resample sym [col tbr ;  tvault<0 ] nogc rep 'replicas' probability 'probsit' savetrees ; 
+	else
+		resample sym [ $schparam ] nogc rep 'replicas' probability 'probsit' savetrees ; 
+	end
+	tvault < 0 ;
+	collapse tbr ; 
+	set guich ntrees  -1  ;
+	set last ntrees ;
+	condense 'last' ; 
+	set measure_s freqlist['last']0.'guich' ;
+	tchoose / ; 
+	procedure / ; 
+else
+    if ('tipo[0]'== 1 )
+		set corte $boot ;
+		silent - all ;
+		quote The deletion probability is ignored for bootstrapping calculations. ;
+		silent = all;
+		outgroup 0 ; 
+		reroot ; 
+		tvault >0 ; 
+		keep 0 ; 
+		if ('xboost')
+			resample boot [col tbr ;  tvault<0] rep 'replicas' nogc savetrees ; 
+		else
+			resample boot [$schparam] rep 'replicas' nogc savetrees ;
+		end  
+		tvault <0 ;
+		collapse tbr ; 
+		set guich ntrees  -1 ;
+		set last ntrees ;
+		condense 'last' ; 
+		set measure_s freqlist['last']0.'guich' ;
+		tchoose / ; 
+		procedure / ; 
+    else
+		set corte $jak ;
+		outgroup 0 ; 
+		reroot ; 
+	    tvault >0 ; 
+		keep 0 ; 
+		if ('xboost')
+			resample jak [col tbr ;  tvault<0] nogc rep 'replicas' probability 'probsit' savetrees ; 
+		else
+			resample jak [$schparam] nogc rep 'replicas' probability 'probsit' savetrees ;
+		end
+		tvault <0 ;
+		collapse tbr ; 
+		set guich ntrees  -1 ;
+		set last ntrees ;
+		condense 'last' ; 
+		set measure_s freqlist['last']0.'guich';
+		tchoose / ; 
+     end
+end  
+procedure/; 
+;
+
+
+/*JACKKNIFE RESAMPLING BY BLOCKS*/
+label BLOQUES
+set bloques nblocks;
+if ('bloques' == 0)
+	silent - console ;  errmsg  ERROR: the loaded matrix does not contain defined blocks. Please define blocks with the command _blocks_ or read another matrix in TNT. ;
+    silent = console ;
+end
+report - ; 
+macreport - ;
+tvault > 0 ;
+keep 0 ; 
+loop=repli 0 ('replicas'-1)
+        set a #repli ;
+        set b 'replicas' ; 
+       /* sil-all;  progress 'a' 'b' Gene resampling (repl. 'a' of 'b' ) ;  */
+	set lista randomlist [ ('bloques'+1) ] ;
+	set numero listsize ;
+	set sano ('numero' - (('numero' * 'probgen') / 100)) ;
+	macfloat 0 ; 
+	if ('sano' < 2)
+		set sano 2 ;
+	end
+	blocks = 'lista[1-'sano']' ; 
+	set repliya (#repli + 1);
+	/*silent - ALL ; quote Replication 'repliya' of 'replicas';  */
+	macfloat 7 ; 
+	if('xboost')
+		tvault < 0 ;
+		pruntax 0/! ; 
+		collapse tbr ; 
+		condense ; 
+		tvault > 0 ;
+		ccode [. ;	
+		taxcode +. ;
+		K 0 ;
+	else
+		$schparam ;
+		condense ; 
+		if (ntrees > 0 ) 
+			set last (ntrees -1) ;
+			tchoose 0.'last' ; 
+		end
+		nelsen * ; tvault > / ;    
+		keep 0 ;
+		ccode [. ;	
+		taxcode +. ;
+	end  
+stop
+progress/ ; 
+collapse 3 ; 
+tvault <. ; 
+outgroup 0 ; reroot ;
+col- ; 
+set measure_g freqlist[0]1. ;
+col 3; 
+tchoose 0 ; 
+procedure / ; 
+ 
+;
+
+
+/*BREMER SUPPORT*/
+label BREMER
+if ( 'reftree' == 0 )
+	outgroup 0; reroot ;
+	macfloat 3 ; 
+	subopt: 0/0 ;
+	if ('dobremer' && 'forbre') /* Calcular bremer support */ 
+		set measure_b bremlist ] !0; /*calculo de relativo*/ 
+		procedure / ; 
+	end
+	if (('guichsup'== 3)  && 'forres')  /* Usar bremer como aproximacion */ 
+		set probsit 'probsit' / 100 ; 
+		subopt: 0/0 ; 
+		set dos nnodes[0] - root ;  
+		set dde root + 1 ; 
+		set fin 'tot' - 1 ; 
+		set guer (('fin') - ( nnodes[0]  - root)) + 2 ;
+		set measure_s bremlist &'probsit' !0 ;
+		if (!'disper') 
+			procedure / ; 
+		else 
+			set ordered sortlist [measure_s 'tot'] ; /* ordeno los valores de menor a mayor */ 
+			set half  'fin' - (('fin'-'guer')/8) ;   /* era 'fin'-'guer'+1 pero le saco el +1 xq se incluye el primer nodo */
+			if ('half' == 'tot') 
+				procedure / ; 
+			end 
+			if ( (nnodes[0] - root) < 10)
+				set half 'fin' - 2 ; 
+			end
+			macfloat 0 ; set half 'half' ; macfloat 3 ; 
+			quote dde 'dde' fin 'fin' ; 
+			if ('measure_s['ordered['half']']' < 99  )		                
+				procedure / ; 
+			end
+			set probsit 0.99 ; 
+			set measure_s bremlist &'probsit' !0 ;
+			set ordered sortlist [measure_s 'tot'] ; /* ordeno los valores de menor a mayor */ 
+			if ('measure_s['ordered['half']']' < 99  )		                
+				procedure / ; 
+			end
+			/* desde aca para seguir con cambios de F */ 
+			set star root + 1 ; 
+			set measure_a bremlist !0; /*absoluto*/
+			set measure_b bremlist [ !0; /*relativo*/
+			set fff 1 ; 
+			set vta 0 ; 
+			macfloat 9 ; 
+			loop 1  1
+				quote fff 'fff' ; 
+				set * absterm measure_a / ('fff') ; /*divido Abs por F*/ 
+				set * absterm  1 / absterm ;  /* hago 1 / absoluto termino derecha */  
+				set res (1 - 'probsit') ; 
+				set * relterm measure_b * ('res') ; 
+				macreport - ; 
+				loop=ra 'star' 'fin'
+					if (('measure_a[#ra]' <= 0) || ('measure_b[#ra]' <= 0) )
+						set measure_s [#ra] 0 ; 
+						continue ; 
+					end 
+					quote  relterm[#ra]  absterm[#ra] 'relterm[#ra]' 'absterm[#ra]' ; 
+					set  measure_s[#ra] power ['relterm[#ra]' 'absterm[#ra]'] ; 
+				stop
+				set ordered sortlist [measure_s 'tot'] ; /* ordeno los valores de menor a mayor */ 
+				if ('measure_s['ordered['half']']' < 0.95)
+					macfloat 0 ; 
+					set * measure_s measure_s * 100 ;
+					macfloat 3 ;
+					endloop ;
+				else
+					set vta ++ ; 
+					if ('vta' > 10 ) 
+						endloop ; 
+					end 
+					set fff 'fff' * 10 ; 
+					setloop 1 ;  
+				end
+			stop
+		end 
+	end    
+else
+if ( 'guichsup' == 3 ) 
+	errmsg  ERROR: Approximation to resampling values from Bremer support can only be calculated when defining a reference tree ; 
+else
+	errmsg  ERROR: relative Bremer support values are only calculated for a reference/target tree ;
+end
+procedure / ; 
+;
+
+
+label AYUDA ;
+cls ; clbuffer; 
+lquote = ; lquote [ ;
+silent - all ;
+/* =======================  HELP OF THE SCRIPT  ======================= */	
+quote
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&10
+TNT script:  PhylogenomicSupport.run                                                              
+Updated:     2020-12-10.                                                                 
+Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
+Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
+Depends:     TNT version 1.5 
+             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
+License:     GPL (3). Citation: Torres et al. 2020 (Cladistics)                          
+Description: performs six different types of support analyses. In 
+             addition the users have access to a very comprehensive 
+             combination of possible settings (e.g. the treatment of the 
+             gaps in the alignments, the use of different implied 
+             weighting schemes, the format of the output files, etc.) 
+             When the script is run from TNT windows menu version, a 
+             dialog box is opened to define the settings. In linux, mac 
+             and windows command TNT versions, the script should be run 
+             with arguments.
+Example:     run PhylogenomicSupport.run input dataset.tnt reftree tree.tre
+             &32&32&32&32 metric jaksites gaps miss replic 100 delprob 90
+             &32&32&32&32 search nt level 2 disper yes weights equal 
+             &32&32&32&32 strength 12 output tnt &59                  
+Arguments:   input    input file name of the dataset.
+             reftree  input file name of the reference tree.
+             metric   (optional argument) &34boot&34&32 for bootstrapping by 
+                      sites, &34jaksites&34&32 for jackknifing by sites, 
+                      &34jakblocks&34&32 for jackknifing by blocks (e.g. genes), 
+                      &34sym&34&32 for symmetric resampling, &34resbremer&34&32 to 
+                      approximate the results of resampling measures 
+                      using combined Bremer (relative and absolut) and 
+                      &34relbremer&34&32 to perform relative Bremer support.
+                      By using &34x-&34&32 preceding the resampling 
+                      options (e.g. &34x-boot&34&32, &34x-jaksites&34&32), 
+                      &34x-jakblocks&34&32 and &34x-sym&34&32) a very fast 
+                      (express) approximated analysis is performed.
+             gaps     (optional argument) treatment of the gaps (&34miss&34&32
+                      for treat the gaps as missing entries&59&32 &34new&34&32 
+                      for treat the gaps as a new character state).
+             replic   (optional argument) range of accepted values from 
+                      10 to 1000.
+             delprob  (optional argument) range of accepted values from 
+                      1 to 99 (must be &62 50 for symmetric resampling).  
+             search   (optional argument) type of search (&34nt&34&32 for New 
+                      Techs. search and &34tra&34&32 for traditional search).
+             level    (optional argument) level of searching 
+                      thoroughness (from 0 to 10). 0 is the fastest and 
+                      less accurate search and 10 is the slowest and 
+                      more accurate search.
+             disper   (optional argument) Dispersion of high support 
+                      values. &34yes&34&32 or &34no&34&32 (available for
+                      &34resbremer&34&32).
+             weights  (optional argument) weighting against homoplasious 
+                      characters. &34equal&34&32 is used to assign equal 
+                      weights to all characters (traditional parsimony).
+                      &34k-sites&34&32 is used to weight the sites 
+                      against the homoplasy they contain (implied 
+                      weighting by sites). &34k-blocks&34&32 is used to 
+                      weight the sites against the average homoplasy of 
+                      the gene they belong (extended implied weighting 
+                      by genes). &34k-cp&34&32 is used to weight the 
+                      sites against the average homoplasy of the codon 
+                      positions they belong (extended implied weights by 
+                      codon position). The concavity value K is defined 
+                      with the argument &34strength&34&32 (see below).
+                      The user is also able to define the K value setting 
+                      a range of weights (the maximum possible ratio for 
+                      the implied weights cannot exceed a certain value, 
+                      thus determining the admitted range of weights. 
+                      See Goloboff et al. 2008. 
+                      doi: 10.1111/j.1096-0031.2008.00209.x). If this is 
+                      the case, use &34n-&34&32 instead of &34k-&34&32
+                      (e.g. &34n-blocks&34, &34n-sites&34 and &34n-cp&34).
+                      Have in mind that if &34n-&34&32 is used, the value
+                      of the argument &34strength&34&32 corresponds to the 
+                      maximum possible ratio of weigths N. Otherwise 
+                      &34strength&34&32 is the concavity value K per se. 
+             strength (optional argument) the K (or N) value used when 
+                      any kind of implied weighting scheme is performed. 
+                      If equally weigthed parsimony is used, this 
+                      argument is skipped.
+             output   (optional argument) output format of the resulting 
+                      trees (&34tnt&34&32 for TNT format and &34newick&34&32 
+                      for Newick format).
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+&10 ;
+lquote - ;
+set zhelped 1;
+procedure / ;
+/* ==================================================================== */
