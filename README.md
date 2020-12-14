@@ -85,4 +85,5 @@ Calculates a distance matrix for a set of trees. The users could choose among fo
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig8.png" alt="alt text" width="404" height="380">
 </p>
 
+**Figure 8.** Example of graphical output from *TreeDistMatrix.run*.
 
