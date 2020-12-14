@@ -189,7 +189,7 @@ forfiles *.$ext
 		silent - file ; quote xread 'caras' 'guichnum' ; silent = all ; 
 	end
 	if (isinstring [ fas $ext])
-		prodecure &$gename ;
+		procedure &$gename ;
 	else
 		procedure $gename ;
 	end
