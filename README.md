@@ -12,6 +12,9 @@ The scripts are completely described in the study mentioned above and most of th
 <br/>
 <br/>
 
+For the testing of the scripts presented here, We provide some sample datasets in the link below. However, we encourage you to use your own datasets in order to expand the number of datasets that have been used to test this scripts. In this way, with your help we will more easily notice the bugs and errors the scripts may be producing:
+https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=sharing
+
 ## List of scripts
 <ol>
 <li>CompileGenes.run</li>
