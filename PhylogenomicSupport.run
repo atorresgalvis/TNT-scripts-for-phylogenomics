@@ -977,10 +977,11 @@ Arguments:   input    input file name of the dataset.
              gaps     (optional argument) treatment of the gaps (&34miss&34&32
                       for treat the gaps as missing entries&59&32 &34new&34&32 
                       for treat the gaps as a new character state).
-             replic   (optional argument) range of accepted values from 
-                      10 to 1000.
-             delprob  (optional argument) range of accepted values from 
-                      1 to 99 (must be &62 50 for symmetric resampling).  
+             replic   (optional argument) Number of replications. range of 
+	              accepted values from 10 to 1000.
+             delprob  (optional argument) Deletion probability. Range of accepted 
+	              values from 1 to 99 (must be &62 50 for symmetric 
+		      resampling).  
              search   (optional argument) type of search (&34nt&34&32 for New 
                       Techs. search and &34tra&34&32 for traditional search).
              level    (optional argument) level of searching 
