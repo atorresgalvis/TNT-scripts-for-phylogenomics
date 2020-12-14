@@ -55,7 +55,7 @@ Performs phylogenetic inference for phylogenomic datasets. The script allows the
 ### 4. PhylogenomicSupport.run
 Performs six different types of support analyses. In addition the users have access to a very comprehensive combination of possible settings. When the script is run from TNT windows menu version, a dialog box is opened to define the settings (Fig. 5).
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig5.png" alt="alt text" width="600" height="332">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Fig5.png" alt="alt text" width="580" height="332">
 </p>
 
 **Figure 5.** Dialog box available when running *PhylogenomicSupport.run* from TNT windows menu version.
