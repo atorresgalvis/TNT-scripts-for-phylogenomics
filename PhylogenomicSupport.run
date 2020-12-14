@@ -968,10 +968,10 @@ Arguments:   input    input file name of the dataset.
                       &34jakblocks&34&32 for jackknifing by blocks (e.g. genes), 
                       &34sym&34&32 for symmetric resampling, &34resbremer&34&32 to 
                       approximate the results of resampling measures 
-                      using combined Bremer (relative and absolut) and 
+                      using combined Bremer (relative and absolute) and 
                       &34relbremer&34&32 to perform relative Bremer support.
                       By using &34x-&34&32 preceding the resampling 
-                      options (e.g. &34x-boot&34&32, &34x-jaksites&34&32), 
+                      options (e.g. &34x-boot&34&32, &34x-jaksites&34&32, 
                       &34x-jakblocks&34&32 and &34x-sym&34&32) a very fast 
                       (express) approximated analysis is performed.
              gaps     (optional argument) treatment of the gaps (&34miss&34&32
