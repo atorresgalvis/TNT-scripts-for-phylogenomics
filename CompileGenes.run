@@ -109,10 +109,12 @@ else
 		end
 	stop 	
 	if (isinstring [ fas $arg_one] )
+	        costs <;
 		set ext $fas ; 
 		set cual 1 ; 
 	else
 		if (isinstring [ tnt $arg_one])
+		        costs <;
 			set ext $tnt ;
 			set cual 2 ; 
 		else 
