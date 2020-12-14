@@ -135,7 +135,7 @@ else
 	end  
 	set guichnum 'arg_thr' ;
 end
-costs <;
+
 if ('isprot' ) 
 	nstates prot ;
 else
