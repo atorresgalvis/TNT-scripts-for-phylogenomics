@@ -1,0 +1,32 @@
+**Report of updates**
+
+*SearchGeneTrees*
+  - if you give the script a datafile with no blocks defined, an error is 
+    triggered. (FIXED) 
+  - See screenshot of dialog. Some text goes out. (FIXED)
+  - Make frames for file names wider. (FIXED)
+
+*PhylogenomicSearches*
+  - Some corrections in the output messages. (FIXED)
+  - Some glitches in dialog box. (FIXED) 
+
+*GeneSupFrequency* 
+  - opening script with no dataset in memory triggers an error. (FIXED)
+  - same without a tree. (FIXED)
+  - errors turn off report! If user then quits program, it will save the report 
+    as "off". (FIXED)
+
+*PhylogenomicSupport*
+  - if user cancels datafile or treefile, the dialog is displayed anyway and 
+    errors occur during execution. (FIXED)
+  - Some glitches in dialog box. (FIXED) 
+  - The script apprently runs OK but produces no output. User doesn't know what 
+    to do; should he read the output treefile? 
+  - Reading the output treefile causes an error (apparently branch labels are 
+    missformed; if you get rid of the "| - \ -" in some labels, then the tree 
+    can be read ok). (FIXED)
+
+*TreeDistMatrix* 
+  - if you open this script without having read a dataset, it causes an error.
+  - if you open the script having read a dataset, and with trees in memory, 
+    nothing happens --no output at all. 
