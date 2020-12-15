@@ -27,6 +27,6 @@
     can be read ok). (Tested on Win. FIXED)
 
 *TreeDistMatrix* 
-  - if you open this script without having read a dataset, it causes an error. (Tested on Win)
+  - if you open this script without having read a dataset, it causes an error. (Tested on Win. FIXED)
   - if you open the script having read a dataset, and with trees in memory, 
     nothing happens --no output at all. (Tested on Win)
