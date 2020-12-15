@@ -2,31 +2,31 @@
 
 *SearchGeneTrees*
   - if you give the script a datafile with no blocks defined, an error is 
-    triggered. (FIXED) 
-  - See screenshot of dialog. Some text goes out. (FIXED)
-  - Make frames for file names wider. (FIXED)
+    triggered. (Tested on Win. FIXED) 
+  - See screenshot of dialog. Some text goes out. (Tested on Win. FIXED)
+  - Make frames for file names wider. (Tested on Win. FIXED)
 
 *PhylogenomicSearches*
-  - Some corrections in the output messages. (FIXED)
-  - Some glitches in dialog box. (FIXED) 
+  - Some corrections in the output messages. (tested on Win. FIXED)
+  - Some glitches in dialog box. (Tested on Win. FIXED) 
 
 *GeneSupFrequency* 
-  - opening script with no dataset in memory triggers an error. (FIXED)
-  - same without a tree. (FIXED)
+  - opening script with no dataset in memory triggers an error. (tested on Win. FIXED)
+  - same without a tree. (Tested on Win. FIXED)
   - errors turn off report! If user then quits program, it will save the report 
-    as "off". (FIXED)
+    as "off". (Tested on Win. FIXED)
 
 *PhylogenomicSupport*
   - if user cancels datafile or treefile, the dialog is displayed anyway and 
-    errors occur during execution. (FIXED)
-  - Some glitches in dialog box. (FIXED) 
+    errors occur during execution. (Tested on Win. FIXED)
+  - Some glitches in dialog box. (Tested on Win. FIXED) 
   - The script apprently runs OK but produces no output. User doesn't know what 
-    to do; should he read the output treefile? 
+    to do; should he read the output treefile? (Tested on Win. FIXED)
   - Reading the output treefile causes an error (apparently branch labels are 
     missformed; if you get rid of the "| - \ -" in some labels, then the tree 
-    can be read ok). (FIXED)
+    can be read ok). (Tested on Win. FIXED)
 
 *TreeDistMatrix* 
-  - if you open this script without having read a dataset, it causes an error.
+  - if you open this script without having read a dataset, it causes an error. (Tested on Win)
   - if you open the script having read a dataset, and with trees in memory, 
-    nothing happens --no output at all. 
+    nothing happens --no output at all. (Tested on Win)
