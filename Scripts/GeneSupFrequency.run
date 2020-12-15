@@ -1,0 +1,339 @@
+silent = all;
+macro - ; 
+macro [ 10000  ;
+macro * 10 10000 ; 
+macro = ;
+					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
+taxn [ 30 ;
+cls ; clbuffer ;
+report - ;
+macreport - ;
+silent = all ;
+goto [%0 ERRORES ; 
+if ( nchar == - 1 ) 
+	errmsg No dataset in memory. Please read the dataset, the reference tree and the gene trees before running this script  ;
+end
+if ( ntrees == - 1 ) 
+	errmsg No trees in memory. Please load reference and gene trees in memory before running this script  ;
+end
+
+
+
+var: zhelped a b;
+set zhelped 0 ; set a argnumber ; set b $cualquiera; set b $(%1) ;
+if (('a' == 1) && (isinstring [ $b help ])) 
+	goto = %0 ;	goto AYUDA ;
+end
+if ('zhelped' == 1)
+	procedure / ;
+end 
+var:  bloque                                caca
+      ctos                                  ctos_sp 
+      cual                                  dde 
+      dofile                                fin 
+      fin_y                                 incompat 
+      min_occu_bl                           min_occu_sp 
+      nodo                                  nuact 
+      occu                                  occu_bl 
+      occu_comp                             occu_sp
+      pace_x                                pace_y 
+      patib                                 pos 
+      pos_x                                 pos_y 
+      ppio_y                                qbloc
+      quiera                                star 
+      star_b                                star_x
+      star_y                                total 
+      tot_hig                               tot_width
+      bl_name[100]                          clades_sx_gen[(nblocks+1)]
+      clades_sx_gen_patib[(nblocks+1)]      gen_sg_c_patib[(nnodes [0] + 1)] 
+      genes_sg_clade[(nnodes [0] + 1)]      nodero[(nnodes [0] + 1)] 
+      ord_genes_sg_clade[(nnodes [0] + 1)]  ord_clades_sx_gen [(nblocks+1)]
+      ;
+tables / 7 ;
+macfloat 7 ; 
+if ( nblocks != ntrees ) 
+   set bloque nblocks ; 
+   set total ntrees   ; 
+   errmsg Number of trees ('total') is not coincident with number of genes ('bloque') + 1 . To run this script include the reference
+   tree as the first tree in memory, and one tree for each gene in the dataset. ; 
+end
+
+
+
+reroot ; 
+silent = all ;
+
+set star_x 100 ; set star_y 115 ; set pace_x 16 ; set pace_y 17 ; 
+set tot_width nblocks * 'pace_x' + 'star_x' + 250 ; 
+set tot_hig (ntax + 1 ) * 'pace_y' + 'star_y' + 250 ;  
+
+loop 1 nblocks  
+	set clades_sx_gen [#1]  0  ; 
+	set ord_clades_sx_gen [#1] 0 ; 
+stop   
+loop 1 nnodes[0] 
+	set genes_sg_clade[#1]  0  ; 
+	set ord_genes_sg_clade [#1] 0 ; 
+stop
+macreport - ; 
+set caca (-1) ; 
+loop 0 nblocks
+	set nodero grptogrp #1 0 ;
+	if (#1 == 0) 
+		set clades_sx_gen[#1] 'caca'  ;
+		continue ; 
+	end
+	loop 0 (nnodes [0])
+		if  (#2 <= root)   
+			set genes_sg_clade[#2] 'caca' ; 
+			continue ; 
+		end
+		if ('nodero[#2]'!= -1)
+			set clades_sx_gen [ #1 ] ++ ;   
+			set genes_sg_clade [ #2 ] ++ ; 
+		else
+			set nuact simgroup [0 #2 #1] ; 
+			if ('nuact' != 0) 
+				set cual regalfa ; 
+				set quiera regr ; 
+				if ( ('cual' == 0) && ('quiera' == 0)) 
+					set clades_sx_gen  [ #1 ] ++ ;   
+					set genes_sg_clade [ #2 ] ++ ; 
+					set gen_sg_c_patib [ #2] ++ ; 
+					set clades_sx_gen_patib [ #1 ] ++ ;
+				end
+			end    
+		end
+	stop
+stop
+set ord_clades_sx_gen  sortlist  [clades_sx_gen  (nblocks + 1 ) ]; 
+set ord_genes_sg_clade sortlist  [genes_sg_clade (nnodes[0]+1) ];
+lquote = ; 
+lquote [ ; 
+silent = all ; 
+log genes.svg ; 
+silent - file ; 
+quote <svg width=&34  'tot_width'&34  height= &34 'tot_hig' &34  xmlns=&34 http://www.w3.org/2000/svg&34> &10 ;
+set ctos  0 ; 
+
+
+/*IMPRIMO LOS NOMBRES DE LOS GENES*/
+set pos_y 'star_y' - 2 ; 
+loop  nblocks 1 
+	set bloque  'ord_clades_sx_gen[#1]' ; 
+	set bl_name $$block 'bloque' ;
+	set pos_x  'star_x' + ('pace_x' * 'ctos' ) ;   
+	set occu_sp 'clades_sx_gen['ord_clades_sx_gen[#1]']' ; 
+	set occu_sp ('occu_sp'/(((nnodes[0]-root) )) * 100) ; 
+	macfloat 1 ; 
+	quote <text x=&34 'pos_x'&34 &32y=&34 'pos_y'&34&32 font-size=&34 12&34&32 transform=&34 rotate (-60,'pos_x','pos_y')&34 > 'ord_clades_sx_gen[#1]'_$bl_name  &32&32  ('occu_sp') </text> &10 ; 
+	macfloat 7 ; 
+	set ctos ++ ; 
+stop 
+
+
+/*DIBUJO LAS BARRAS HORIZONTALES*/
+set pos_y 'star_y'  ;
+set star_b 'pos_x' + 10 ;  
+set pos_x 'star_b' + 200 ; 
+quote <text x=&34 'pos_x'&34 &32y=&34 'pos_y'&34&32 font-size=&34 12&34&32 transform=&34 rotate (-60,'pos_x','pos_y')&34 >  100 &37  </text> &10 ; 
+quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'pos_x' &34&32 y2=&34 'pos_y'&34&32 stroke=&34 black&34&32 stroke-width=&34 2&34&32/> &10 ; 
+set pos_x 'star_b' + 100 ;
+quote <text x=&34 'pos_x'&34 &32y=&34 'pos_y'&34&32 font-size=&34 12&34&32 transform=&34 rotate (-60,'pos_x','pos_y')&34 >  0 &37  </text> &10 ; 
+set occu_sp 'pos_y' + ( (nnodes[0]-root) * 'pace_y') ;  
+quote <line x1=&34 'pos_x'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'pos_x'&34&32 y2=&34 'occu_sp'&34&32 stroke=&34 black&34&32 stroke-width=&34 2&34&32/> &10; 
+set star_b 'star_b' + 100 ;
+set total 100 ; 
+set pos_y 'pos_y' + ('pace_y' / 2 ) ; 
+loop nnodes[0] (root+1)
+	set nodo 'ord_genes_sg_clade[#1]' ;
+	set occu_sp   'genes_sg_clade [ 'nodo']' ; 
+	set occu_comp 'gen_sg_c_patib [ 'nodo']' ; 
+	set incompat (nblocks) - ('occu_sp' ) ;
+	set incompat ('incompat' / (nblocks)) * 100 ; 
+	set pos_x 'star_b' - 'incompat' ;
+	quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'pos_x'&34&32 y2=&34 'pos_y'&34&32 stroke=&34 red&34&32 stroke-width=&34 6&34&32/> &10 ; 
+	set incompat ('occu_sp' / nblocks) * 100 ; 
+	set pos_x 'star_b' + 'incompat' ;
+	quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'pos_x'&34&32 y2=&34 'pos_y'&34&32 stroke=&34 green&34&32 stroke-width=&34 6&34&32/> &10 ; 
+	set ppio_y 'occu_comp' ; 
+	set ppio_y ('ppio_y' / nblocks) * 100 ; 
+	set ppio_y 'pos_x' - 'ppio_y' ;      
+	quote <line x1=&34 'pos_x'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'ppio_y'&34&32 y2=&34 'pos_y'&34&32 stroke=&34 yellow&34&32 stroke-width=&34 6&34&32/> &10 ; 
+	set pos_y 'pos_y' + 'pace_y' ;  
+stop  
+set ctos_sp 0 ;
+set star_b 'star_x' - 10 ; 
+set dde 0 ;
+silent - file ;
+
+
+/*IMPRIMO LOS CUADRADITOS*/
+loop nblocks 1 
+	set bloque 'ord_clades_sx_gen[#1]' ; 
+	set pos_x 'star_b' + ('pace_x' * 'dde') ;
+	set nodero grptogrp 'ord_clades_sx_gen[#1]' 0 ;
+	set ctos_sp 0 ; 
+	loop nnodes[0] (root+1) 
+		set nodo 'ord_genes_sg_clade[#2]' ; 
+		set pos_y  'star_y' + ('pace_y' * 'ctos_sp') ; 
+		if ('nodero['nodo']'!= -1)
+			quote <rect x=&34 'pos_x'&34&32y=&34 'pos_y'&34&32width=&34 15&34&32height=&34 15&34&32style=&34fill:green&34 />   &10 ;
+		else
+			set nuact simgroup [0 'nodo' 'ord_clades_sx_gen[#1]'] ; 
+			if ('nuact' !=0) 
+				set cual regalfa ; 
+				set quiera regr ; 
+				if (('cual' == 0) && ('quiera' == 0)) 
+					quote <rect x=&34 'pos_x'&34 &32y=&34 'pos_y'&34&32width=&34 15&34&32 height=&34 15&34&32style=&34fill:yellow&34 />   &10 ;
+				else
+					quote <rect x=&34 'pos_x'&34 &32y=&34 'pos_y'&34&32width=&34 15&34 &32height=&34 15&34&32style=&34fill:red&34 />   &10 ;
+				end
+			else
+				quote <rect x=&34 'pos_x'&34 &32y=&34 'pos_y'&34 &32 width=&34 15&34&32 height=&34 15&34&32style=&34fill:red&34 />   &10 ;  
+			end    
+		end
+		set ctos_sp ++ ;
+	stop
+	set dde ++ ; 
+stop
+set bloque 'star_y' - 2 ; 
+set ctos 'pos_x' + 135 ; 
+quote <text x=&34 'ctos'&34 &32y=&34 'bloque'&34&32 font-size=&34 12&34&32 >  Bl Supp Nd </text> &10 ; 
+set ctos 'pos_x' + 35 ; 
+quote <text x=&34 'ctos'&34 &32y=&34 'bloque'&34&32 font-size=&34 12&34&32 >  Bl Not Supp Nd </text> &10 ; 
+set ctos 'ctos' - 7 ; 
+quote <text x=&34 'ctos'&34 &32y=&34 'bloque'&34&32 font-size=&34 12&34&32 transform=&34 rotate (-60,'ctos','bloque')&34 >  100 &37  </text> &10 ; 
+set ctos_sp 0 ;
+set star_y 'star_y' + 12 ; 
+
+
+/*IMPRIMO LOS NODOSS*/
+loop nnodes[0]  (root + 1 )
+	set bl_name $Node 'ord_genes_sg_clade[#1]' ;
+	set pos_y  'star_y' + ('pace_y' * 'ctos_sp' )  ; 
+	set occu_sp 'genes_sg_clade['ord_genes_sg_clade[#1]']' ; 
+	set occu_sp  (('occu_sp'/nblocks) * 100) ; 
+	macfloat 1 ; 
+	quote <text x=&34 5&34&32y=&34 'pos_y'&34&32  font-size=&34 12&34 > ('occu_sp') &32 $bl_name  </text> &10 ;  
+	macfloat 7 ; 
+	set ctos_sp ++ ;
+stop
+
+
+/*DIBUJO LAS BARRAS VERTICALES*/
+set pos_y 'pos_y' +  120 ;
+set star_b 'star_b' - 3 ;  
+set pos_x 'pos_x' + 17 ; 
+quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'pos_x' &34&32 y2=&34 'pos_y'&34&32 stroke=&34 black&34&32 stroke-width=&34 2&34&32/> &10 ; 
+set dde 'star_b' - 20 ; 
+quote <text x=&34 'dde'&34&32y=&34 'pos_y'&34&32  font-size=&34 12&34 > &32 0&37 </text> &10 ;
+set pos_y 'pos_y' - 100 ;
+set dde 'star_b' - 30 ;
+quote <text x=&34 'dde'&34&32y=&34 'pos_y'&34&32  font-size=&34 12&34 > &32 100&37  </text> &10 ;  
+set occu_sp 'pos_y' + 200 ;  
+quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'star_b'&34&32 y2=&34 'occu_sp'&34&32 stroke=&34 black&34&32 stroke-width=&34 2&34&32/> &10 ; 
+set occu_sp 'occu_sp' + 10 ;
+quote <text x=&34 'dde'&34&32y=&34 'occu_sp'&34&32  font-size=&34 12&34 > &32 100&37 </text> &10 ;  
+set occu_sp 'pos_y' +80  ; 
+set ctos 'star_b' - 15 ; 
+quote <text x=&34 'ctos'&34 &32y=&34 'occu_sp'&34&32 font-size=&34 12&34&32 transform=&34 rotate (-90,'ctos','occu_sp')&34 >  Nd Supp by Bl   </text> &10 ; 
+set occu_sp 'pos_y' +200  ; 
+quote <text x=&34 'ctos'&34 &32y=&34 'occu_sp'&34&32 font-size=&34 12&34&32 transform=&34 rotate (-90,'ctos','occu_sp')&34 >  Nd Not Supp by Bl   </text> &10 ; 
+set star_b 'star_b' + 3 + 8 ;
+set pos_y 'pos_y' + 100 ;
+set occu_sp 'pos_y' + 50 ; 
+set total 100 ; 
+loop nblocks 1 
+	set bloque 'ord_clades_sx_gen[#1]' ; 
+	set occu_sp   'clades_sx_gen [ 'bloque']' ; 
+	set occu_comp 'clades_sx_gen_patib [ 'bloque']' ; 
+	set incompat (nnodes[0]-root) - ('occu_sp' ) ; 
+	set incompat ('incompat' / (nnodes[0]-root)) * 100 ; 
+	set fin_y 'pos_y' + 'incompat' ;
+	quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'star_b'&34&32 y2=&34 'fin_y'&34&32 stroke=&34 red&34&32 stroke-width=&34 6&34&32/> &10 ; 
+	set incompat ('occu_sp' / (nnodes[0]-root)) * 100 ; 
+	set fin_y 'pos_y' - 'incompat' ;
+	quote <line x1=&34 'star_b'&34&32 y1=&34 'pos_y'&34&32 x2=&34 'star_b'&34&32 y2=&34 'fin_y'&34&32 stroke=&34 green&34&32 stroke-width=&34 6&34&32/> &10 ; 
+	set ppio_y 'occu_comp' ; 
+	set ppio_y ('ppio_y' / (nnodes[0]-root)) * 100 ; 
+	set ppio_y 'ppio_y' + 'fin_y' ;  
+	quote <line x1=&34 'star_b'&34&32 y1=&34 'ppio_y'&34&32 x2=&34 'star_b'&34&32 y2=&34 'fin_y'&34&32 stroke=&34 yellow&34&32 stroke-width=&34 6&34&32/> &10 ; 
+	set star_b 'star_b' + 16 ;  
+stop
+
+quote </svg>   &10 ;  
+log/;
+lquote - ; 
+
+
+/*Genero árbol con frecuencias de grupos*/
+ttags * 0 ; 
+macfloat 1 ; 
+loop=tot (ntax + 1) (nnodes[0])
+	if (#tot == root ) continue ; end ; 
+	set total (('genes_sg_clade[#tot]'/ nblocks ) * 100) ;
+	set patib 'total' - (('gen_sg_c_patib[#tot]'/ nblocks ) * 100) ;
+	ttags +#tot Nd=#tot\'total'|'patib' ; 
+stop
+ttags &tree.SVG bheight 40   legup 10   txtsep 20  blength 80 ; 
+macfloat 7 ; 
+log / ;
+report = ;
+tt- ; 
+silent - all ; 
+quote Done! Results in genes.svg and tree.svg ; 
+procedure / ; 
+
+
+label AYUDA ;
+lquote = ; lquote [ ;
+silent - all ;
+/* =======================  HELP OF THE SCRIPT  ======================= */	
+quote
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+TNT script:  GeneSupFrequency.run                                                              
+Updated:     2020-12-05.                                                                 
+Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
+Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
+Depends:     TNT version 1.5 
+             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
+License:     GPL (3). Citation: Torres et al. 2020 (Cladistics)                          
+Description: Calculates the percentage of single gene trees supporting 
+             the nodes of a reference tree (e.g. concatenation-based 
+             tree). Some authors referred to this measure as Gene Support 
+             Frequency (GSF. Gadagkar et al. 2005 doi: 10.1002/jez.b.21026&59 
+             Salichos et al., 2014 doi: 10.1093/molbev/msu061). This 
+             script presents the GSF values in three different ways: i) 
+             as a heatmap, where the columns represent the gene trees and 
+             the rows represent the nodes of the reference tree&59&32 ii) as 
+             stacked bar plots that show the amount of nodes of the 
+             reference tree that are supported by each gene tree and the 
+             amount of gene trees that support each node of the reference 
+             tree&59&32 and iii) as labels in the nodes of the reference tree. 
+             The graphical output uses a color palette to label the nodes 
+             of the reference tree depending on whether they are –or not– 
+             supported by the gene trees and whether the gene trees have 
+             complete –or incomplete– taxon sampling.                                                          
+Example:     run GeneSupFrequency.run &59                  
+IMPORTANT:   the user must read the dataset, the reference tree and the 
+             gene trees (in that specific order) into TNT before running 
+             the script.                                                                        
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+&10;
+lquote - ;
+set zhelped 1 ;
+procedure / ;
+/* ==================================================================== */
+
+
+label ERRORES 
+sil-all; 
+report = ; 
+ts/ ; 
+proc/; 
+
+
+
+
+
