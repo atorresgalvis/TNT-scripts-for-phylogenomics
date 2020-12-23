@@ -38,7 +38,7 @@ This script enables the user to concatenate any number of data files into a sing
 <br/>
 
 ### 2. GeneOccupancy.run
-Generates submatrices with sampling of taxa/genes that present a level of occupancy defined by the user. Two different conditions can be determined: (i) percentage of species a gene must present for to be sampled, (ii) percentage of genes a species must present for to be sampled. The script produces a submatrix in TNT format and a SVG file with information about taxon/gene occupancy (Fig. 3). This script should be executed using arguments in Linux, Mac and Windows command TNT versions (for more information see the help of the script).
+This script generates submatrices with sampling of taxa/genes that present a level of occupancy defined by the user. Two different conditions can be determined: (i) percentage of species a gene must present for to be sampled, (ii) percentage of genes a species must present for to be sampled. The script produces a submatrix in TNT format and a SVG file with information about taxon/gene occupancy (Fig. 3). This script should be executed using arguments in Linux, Mac and Windows command TNT versions (for more information see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig3.png" alt="alt text" width="600" height="332">
 </p>
@@ -47,7 +47,7 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 <br/>
 
 ### 3. PhylogenomicSearch.run
-Performs phylogenetic inference for phylogenomic datasets. The script enables the users to define multiple settings in a very simple way (e.g. the treatment of the gaps in the alignments, the use of different implied weighting schemes, the format of the output files, etc.) When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 4).
+This script performs phylogenetic inference for phylogenomic datasets. The script enables the users to define multiple settings in a very simple way (e.g. the treatment of the gaps in the alignments, the use of different implied weighting schemes, the format of the output files, etc.) When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 4).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig4.png" alt="alt text" width="600" height="332">
 </p>
@@ -56,7 +56,7 @@ Performs phylogenetic inference for phylogenomic datasets. The script enables th
 <br/>
 
 ### 4. PhylogenomicSupport.run
-Performs six different types of support analyses. In addition the users have access to a comprehensive combination of possible settings. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 5).
+The script performs six different types of support analyses. In addition the users have access to a comprehensive combination of possible settings. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 5).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig5.png" alt="alt text" width="580" height="332">
 </p>
@@ -65,7 +65,7 @@ Performs six different types of support analyses. In addition the users have acc
 <br/>
 
 ### 5. SearchGeneTrees.run
-This script calculates the gene trees from a TNT dataset where each gene is included as a different block/partition (e.g. output files from *CompileGenes.run*). When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 6). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
+The script calculates the gene trees from a TNT dataset where each gene is included as a different block/partition (e.g. output files from *CompileGenes.run*). When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 6). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig6.png" alt="alt text" width="500" height="322">
 </p>
@@ -74,7 +74,7 @@ This script calculates the gene trees from a TNT dataset where each gene is incl
 <br/>
 
 ### 6. GeneSupFrequency.run
-Calculates the percentage of single gene trees supporting the nodes of a reference tree (e.g. concatenation-based tree). Some authors referred to this measure as Gene Support Frequency (GSF. Gadagkar et al. 2005 doi: 10.1002/jez.b.21026&59; Salichos et al., 2014 doi: 10.1093/molbev/msu061). This script presents the GSF values in three different ways (Fig.7).
+This script calculates the percentage of single gene trees supporting the nodes of a reference tree (e.g. concatenation-based tree). Some authors referred to this measure as Gene Support Frequency (GSF. Gadagkar et al. 2005 doi: 10.1002/jez.b.21026&59; Salichos et al., 2014 doi: 10.1093/molbev/msu061). This script presents the GSF values in three different ways (Fig.7).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig7.png" alt="alt text" width="600" height="522">
 </p>
@@ -83,7 +83,7 @@ Calculates the percentage of single gene trees supporting the nodes of a referen
 <br/>
 
 ### 7. TreeDistMatrix.run
-Calculates a distance matrix for a set of trees. The users could choose among four different metrics (SPR moves, SPR difference, normalized Robinson-Foulds and the distortion coefficient). Two outputs are produced: the distance matrix in CSV format and a heat map in SVG format (Fig. 8).
+This script calculates a distance matrix for a set of trees. The users could choose among four different metrics (SPR moves, SPR difference, normalized Robinson-Foulds and the distortion coefficient). Two outputs are produced: the distance matrix in CSV format and a heat map in SVG format (Fig. 8).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig8.png" alt="alt text" width="404" height="380">
 </p>
