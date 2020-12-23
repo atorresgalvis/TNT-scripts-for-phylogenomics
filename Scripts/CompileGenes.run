@@ -32,7 +32,7 @@ if (windows && (argnumber == 0))
 		frame   5 85 250 60  ;
 	showtxt 12 14 100 15 Type of data;
 	choose isprot 15 32 150 20 Nucleotides
-				  15 52 150 20 Aminoacids ;
+				  15 52 150 20 Amino acids ;
 	showtxt 262 14 100 15 Treatment of gaps ; 
 	choose isgappy 270 32 150 20 Missing
 				   270 52 150 20 All gaps as additional state ;    
