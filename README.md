@@ -1,6 +1,6 @@
 # TNT scripts for phylogenomics
 In this repository are included the scripts published in the paper *An outline for phylogenomic analyses using TNT* by Ambrosio Torres, Pablo A. Goloboff and Santiago A. Catalano (Cladistics. 2020).
-The scripts are completely described in the study mentioned above and most of them can be executed using the TNT Windows-menu version (Fig. 1) and using the command versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. This information is also available by typing in TNT (please make sure the script-files are in the folder where you are working):
+The scripts are completely described in the study mentioned above and most of them can be executed using the TNT Windows-menu version (Fig. 1) and using the command-line versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. This information is also available by typing in TNT (please make sure the script-files are in the folder where you are working):
 
     run NameOfTheScript.run help;
 
@@ -29,7 +29,7 @@ https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=shari
 <br/>
 
 ### 1. CompileGenes.run
-This script enables the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 2). In linux, mac and windows command TNT versions, the script should be run with arguments (see the help of the script).
+This script enables the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 2). In linux, mac and windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig2.png" alt="alt text" width="600" height="322">
 </p>
@@ -65,7 +65,7 @@ Performs six different types of support analyses. In addition the users have acc
 <br/>
 
 ### 5. SearchGeneTrees.run
-This script calculates the gene trees from a TNT dataset where each gene is included as a different block. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 6). In linux, mac and windows command TNT versions, the script should be run with arguments (see the help of the script).
+This script calculates the gene trees from a TNT dataset where each gene is included as a different block. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 6). In linux, mac and windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig6.png" alt="alt text" width="500" height="322">
 </p>
