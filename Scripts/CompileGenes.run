@@ -25,7 +25,7 @@ set isgappy 0 ;
 set typedial 0 ; 
 set output_file $concatenated.tnt ; 
 if (windows && (argnumber == 0)) 
-	opendlg 100 100 520 270 Choose option... ; 
+	opendlg 100 100 520 270 Compile genes... ; 
 		frame   5 5 250 85  ;
 		frame   260 5 250 85 ;
 		frame   260 85 250 100 ;
