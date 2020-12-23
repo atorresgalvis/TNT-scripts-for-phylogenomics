@@ -29,7 +29,7 @@ https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=shari
 <br/>
 
 ### 1. CompileGenes.run
-This script enables the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 2). In linux, mac and windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
+This script enables the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 2). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig2.png" alt="alt text" width="600" height="322">
 </p>
@@ -38,7 +38,7 @@ This script enables the user to concatenate any number of data files into a sing
 <br/>
 
 ### 2. GeneOccupancy.run
-Generates submatrices with sampling of taxa/genes that present a level of occupancy defined by the user. Two different conditions can be determined: (i) percentage of species a gene must present to be sampled, (ii) percentage of genes a species must present to be sampled. The script produces a submatrix in TNT format and a SVG file with information about taxon/gene occupancy (Fig. 3). This script should be executed using arguments in Linux, Mac and Windows command TNT versions (for more information see the help of the script).
+Generates submatrices with sampling of taxa/genes that present a level of occupancy defined by the user. Two different conditions can be determined: (i) percentage of species a gene must present for to be sampled, (ii) percentage of genes a species must present for to be sampled. The script produces a submatrix in TNT format and a SVG file with information about taxon/gene occupancy (Fig. 3). This script should be executed using arguments in Linux, Mac and Windows command TNT versions (for more information see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig3.png" alt="alt text" width="600" height="332">
 </p>
@@ -47,7 +47,7 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 <br/>
 
 ### 3. PhylogenomicSearch.run
-Performs phylogenetic inference for phylogenomic datasets. The script enables the users to define multiple settings in a very simple way (e.g. the treatment of the gaps in the alignments, the use of different implied weighting schemes, the format of the output files, etc.) When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 4).
+Performs phylogenetic inference for phylogenomic datasets. The script enables the users to define multiple settings in a very simple way (e.g. the treatment of the gaps in the alignments, the use of different implied weighting schemes, the format of the output files, etc.) When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 4).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig4.png" alt="alt text" width="600" height="332">
 </p>
@@ -56,7 +56,7 @@ Performs phylogenetic inference for phylogenomic datasets. The script enables th
 <br/>
 
 ### 4. PhylogenomicSupport.run
-Performs six different types of support analyses. In addition the users have access to a very comprehensive combination of possible settings. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 5).
+Performs six different types of support analyses. In addition the users have access to a very comprehensive combination of possible settings. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 5).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig5.png" alt="alt text" width="580" height="332">
 </p>
@@ -65,7 +65,7 @@ Performs six different types of support analyses. In addition the users have acc
 <br/>
 
 ### 5. SearchGeneTrees.run
-This script calculates the gene trees from a TNT dataset where each gene is included as a different block. When the script is run from TNT windows-menu version, a dialog box is opened to define the settings (Fig. 6). In linux, mac and windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
+This script calculates the gene trees from a TNT dataset where each gene is included as a different block. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 6). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig6.png" alt="alt text" width="500" height="322">
 </p>
