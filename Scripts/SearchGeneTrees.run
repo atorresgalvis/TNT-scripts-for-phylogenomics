@@ -69,30 +69,30 @@ mxram [ ;
 piw - ; 
 if (windows && (argnumber == 0)) 
 	getfname input_file read CHOOSE DATAFILE  ; 
-	opendlg 100 100 520 325 Search Gene Trees ; 
+	opendlg 100 100 520 325 Search gene trees ; 
 	frame   5 5 250 57  ;
-		showtxt 12 12 250 15 Input Dataset ;
+		showtxt 12 12 250 15 Input dataset ;
 		gettxt input_file 15 30 225 20  ;
 	frame   260 5 250 133 ;
-		showtxt 262 12 100 15 Search Settings ;
-		choose guichsch 270 30 111 15 Traditional Search
+		showtxt 262 12 100 15 Search settings ;
+		choose guichsch 270 30 111 15 Traditional search
 		+  spin  0 10 level 280 50 110 20  Level ;=
-		270 80 230 20 New Techs. Search ; 
+		270 80 230 20 New techs. Search ; 
 		+  spin  0 10 xlevel 280 100 110 20 Level   ;=
 	frame   260 135 250 115 ;
 		showtxt 262 145 290 15 Weighting  ;
-		choose nopiwe 270 185 200 20 Use Implied Weighting    
+		choose nopiwe 270 185 200 20 Use implied weighting    
 		+subdlg 300 210 120 20 Define settings ; 
 			290 175 300 170  Settings ; 
 			showtxt 7 7 290 15 Strength weighting against homoplasy  ;
 			choose guichvar 10 30 20 20 .     
-		+ spin 1 99 kval 40 30 175 26 Determined by a K value (Concavity value)  ; =  
+		+ spin 1 99 kval 40 30 175 26 Determined by a K value (concavity value)  ; =  
 		10 60 20 20 . ;  
-			+ spin 1 99 nval 40 60 140 26 Determined by a N value (Accepted range of weights)  ; = 
+			+ spin 1 99 nval 40 60 140 26 Determined by a N value (accepted range of weights)  ; = 
 		closedlg ; =
-		270 165 240 20 Use Equal Weighting  ; 
+		270 165 240 20 Use Equal weighting  ; 
 	frame   5 56 250 83 ; 
-	showtxt 12 67 100 15 Output Dataset ;
+	showtxt 12 67 100 15 Output dataset ;
 	gettxt output_file 15 87 225 20  ;
 	check isnewick 15 112 200 20 Export trees in Newick format ;  
 	frame   5 135 250 115 ;
