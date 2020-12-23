@@ -129,7 +129,7 @@ if (windows && (argnumber == 0))
 		+        choose guichsup ('start_x[4]' + 30) ('start_y[4]'+50) 150 20 Bootstrapping
 										('start_x[4]' + 30) ('start_y[4]'+70) 150 20 Jackknifing 
 										('start_x[4]' + 30) ('start_y[4]'+90) 150 20  Symmetric  
-										('start_x[4]' + 30) ('start_y[4]'+110) 250 20 Approximate values using abs. and rel. Bremer ;     
+										('start_x[4]' + 30) ('start_y[4]'+110) 250 20 Approximate values using combined Bremer ;     
 										+  check disper ('start_x[4]' + 45) ('start_y[4]'+130) 250 20 Disperse values ; = 
 		spin 1 100 probsit ('start_x[4]' + 20)  ('start_y[4]'+ 155) 200 20 Deletion Probability ;      =                 
 	check sampgenes ('start_x[4]' + 15)  ('start_y[4]'+180)  250 20 Resampling Genes (Jackknifing) ; 
@@ -179,7 +179,7 @@ if (windows && (argnumber == 0))
 														10 67 290 15  Traditional Searches (Wag+TBR) ; 
 								+ spin 0 10 hmrepls 30 87 290 15  Level ;=
 								closedlg ;= 
-							('start_x[1]' + 8) ('start_y[1]'+ 35) 300 15 Use Xboost approximation (Fast) ;
+							('start_x[1]' + 8) ('start_y[1]'+ 35) 300 15 Use FAR approximation (Fast) ;
 		frame   'start_x[3]' 'start_y[3]' 'ancho[3]' 'alto[3]' ;                    
 		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  300 20 Generate svg file with labeled reference tree ;
 			 +  gettxt output_mpts ('start_x[3]' + 20)  ('start_y[3]'+ 45) 150 20 ;=
@@ -297,7 +297,7 @@ else
 						set guichsup 2 ;
 						set sampsites 1 ; set sampgenes 0; set dobremer 0;
 					end
-					if (isinstring [ %('zparce') resbremer ])
+					if (isinstring [ %('zparce') combremer ])
 						set guichsup 3 ;
 						set sampsites 1 ; set sampgenes 0; set dobremer 0;
 					end
@@ -604,7 +604,7 @@ end
 quote &32&32&32&32Input file &61&32 $input_file &10;
 quote &32&32&32&32Reference tree &61&32 $input_treefile &10;
 if ('guchisch' == 1) set zbusqueda $traditional search; end
-if ('xboost' == 1 ) set zx $using a express approximation for each replication; end
+if ('xboost' == 1 ) set zx $using FAR approximation (fast) for each replication; end
 quote &32&32&32&32Type of search &61&32 $zbusqueda&32&40$zx&41&10;
 quote &32&32&32&32Level of search &61&32 'guichschlvl' &10;
 if ('ispiwe' == 0)
@@ -957,14 +957,14 @@ Arguments:   input    input file name of the dataset.
              metric   (optional argument) &34boot&34&32 for bootstrapping by 
                       sites, &34jaksites&34&32 for jackknifing by sites, 
                       &34jakblocks&34&32 for jackknifing by blocks (e.g. genes), 
-                      &34sym&34&32 for symmetric resampling, &34resbremer&34&32 to 
+                      &34sym&34&32 for symmetric resampling, &34combbremer&34&32 to 
                       approximate the results of resampling measures 
                       using combined Bremer (relative and absolut) and 
                       &34relbremer&34&32 to perform relative Bremer support.
                       By using &34x-&34&32 preceding the resampling 
                       options (e.g. &34x-boot&34&32, &34x-jaksites&34&32), 
                       &34x-jakblocks&34&32 and &34x-sym&34&32) a very fast 
-                      (express) approximated analysis is performed.
+                      (FAR) approximated analysis is performed.
              gaps     (optional argument) treatment of the gaps (&34miss&34&32
                       for treat the gaps as missing entries&59&32 &34new&34&32 
                       for treat the gaps as a new character state).
