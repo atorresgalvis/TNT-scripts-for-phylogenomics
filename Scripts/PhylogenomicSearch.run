@@ -75,7 +75,7 @@ if (windows && (argnumber == 0))
 	set start_y[2] 145 ; set start_y[3] 145 ; 
 	set anchotot 780 ; 
 	set altotot 430 ; 
-	getfname input_file read CHOOSE DATASET FILE  ; 
+	getfname input_file read CHOOSE DATAFILE  ; 
 	opendlg 50 50 'anchotot' 'altotot' Phylogenomic Searches... ;
 	
 	frame   'start_x[0]' 'start_y[0]' 'ancho[0]' 'alto[0]'  ;
