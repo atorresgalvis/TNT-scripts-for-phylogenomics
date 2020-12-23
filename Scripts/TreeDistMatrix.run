@@ -122,7 +122,9 @@ if (isinstring [ yes $grafo ] )
 			if ('valores[#colus]' > 'maximo')
 				set maximo 'valores[#colus]' ;
 			end
-			set valorden[#filas] ('valorden[#filas]' + 'valores[#colus]');
+			if ((#filas == 0) && (#colus != 0))
+				set valorden[#colus] ('valores[#colus]' + 1);
+			end
 			macfloat 0 ;
 		stop
 	stop
