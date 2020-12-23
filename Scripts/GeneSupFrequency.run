@@ -107,7 +107,7 @@ set ord_genes_sg_clade sortlist  [genes_sg_clade (nnodes[0]+1) ];
 lquote = ; 
 lquote [ ; 
 silent = all ; 
-log genes.svg ; 
+log GSFplot.svg ; 
 silent - file ; 
 quote <svg width=&34  'tot_width'&34  height= &34 'tot_hig' &34  xmlns=&34 http://www.w3.org/2000/svg&34> &10 ;
 set ctos  0 ; 
@@ -272,7 +272,7 @@ loop=tot (ntax + 1) (nnodes[0])
 	set patib 'total' - (('gen_sg_c_patib[#tot]'/ nblocks ) * 100) ;
 	ttags +#tot Nd=#tot\'total'|'patib' ; 
 stop
-ttags &tree.SVG bheight 40   legup 10   txtsep 20  blength 80 ; 
+ttags &GSFtree.svg bheight 40   legup 10   txtsep 20  blength 80 ; 
 macfloat 7 ; 
 log / ;
 report = ;
