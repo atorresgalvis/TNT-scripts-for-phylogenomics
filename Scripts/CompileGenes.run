@@ -35,7 +35,7 @@ if (windows && (argnumber == 0))
 				  15 52 150 20 Aminoacids ;
 	showtxt 262 14 100 15 Treatment of gaps ; 
 	choose isgappy 270 32 150 20 Missing
-				   270 52 150 100 All gaps as additional state ;    
+				   270 52 150 20 All gaps as additional state ;    
 	showtxt 262 97 150 15 Total number of species  ; 
 	choose spec_num  270 110 160 20 Specify number of species 
 					+  spin 4 32767 guichnum 280 132 120 20 ; =   
