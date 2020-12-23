@@ -107,10 +107,10 @@ if (windows && (argnumber == 0))
 		
 	frame   'start_x[1]' 'start_y[1]' 'ancho[1]' 'alto[1]' ;   
 		showtxt ('start_x[1]' + 8)  ('start_y[1]'+ 10)  150 20 Search settings ;
-		choose guchisch ('start_x[1]' + 8) ('start_y[1]'+ 35) 200 15 New technology tearches  
+		choose guchisch ('start_x[1]' + 8) ('start_y[1]'+ 35) 200 15 New technology searches  
 						+ spin 0 10 guichschlvl  ('start_x[1]' + 55) ('start_y[1]'+ 55) 50 20 Level  ;
 						=
-					('start_x[1]' + 8) ('start_y[1]'+ 85) 300 15 Traditional tearches (Wag+TBR); 
+					('start_x[1]' + 8) ('start_y[1]'+ 85) 300 15 Traditional searches (Wag+TBR); 
 						+ spin 0 10 hmrepls  ('start_x[1]' + 55) ('start_y[1]'+ 105) 50 20 Level;=
 		frame   'start_x[3]' 'start_y[3]' 'ancho[3]' 'alto[3]' ;                    
 		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  150 20 Save best trees in a file ;
