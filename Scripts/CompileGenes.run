@@ -39,7 +39,7 @@ if (windows && (argnumber == 0))
 	showtxt 262 97 150 15 Total number of species  ; 
 	choose spec_num  270 110 160 20 Specify number of species 
 					+  spin 4 32767 guichnum 280 132 120 20 ; =   
-					270 160 230 20 Use the number of sp from first block ; 
+					270 160 230 20 Use the number of sp. from first block ; 
 	showtxt 12 95 150 20 Name of output file ;
 	gettxt output_file 20 117 150 20  ;
 	frame   5 140 250 95  ;
