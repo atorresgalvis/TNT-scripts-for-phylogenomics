@@ -68,7 +68,7 @@ cost< ;
 mxram [ ; 
 piw - ; 
 if (windows && (argnumber == 0)) 
-	getfname input_file read CHOOSE DATASET FILE  ; 
+	getfname input_file read CHOOSE DATAFILE  ; 
 	opendlg 100 100 520 325 Search Gene Trees ; 
 	frame   5 5 250 57  ;
 		showtxt 12 12 250 15 Input Dataset ;
