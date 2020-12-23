@@ -19,7 +19,7 @@ https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=shari
 <ol>
 <li>CompileGenes.run</li>
 <li>GeneOccupancy.run</li>
-<li>PhylogenomicSearches.run</li>
+<li>PhylogenomicSearch.run</li>
 <li>PhylogenomicSupport.run</li>
 <li>SearchGeneTrees.run</li>
 <li>GeneSupFrequency.run</li>
@@ -46,13 +46,13 @@ Generates submatrices with sampling of taxa/genes that present a level of occupa
 **Figure 3.** Example of graphical output from *GeneOccupancy.run*.
 <br/>
 
-### 3. PhylogenomicSearches.run
+### 3. PhylogenomicSearch.run
 Performs phylogenetic inference for phylogenomic datasets. The script allows the users to define multiple settings in a very simple way (e.g. the treatment of the gaps in the alignments, the use of different implied weighting schemes, the format of the output files, etc.) When the script is run from TNT windows menu version, a dialog box is opened to define the settings (Fig. 4).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig4.png" alt="alt text" width="600" height="332">
 </p>
 
-**Figure 4.** Dialog box available when running *PhylogenomicSearches.run* from TNT windows menu version.
+**Figure 4.** Dialog box available when running *PhylogenomicSearch.run* from TNT windows menu version.
 <br/>
 
 ### 4. PhylogenomicSupport.run
