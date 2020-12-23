@@ -65,7 +65,7 @@ Performs six different types of support analyses. In addition the users have acc
 <br/>
 
 ### 5. SearchGeneTrees.run
-This script calculates the gene trees from a TNT dataset where each gene is included as a different block. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 6). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
+This script calculates the gene trees from a TNT dataset where each gene is included as a different block/partition (e.g. output files from *CompileGenes.run*). When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 6). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig6.png" alt="alt text" width="500" height="322">
 </p>
