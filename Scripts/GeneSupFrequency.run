@@ -278,7 +278,7 @@ log / ;
 report = ;
 tt- ; 
 silent - all ; 
-quote Done! Results in genes.svg and tree.svg ; 
+quote Done! Results in GSFplot.svg and GSFtree.svg ; 
 procedure / ; 
 
 
