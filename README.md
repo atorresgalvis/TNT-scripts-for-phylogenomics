@@ -1,6 +1,6 @@
 # TNT scripts for phylogenomics
 In this repository are included the scripts published in the paper *An outline for phylogenomic analyses using TNT* by Ambrosio Torres, Pablo A. Goloboff and Santiago A. Catalano (Cladistics. 2020).
-The scripts are completely described in the study mentioned above and most of them can be executed using the TNT Windows menu version (Fig. 1) and using the command versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. In addition, this information could be accessed by typing in TNT (please make sure the script-files are in the folder where you are working):
+The scripts are completely described in the study mentioned above and most of them can be executed using the TNT Windows menu version (Fig. 1) and using the command versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. This information is also available by typing in TNT (please make sure the script-files are in the folder where you are working):
 
     run NameOfTheScript.run help;
 
@@ -12,7 +12,7 @@ The scripts are completely described in the study mentioned above and most of th
 <br/>
 <br/>
 
-For the testing of the scripts presented here, We provide some sample datasets in the link below. However, we encourage you to use your own datasets in order to expand the number of datasets that have been used to test these scripts. In this way, with your help we will more easily notice the bugs and errors the scripts may be producing:
+We provide sample datasets in the link below that may be used for testing the scripts presented here. However, we encourage you to use your own datasets in order to expand the number of datasets that have been used to test these scripts. In this way, with your help we will more easily notice the bugs and errors the scripts may be producing:
 https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=sharing
 
 ## List of scripts
