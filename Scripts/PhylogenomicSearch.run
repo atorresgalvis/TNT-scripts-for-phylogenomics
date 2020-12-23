@@ -76,48 +76,48 @@ if (windows && (argnumber == 0))
 	set anchotot 780 ; 
 	set altotot 430 ; 
 	getfname input_file read CHOOSE DATAFILE  ; 
-	opendlg 50 50 'anchotot' 'altotot' Phylogenomic Searches... ;
+	opendlg 50 50 'anchotot' 'altotot' Phylogenomic searches... ;
 	
 	frame   'start_x[0]' 'start_y[0]' 'ancho[0]' 'alto[0]'  ;
-	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 390 20 Name of TNT Input file ;
+	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 390 20 Name of TNT input file ;
 	gettxt input_file ('start_x[0]' + 15) ('start_y[0]'+ 30) 350 20  ;
 	
-	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 60)  150 20 Gap Treatment ;
+	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 60)  150 20 Gap treatment ;
 	choose isgappy ('start_x[0]' + 12) ('start_y[0]'+ 80)  150 20 Missing
 					('start_x[0]' + 12) ('start_y[0]'+ 100) 300 20 All gaps as additional state ; 
 					
 	frame   'start_x[2]' 'start_y[2]' 'ancho[2]' 'alto[2]' ;
 	showtxt ('start_x[2]'+5) ('start_y[2]'+12) 250 25 WEIGHTING against more homoplasiuos characters ; 
-	choose antipiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 (Implied Weighting)  
+	choose antipiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 (Implied weighting)  
 						+ subdlg ('start_x[2]' + 25) ('start_y[2]'+ 80) 120 20 Define settings ;
 							290 175 450 290  Settings ; 
 							showtxt 7 7 290 15 Choose weighting scheme  ; 
-							choose guichpiwe 10 27 290 15 Weight by gene (Extended Implied weighting)
-							10 57 290 15 Weight by 1st,2nd,3rd positions (Extended Implied weighting)
-							10 87 290 15 Weight individual sites (Implied weighting) ;
+							choose guichpiwe 10 27 290 15 Weight by gene (extended implied weighting)
+							10 57 290 15 Weight by 1st,2nd,3rd positions (extended implied weighting)
+							10 87 290 15 Weight individual sites (implied weighting) ;
 			showtxt 7 107 290 15 Strength weighting against homoplasy  ; 
 			choose guichval 11 130 11 11 . 
-								+ showtxt       140 130 250 30 Defined by a K value (Concavity value) 
+								+ showtxt       140 130 250 30 Defined by a K value (concavity value) 
 								spin 1 99 kval  37 127 20 20 ;=
 							11 167 11 11 . ;
-						+ showtxt 140 167 250 40 Defined by N value (Accepted range of weights)
+						+ showtxt 140 167 250 40 Defined by N value (accepted range of weights)
 							spin 50 50 nval  37 167 20 20 ;=
 						closedlg ; =
 	         	('start_x[2]' + 12) ('start_y[2]'+ 30)  250 20 Use equal weighting  ; 
 		
 	frame   'start_x[1]' 'start_y[1]' 'ancho[1]' 'alto[1]' ;   
-		showtxt ('start_x[1]' + 8)  ('start_y[1]'+ 10)  150 20 Search Settings ;
-		choose guchisch ('start_x[1]' + 8) ('start_y[1]'+ 35) 200 15 New Technology Searches  
+		showtxt ('start_x[1]' + 8)  ('start_y[1]'+ 10)  150 20 Search settings ;
+		choose guchisch ('start_x[1]' + 8) ('start_y[1]'+ 35) 200 15 New technology tearches  
 						+ spin 0 10 guichschlvl  ('start_x[1]' + 55) ('start_y[1]'+ 55) 50 20 Level  ;
 						=
-					('start_x[1]' + 8) ('start_y[1]'+ 85) 300 15 Traditional Searches (Wag+TBR); 
+					('start_x[1]' + 8) ('start_y[1]'+ 85) 300 15 Traditional tearches (Wag+TBR); 
 						+ spin 0 10 hmrepls  ('start_x[1]' + 55) ('start_y[1]'+ 105) 50 20 Level;=
 		frame   'start_x[3]' 'start_y[3]' 'ancho[3]' 'alto[3]' ;                    
-		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  150 20 Save Best trees in a file ;
+		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  150 20 Save best trees in a file ;
 					+  gettxt output_mpts ('start_x[3]' + 20) ('start_y[3]'+ 45) 330 20  ;=
-			check  savNelsen ('start_x[3]'+  8)  ('start_y[3]' + 75)  200 20 Calculate Strict Consensus and save it ;
+			check  savNelsen ('start_x[3]'+  8)  ('start_y[3]' + 75)  200 20 Calculate strict consensus and save it ;
 		+gettxt output_consense ('start_x[3]' + 18) ('start_y[3]'+ 95) 330 20  ;
-                check dosvg ('start_x[3]' + 8)  ('start_y[3]'+ 180)  300 20 Generate svg with strict consensus topology ;=
+                check dosvg ('start_x[3]' + 8)  ('start_y[3]'+ 180)  300 20 Generate SVG with strict consensus topology ;=
        		
    		
 		choose donewick    ( 'start_x[3]'  + 8) ('start_y[3]' + 120 )  200 30  Save trees in TNT format   
