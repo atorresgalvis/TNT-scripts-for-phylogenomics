@@ -122,44 +122,44 @@ if (windows && (argnumber == 0))
   	  proc/; 
 	end
 	
-	opendlg 50 50 'anchotot' 'altotot' Phylogenomic Support... ;
+	opendlg 50 50 'anchotot' 'altotot' Phylogenomic support... ;
 	frame   'start_x[4]' 'start_y[4]' 'ancho[4]' 'alto[4]' ;   
-	showtxt ('start_x[4]' + 8)  ('start_y[4]'+ 10) 350 20 Support Analyses ;
-	check sampsites ('start_x[4]' + 15)  ('start_y[4]'+ 30) 190 20 Resampling Individual Sites   ;
+	showtxt ('start_x[4]' + 8)  ('start_y[4]'+ 10) 350 20 Support analyses ;
+	check sampsites ('start_x[4]' + 15)  ('start_y[4]'+ 30) 190 20 Resampling individual sites   ;
 		+        choose guichsup ('start_x[4]' + 30) ('start_y[4]'+50) 150 20 Bootstrapping
 										('start_x[4]' + 30) ('start_y[4]'+70) 150 20 Jackknifing 
 										('start_x[4]' + 30) ('start_y[4]'+90) 150 20  Symmetric  
 										('start_x[4]' + 30) ('start_y[4]'+110) 250 20 Approximate values using combined Bremer ;     
 										+  check disper ('start_x[4]' + 45) ('start_y[4]'+130) 250 20 Disperse values ; = 
-		spin 1 100 probsit ('start_x[4]' + 20)  ('start_y[4]'+ 155) 200 20 Deletion Probability ;      =                 
-	check sampgenes ('start_x[4]' + 15)  ('start_y[4]'+180)  250 20 Resampling Genes (Jackknifing) ; 
+		spin 1 100 probsit ('start_x[4]' + 20)  ('start_y[4]'+ 155) 200 20 Deletion probability ;      =                 
+	check sampgenes ('start_x[4]' + 15)  ('start_y[4]'+180)  250 20 Resampling genes (Jackknifing) ; 
 						
-		+spin 1 100 probgen  ('start_x[4]' + 20)  ('start_y[4]'+ 205) 200 20 Deletion Probability ; = 
+		+spin 1 100 probgen  ('start_x[4]' + 20)  ('start_y[4]'+ 205) 200 20 Deletion probability ; = 
 		spin 4 1000 replicas  ('start_x[4]' + 15)  ('start_y[4]'+ 240) 200 20 Number of replicates ; 
-		check dobremer ('start_x[4]' + 8)  ('start_y[4]'+ 270) 230 20 Calculate Relative Bremer Support;
+		check dobremer ('start_x[4]' + 8)  ('start_y[4]'+ 270) 230 20 Calculate relative Bremer support;
 	
 		frame   'start_x[0]' 'start_y[0]' 'ancho[0]' 'alto[0]' ;
-		showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 250 20 Name of TNT Input file ;
+		showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 250 20 Name of TNT input file ;
 		gettxt input_file ('start_x[0]' + 25) ('start_y[0]'+ 30) 320 20 ;
 		showtxt  ('start_x[0]' + 15)  ('start_y[0]'+ 60) 190 20 Name of Reference tree file   
 			 gettxt input_treefile ('start_x[0]' + 25) ('start_y[0]'+ 80) 320 20  ;
 	
-		showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 115)  150 20 Gap Treatment ;
+		showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 115)  150 20 Gap treatment ;
 		choose isgappy ('start_x[0]' + 12) ('start_y[0]'+ 135)  150 20 Missing
 					('start_x[0]' + 12) ('start_y[0]'+ 155) 250 20 All gaps as a new state ; 
 	
 	frame   'start_x[2]' 'start_y[2]' 'ancho[2]' 'alto[2]' ;
 		showtxt ('start_x[2]'+5) ('start_y[2]'+12) 250 25 WEIGHTING  ; 
-		choose ispiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 (Implied Weighting)  
+		choose ispiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 (Implied weighting)  
 						+ subdlg ('start_x[2]' + 25) ('start_y[2]'+ 80) 120 20 Define settings ;
 							290 175 450 290  Settings ; 
 							showtxt 7 7 290 15 Choose weighting scheme ; 
-							choose guichpiwe 10 27 290 15 Weight by gene (Extended Implied weighting)
-								10 57 290 15 Weight by 1st,2nd,3rd positions (Extended Implied weighting)
-								10 87 290 15 Weight individual sites (Implied weighting) ;
+							choose guichpiwe 10 27 290 15 Weight by gene (extended implied weighting)
+								10 57 290 15 Weight by 1st,2nd,3rd positions (extended implied weighting)
+								10 87 290 15 Weight individual sites (implied weighting) ;
 				showtxt 7 107 290 15 Strength weighting against homoplasy ; 
 				choose guichval 11 130 11 11 . 
-								+ showtxt       140 130 250 30 Defined by a K value (Concavity value) 
+								+ showtxt       140 130 250 30 Defined by a K value (concavity value) 
 								spin 1 99 kval  37 127 20 20 ;=
 							11 167 11 11 . ;
 						+ showtxt 140 167 250 40 Defined by N value (Accepted range of weights)
@@ -172,14 +172,14 @@ if (windows && (argnumber == 0))
 			choose xboost ('start_x[1]' + 8) ('start_y[1]'+ 55) 300 15 Perform a full search in each replicate 
 							+  subdlg ('start_x[1]' + 25 ) ('start_y[1]'+ 80) 120 20 Define settings ;
 								290 175 250 220  Settings ; 
-								showtxt 7 7 290 15 Search Settings ;
-													choose guchisch 10 27 290 15 New Technologies Searches  
+								showtxt 7 7 290 15 Search settings ;
+													choose guchisch 10 27 290 15 New technologies searches  
 													+ spin 0 10 guichschlvl  30 47 290 15  Level ;
 														=
-														10 67 290 15  Traditional Searches (Wag+TBR) ; 
+														10 67 290 15  Traditional searches (Wag+TBR) ; 
 								+ spin 0 10 hmrepls 30 87 290 15  Level ;=
 								closedlg ;= 
-							('start_x[1]' + 8) ('start_y[1]'+ 35) 300 15 Use FAR approximation (Fast) ;
+							('start_x[1]' + 8) ('start_y[1]'+ 35) 300 15 Use FAR approximation (fast) ;
 		frame   'start_x[3]' 'start_y[3]' 'ancho[3]' 'alto[3]' ;                    
 		check savempts ('start_x[3]' + 8)  ('start_y[3]'+ 15)  300 20 Generate svg file with labeled reference tree ;
 			 +  gettxt output_mpts ('start_x[3]' + 20)  ('start_y[3]'+ 45) 150 20 ;=
