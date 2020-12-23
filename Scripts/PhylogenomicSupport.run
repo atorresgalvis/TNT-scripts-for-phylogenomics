@@ -115,7 +115,7 @@ set altotot 500 ;
 set reftree 0 ; 
 
 if (windows && (argnumber == 0))
-	getfname input_file read CHOOSE DATASET FILE ; 
+	getfname input_file read CHOOSE DATAFILE ; 
 	getfname input_treefile read CHOOSE REFERENCE TREE  ; 
 	if ((isinstring [ $input_file Reference.tnt ]) || (isinstring [ $input_treefile ReferenceTree.tre ]  )) 
   	  sil-all;  quote * Error. No dataset/reference tree was selected ; sil=all;
