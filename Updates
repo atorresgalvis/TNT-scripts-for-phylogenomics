@@ -1,12 +1,16 @@
 **Report of updates**
 
+*General updates*
+  - Improvements to the dialog boxes of the scripts and improvements to the descriptions 
+    available in the repository were made in 23th December 2020.
+
 *SearchGeneTrees*
   - if you give the script a datafile with no blocks defined, an error is 
     triggered. (Tested on Win. FIXED) 
   - See screenshot of dialog. Some text goes out. (Tested on Win. FIXED)
   - Make frames for file names wider. (Tested on Win. FIXED)
 
-*PhylogenomicSearches*
+*PhylogenomicSearch*
   - Some corrections in the output messages. (tested on Win. FIXED)
   - Some glitches in dialog box. (Tested on Win. FIXED) 
 
@@ -25,8 +29,12 @@
   - Reading the output treefile causes an error (apparently branch labels are 
     missformed; if you get rid of the "| - \ -" in some labels, then the tree 
     can be read ok). (Tested on Win. FIXED)
+  - The "resbremer" option was renamed as "combremer". (Changed made)
+  - The "xboost" option was renamed as "FAR" (Fast approximate resampling). (Change made) 
 
 *TreeDistMatrix* 
   - if you open this script without having read a dataset, it causes an error. (Tested on Win. FIXED)
   - if you open the script having read a dataset, and with trees in memory, 
     nothing happens --no output at all. (Tested on Win)
+  - The order of the gene trees in the outputfiles is determined based on their distances to the reference
+    tree. (Addition made)
