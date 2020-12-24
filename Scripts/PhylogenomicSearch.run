@@ -87,7 +87,7 @@ if (windows && (argnumber == 0))
 					('start_x[0]' + 12) ('start_y[0]'+ 100) 300 20 All gaps as additional state ; 
 					
 	frame   'start_x[2]' 'start_y[2]' 'ancho[2]' 'alto[2]' ;
-	showtxt ('start_x[2]'+5) ('start_y[2]'+12) 250 25 WEIGHTING against more homoplasiuos characters ; 
+	showtxt ('start_x[2]'+5) ('start_y[2]'+12) 250 25 Weighting against more homoplasiuos characters ; 
 	choose antipiwe ('start_x[2]' + 12) ('start_y[2]'+ 50)  250 20 Implied weighting  
 						+ subdlg ('start_x[2]' + 25) ('start_y[2]'+ 80) 120 20 Define settings ;
 							290 175 450 290  Settings ; 
