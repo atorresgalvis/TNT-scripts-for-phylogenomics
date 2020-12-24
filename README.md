@@ -56,7 +56,7 @@ This script performs phylogenetic inference for phylogenomic datasets. The scrip
 <br/>
 
 ### 4. PhylogenomicSupport.run
-The script performs six different types of support analyses. In addition the users have access to a comprehensive combination of possible settings. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 5).
+The script performs six different types of support analyses. In addition the users have access to a comprehensive combination of possible settings. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 5). Note: FAR = Fast Approximate Resampling.
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig5.png" alt="alt text" width="580" height="332">
 </p>
