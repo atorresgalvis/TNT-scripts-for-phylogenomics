@@ -76,7 +76,7 @@ if (windows && (argnumber == 0))
 	set anchotot 780 ; 
 	set altotot 430 ; 
 	getfname input_file read CHOOSE DATAFILE  ; 
-	opendlg 50 50 'anchotot' 'altotot' Phylogenomic searches... ;
+	opendlg 50 50 'anchotot' 'altotot' Phylogenomic search... ;
 	
 	frame   'start_x[0]' 'start_y[0]' 'ancho[0]' 'alto[0]'  ;
 	showtxt ('start_x[0]' + 8)  ('start_y[0]'+ 10) 390 20 Name of TNT input file ;
