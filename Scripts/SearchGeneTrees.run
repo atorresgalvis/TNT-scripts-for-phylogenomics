@@ -264,7 +264,7 @@ else
 			end
 		stop
 		lquote = ; lquote [ ;
-		if ('contargs' == 7)
+		if ('contargs' == 8)
 			quote Running the script with all the arguments indicated by the user&58 &10 ;
 		else
 			quote Running the script with 'contargs' arguments indicated by the user&58 &10 ;
