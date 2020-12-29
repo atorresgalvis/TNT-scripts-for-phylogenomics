@@ -172,9 +172,9 @@ else
 						set contargs ++ ;
 					else
 						if (eqstring [ %(#parseo) hits ])
-						set parce #parseo + 1 ;
-						set nuhits %('parce') ;
-						set contargs ++ ;
+							set parce #parseo + 1 ;
+							set nuhits %('parce') ;
+							set contargs ++ ;
 						else
 							if (eqstring [ %(#parseo) search ])
 								set parce #parseo + 1 ;
