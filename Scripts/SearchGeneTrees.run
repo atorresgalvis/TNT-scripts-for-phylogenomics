@@ -490,7 +490,7 @@ procedure / ;
 label CALCULATE_R 
         set round 0 ; 
         if ('nval' < 1.5)
-         errms Error! Give a weighing range value (N) larger than 1  ; 
+         errms Error! Give a weighting range value (N) larger than 1  ; 
         end 
 	set n -999999 ; 
 	loop=la (blockstart['caca']) (blockend['caca']) 
