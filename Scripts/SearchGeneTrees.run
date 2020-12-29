@@ -157,7 +157,7 @@ else
 	if (argnumber > 2)
 		set contargs 0 ;
 		loop=parseo 1 argnumber
-			if ('contargs' > 6)
+			if ('contargs' > 7)
 				endloop ;
 			else	
 				if (eqstring [ %(#parseo) input ])
