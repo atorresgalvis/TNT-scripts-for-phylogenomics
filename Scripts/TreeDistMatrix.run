@@ -388,6 +388,10 @@ IMPORTANT:   before running the script, the user must read the dataset,
 &10;
 lquote - ;
 set helped 1 ;
+if(windows)
+else
+	view ;
+end
 procedure / ;
 /* ==================================================================== */
 
