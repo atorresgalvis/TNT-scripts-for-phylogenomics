@@ -5,7 +5,7 @@ The scripts are completely described in the study mentioned above and most of th
     run NameOfTheScript.run help;
 
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig1.png" alt="alt text" width="700" height="294">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig1.png" alt="alt text" width="840" height="352">
 </p>
 
 **Figure 1.** Opening input files in the TNT Windows-menu version.
@@ -31,7 +31,7 @@ https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=shari
 ### 1. CompileGenes.run
 This script enables the user to concatenate any number of data files into a single matrix in TNT format. When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 2). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig2.png" alt="alt text" width="600" height="322">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig2.png" alt="alt text" width="780" height="418">
 </p>
 
 **Figure 2.** Dialog box for *CompileGenes.run*.
@@ -40,7 +40,7 @@ This script enables the user to concatenate any number of data files into a sing
 ### 2. GeneOccupancy.run
 This script generates submatrices with sampling of taxa/genes that present a level of occupancy defined by the user. Two different conditions can be determined: (i) percentage of species a gene must present for to be sampled, (ii) percentage of genes a species must present for to be sampled. The script produces a submatrix in TNT format and a SVG file with information about taxon/gene occupancy (Fig. 3). This script should be executed using arguments in Linux, Mac and Windows command TNT versions (for more information see the help of the script).
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig3.png" alt="alt text" width="600" height="332">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig3.png" alt="alt text" width="780" height="431">
 </p>
 
 **Figure 3.** Example of graphical output from *GeneOccupancy.run*.
@@ -67,7 +67,7 @@ The script performs six different types of support analyses. In addition the use
 ### 5. SearchGeneTrees.run
 The script calculates the gene trees from a TNT dataset where each gene is included as a different block/partition (e.g. output files from *CompileGenes.run*). When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 6). In Linux, Mac and Windows command-line versions of TNT, the script should be run with arguments (see the help of the script).
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig6.png" alt="alt text" width="500" height="322">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig6.png" alt="alt text" width="700" height="450">
 </p>
 
 **Figure 6.** Dialog box for *SearchGeneTrees.run*.
@@ -76,7 +76,7 @@ The script calculates the gene trees from a TNT dataset where each gene is inclu
 ### 6. GeneSupFrequency.run
 This script calculates the percentage of individual gene trees supporting the nodes of a reference tree (e.g. concatenation-based tree). Some authors referred to this measure as Gene Support Frequency (GSF; Gadagkar et al. 2005 doi: 10.1002/jez.b.21026&59; Salichos et al., 2014 doi: 10.1093/molbev/msu061). This script presents the GSF values in three different ways (Fig. 7).
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig7.png" alt="alt text" width="600" height="522">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig7.png" alt="alt text" width="780" height="678">
 </p>
 
 **Figure 7.** Example of graphical outputs from *GeneSupFrequency.run*. (a) Heatmap of the GSF for the Species tree (concatenation-based tree). Nodes supported by the gene tree (green box); nodes supported by the gene tree, but with some of the descendants missing in the gene tree (yellow box); nodes not supported by the gene tree (red box). The information is also presented as stacked bar plots (Nd= node number; Bl= block/gene tree; Supp= supported). (b) Species tree with values of Gene-support frequency. Labels above branches = node number (Nd). Labels below branches =   frequency of gene trees in agreement with reference tree (Yellow + green in heatmap ) | frequency of gene trees that present the node (Green in heatmap; Gene-support frequency).(c) Description of the definitions and color code of clades showing full matching, agreement with and in contradiction to the reference tree.
