@@ -40,7 +40,7 @@ var:   alto[4]           ancho[4]
        nuhits            tofit          round             pace 
        wwww
        ;
-taxname +20 ;
+taxname +200 ;
 costs < ; 
 mxram [ ;
 set + ; 
@@ -384,7 +384,7 @@ end
 
 
 /* PERFORM SEARCHES */ 
-/* Drift modified accoding to the N° of chars */ 
+/* Drift modified accoding to the NÂ° of chars */ 
  
 set origlev 'hmrepls' ; 
 if ('hmrepls' == 0)
