@@ -1,6 +1,6 @@
 # TNT scripts for phylogenomics
-In this repository are included the scripts published in the paper *Parsimony analysis of phylogenomic datasets (I): guidelines for using TNT* by Ambrosio Torres, Pablo A. Goloboff and Santiago A. Catalano (Cladistics. 2021).
-The scripts are completely described in the study mentioned above and most of them can be executed using the TNT Windows-menu version (Fig. 1) and using the command-line versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. This information is also available by typing in TNT (please make sure the script-files are in the folder where you are working):
+In this repository are included the scripts published in the paper *Parsimony analysis of phylogenomic datasets (I): guidelines for using TNT* by Ambrosio Torres, Pablo A. Goloboff and Santiago A. Catalano (Cladistics. 2021). Please cite the work mentioned if you use any tools included in this repository.
+The scripts are completely described here and most of them can be executed using the TNT Windows-menu version (Fig. 1) and using the command-line versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. This information is also available by typing in TNT (please make sure the script-files are in the folder where you are working):
 
     run NameOfTheScript.run help;
 
