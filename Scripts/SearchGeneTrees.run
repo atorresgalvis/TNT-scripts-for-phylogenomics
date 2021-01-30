@@ -1,0 +1,616 @@
+macro - ;
+macro [ 50000 ;
+macro *20 35000 ;
+macro = ;
+					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
+silent - all ;
+macreport - ;
+report = ;
+set + ;
+var - ;
+var:   arg_one[100]           arg_two [100] 
+       blockact[10000 ]       blockname[ 40 ] 
+       input_file[ 1000 ]     listblocks[ 10000 ] 
+       listtree[ 10000 ]      output_file[ 1000 ]
+       zbusqueda[100]         zpesos[100]
+       zvalue[100]            zblocks[100]
+       znew[100]
+       a                      allblocks 
+       arg_one                b 
+       baul                   caca 
+       contargs               doreduced 
+       endi                   guichsch 
+       guichvar               helped 
+       isnewick               nopiwe 
+       jold                   joldo
+       k                      lawarn
+       kval                   level 
+       lis                    lolim 
+       n                      nta 
+       sip                    nublo 
+       nutr                   nval
+       nuhits
+       origlvl                parce 
+       r                      ris 
+       skip                   son 
+       start                  starti 
+       todos                  totjold 
+       uplim                  va 
+       vamos                  vta 
+       xlevel                 round
+       ; 
+warn - ; 
+xwipe ; 
+macreport - ;
+goto = %0 ; 
+report - ; 
+clbuffer ; 
+cls ;
+taxname = ; taxname +200;
+silent = all ;
+nstates nogaps ;
+set allblocks 1 ; 
+set doreduced 0 ;
+set isnewick 0 ; 
+set output_file $GeneTrees.tre ; 
+set input_file $InputFile.tnt ;
+set guichsch 1 ;  
+set nopiwe 1 ; 
+set guichvar  1 ; 
+set kval 12 ; 
+set nval 15 ; 
+set level 2 ; 
+set xlevel 2 ; 
+set son 0 ;
+set lawarn 0 ;
+set nuhits 1 ; 
+
+tgroup + 5000 ;  
+cost< ; 
+mxram [ ; 
+piw - ; 
+if (windows && (argnumber == 0)) 
+	getfname input_file read CHOOSE DATAFILE  ; 
+	opendlg 100 100 520 345 Search gene trees ; 
+	frame   5 5 250 57  ;
+		showtxt 12 12 250 15 Input dataset ;
+		gettxt input_file 15 30 225 20  ;
+	frame   260 5 250 153 ;
+		showtxt 262 12 100 15 Search settings ;
+		choose guichsch 270 30 111 15 Traditional search
+		+  spin  0 10 level 280 50 110 20  Level ;=
+		270 80 230 20 New techs. Search ; 
+		+  spin  0 10 xlevel 280 100 110 20 Level   ;
+		   spin  1 5 nuhits   280 130 110 20 Number of hits ;  
+		=
+	frame   260 155 250 115 ;
+		showtxt 262 165 290 15 Weighting  ;
+		choose nopiwe 270 205 200 20 Use implied weighting    
+		+subdlg 300 230 120 20 Define settings ; 
+			290 175 400 210  Settings ; 
+			showtxt 7 7 290 15 Weighting against homoplasy  ;
+			choose guichvar 10 45 20 20 .     
+		+ spin 1 99 kval 40 40 190 26 Determined by a K value (concavity value)  ; =  
+		10 95 20 20 . ;  
+			+ spin 2 50 nval 40 90 190 26 Determined by a N value (accepted range of weights)  ; = 
+		closedlg ; =
+		270 185 240 20 Use Equal weighting  ; 
+	frame   5 56 250 83 ; 
+	showtxt 12 67 100 15 Output dataset ;
+	gettxt output_file 15 87 225 20  ;
+	check isnewick 15 112 200 20 Export trees in Newick format ;  
+	frame   5 135 250 115 ;
+		choose allblocks  12 175 150 20 Choose blocks
+		+ gettxt listblocks  22 195 140 20  ;
+		check doreduced 22 225 230 20 Generate a file with the reduced dataset ; =   
+		12 150 115 20 All blocks ;
+	closedlg ;
+	if (!exstatus)
+		silent - all ; quote Procedure cancelled ; 
+		procedure / ; 
+	end
+else
+	silent - all ;
+	if (!argnumber)
+		lquote = ; lquote [ ;
+		quote Use &34run SearchGeneTrees&46run help&59&34&32 for help&46&10 ;
+		lquote - ;
+		errmsg No arguments were indicated by the user. 
+		The script requires at least one argument to run: the name of the input file. ;
+	end
+	set helped 0;
+	if ((argnumber == 1) && (eqstring [ %1 help ])) 
+		goto = %0 ;
+		goto AYUDA ;
+	end
+	if ('helped' == 1)
+		macreport - ;
+		report = ;
+		macro - ;
+		silent - all ;
+		procedure / ;
+	end
+	lquote = ; lquote [ ;
+	quote WARNING: keep in mind that the script SearchGeneTrees.run requires at least one argument (input).&10 ;
+	quote &32         Seven optional arguments (search, level, hits, weights, strength, blocks and output) could be added.&10;
+	quote &32         Every word or number other than the allowed arguments and options will be skipped during the execution.&10 ;
+	quote &32         Be sure that you are running the script properly (use &34run SearchGeneTrees&46run help&59&34&32 for help).&10 ;
+	quote &10 ;
+	lquote - ;
+	if ((argnumber == 2) && (eqstring [ %1 input ]))
+		set input_file $%2 ;
+		set guichsch 1 ;
+		set nopiwe 1;
+		set xlevel 3 ;
+		lquote = ; lquote [ ;
+		quote WARNING:&10;
+		quote &32&32&32&32Running the script with $input_file&32as input file.&10 ;
+		quote &32&32&32&32Running with type of search by default &40&61New technology search&41&46 &10 ;
+		quote &32&32&32&32Running with search level by default &40level &61&32 2&41&46 &10 ;
+		quote &32&32&32&32Running with number of hits by default &40hits &61&32 1&41&46 &10 ;
+		quote &32&32&32&32Running using weights by default &40weights &61&32 equal&41&46 &10 ;
+		quote &32&32&32&32Phylogenetic searches are being performed for all blocks&46 &10 ;
+		quote &32&32&32&32Resulting trees saved in TNT format&46 &10 ;
+		lquote - ;
+	end
+	set zblocks $all blocks ;
+	set zbusqueda $new technology search ;
+	set zpesos $equal weighted parsimony ;
+	set zvalue 'nval' ;
+	set znew $gene trees saved as TNT format ;
+	if (argnumber > 2)
+		set contargs 0 ;
+		loop=parseo 1 argnumber
+			if ('contargs' > 7)
+				endloop ;
+			else	
+				if (eqstring [ %(#parseo) input ])
+					set parce #parseo + 1 ;
+					set input_file $%('parce') ;
+					set contargs ++ ;
+				else 
+					if (eqstring [ %(#parseo) level ])
+						set parce #parseo + 1 ;
+						set level %('parce') ;
+						set xlevel %('parce') ;
+						set contargs ++ ;
+					else
+						if (eqstring [ %(#parseo) hits ])
+						    set parce #parseo + 1 ;
+						    set nuhits %('parce') ;
+						    set contargs ++ ;
+						else
+							if (eqstring [ %(#parseo) search ])
+								set parce #parseo + 1 ;
+								set zbusqueda $new technology search ;
+								if ( (eqstring [ %('parce') nt ]) | (eqstring [ %('parce') tra ])) 
+									if (eqstring [ %('parce') tra ])
+										set guichsch 0 ;
+										set zbusqueda $traditional search ;
+									end	
+									set contargs ++ ;
+								else
+									lquote = ; lquote [ ;
+									quote &32WARNING: option &34%('parce')&34&32 is not valid for the argument search. Valid options are &34nt&34&32 or &34tra&34. &10;
+									quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Hence, running with type of search by default &40&61New technology search&41&46 &10 ;
+									quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Use &34run SearchGeneTrees&46run help&59&34&32 for help. &10&10 ;
+									lquote - ;
+								end
+							else
+								if (eqstring [ %(#parseo) weights ])
+									set parce #parseo + 1 ;
+									set zpesos $equal weighted parsimony ;
+									if ( (eqstring [ %('parce') equal ]) | (eqstring [ %('parce') k ]) | (eqstring [ %('parce') range ]))
+										if (eqstring [ %('parce') k ])
+											set nopiwe 0 ;
+											set guichvar 0 ;
+											set zvalue 'kval' ;
+											set zpesos $implied weigthing with K value defined by the user (see strength) ;
+										end
+										if (eqstring [ %('parce') range ])
+											set nopiwe 0 ;
+											set guichvar 1 ;
+											set zvalue 'nval' ;
+											set zpesos $implied weigthing with K value defined by a range of weights (see strength) ;
+										end
+										set contargs ++ ;
+									else
+										lquote = ; lquote [ ;
+										quote &32WARNING: option &34%('parce')&34&32 is not valid for the argument weights. Valid options are &34equal&34, &34k&34&32 or &34range&34. &10;
+										quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Hence, running using weights by default &40weights &61&32 equal&41&46 &10 ;
+										quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Use &34run SearchGeneTrees&46run help&59&34&32 for help. &10&10 ;
+										lquote - ;
+									end
+								else
+									if (eqstring [ %(#parseo) strength ])
+										set parce #parseo + 1 ;
+										set zvalue %('parce') ;
+										set kval %('parce') ;
+										set nval %('parce') ;
+										set contargs ++ ;
+									else
+										if (eqstring [ %(#parseo) output ])
+											set parce #parseo + 1 ;
+											if ( (eqstring [ %('parce') tnt ]) | (eqstring [ %('parce') newick ]))
+												if (eqstring [ %('parce') newick ])
+													set isnewick 1;
+													set znew $gene trees saved as Newick format;
+												end
+												set contargs ++ ;
+											else
+												lquote = ; lquote [ ;
+												quote &32WARNING: option &34%('parce')&34&32 is not valid for the argument output. Valid options are &34tnt&34&32 or &34newick&34. &10;
+												quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Hence, resulting trees are saved in TNT format&46 &10 ;
+												quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Use &34run SearchGeneTrees&46run help&59&34&32 for help. &10&10 ;
+												lquote - ;
+											end
+										else
+											if (eqstring [ %(#parseo) blocks ])
+												set zblocks $all blocks ;
+												set parce #parseo + 1 ;
+												if (eqstring [ %('parce') all ])
+													set allblocks 1 ;
+												else
+													set allblocks 0 ;
+													set listblocks $%('parce');
+													set zblocks $listblocks ;
+												end	
+												set contargs ++ ;
+											else
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		stop
+		lquote = ; lquote [ ;
+		if ('contargs' == 8)
+			quote Running the script with all the arguments indicated by the user&58 &10 ;
+		else
+			quote Running the script with 'contargs' arguments indicated by the user&58 &10 ;
+		end
+		quote &32&32&32&32Input file &61&32 $input_file &10;
+		quote &32&32&32&32Type of search &61&32 $zbusqueda &10;
+		quote &32&32&32&32Level of search &61&32 'level' &10;
+		quote &32&32&32&32Number of hits &61&32 'nuhits' &10;
+		quote &32&32&32&32Weighting against homoplasy &61&32 $zpesos &10;
+		if ('nopiwe' == 0)
+			if ('guichvar' == 0)
+				quote &32&32&32&32Strength of weighting &40K &61&32 'zvalue'&41 &10;
+			else
+				quote &32&32&32&32Strength of weighting &40Ratio of weights &61&32 'zvalue'&41 &10;
+			end
+		end
+		if ('allblocks' == 0)
+			quote &32&32&32&32Performing the searches in blocks (from.to) &61&32 $listblocks &10;
+		else
+			quote &32&32&32&32Performing the searches in $zblocks &10;
+		end
+		quote &32&32&32&32Output &61&32 $znew &10;
+		lquote - ;
+	end
+end
+silent = all ;
+set origlvl 'level' ;
+if ('level' == 0)
+	set level 1 ;
+else
+	set level ('level' * 10) ;
+end
+
+procedure $input_file ;  
+
+
+if (nblocks < 2 ) 
+ sil-all ; quote Error. Dataset has a single block. To run this script dataset should have at least two blocks. 
+ proc/;            
+end
+
+if (!'allblocks')
+        blocks = $listblocks ; 
+	if ('doreduced')
+		log reduced_dataset.tnt  ;
+		silent - file ; quote xwipe .,  ;  
+		quote cost < ., ; 
+		quote mxram [ ;
+		set nublo nblocks ; 
+		quote tgr + 'nublo' ; 
+		silent - file ; xread - ; 
+		quote ., procedure /., ; silent = file ;
+		log / ; 
+	end 
+end
+if ('nopiwe' == 0)
+	piwe = ; 
+	if ('guichvar' == 0)
+		piwe = 'kval' ;
+	end
+end
+mult : hold 1 ; 
+if ('guichsch' == 0 )
+	mult : replic 'level' ;    
+else
+	set origlvl 'xlevel' ;
+    xmult : level 'xlevel' hits 'nuhits' ;  
+end
+hold 100 ;  
+set + ; 
+
+if (!'allblocks')
+	loop 1 nblocks
+		set start blockstart [#1] ;
+		if (!(isact['start']))
+			set blockact [#1] 0 ; 
+		else
+			set blockact [#1] 1 ; 
+			set son ++ ; 
+		end
+	stop 
+else
+	set son nblocks ; 
+end
+tgroup noauto ; 
+tsave *$output_file ;
+set vamos 0 ; 
+set vta 0 ;
+silent = all; 
+report=;   
+set todos nblocks ; 
+loop=bl 1 nblocks
+	set va #bl ; 
+	set caca #bl ;
+	if ((!'allblocks') && ('blockact[#bl]' == 0 )) 
+		continue ; 
+	end
+	goto SEARCHES ; 
+stop
+report- ; 
+tsave / ;
+
+keep 0 ;
+if ('isnewick') 
+	procedure $output_file ; 
+	export  = $output_file ; 
+end
+keep 0 ; 
+tgroup - ;  
+ccode [ . ; 
+taxcode + . ;
+sil-all ; quote ; 
+
+if (windows && (argnumber == 0)) 
+        if ('isnewick') 
+		sil-all; quote - Gene trees saved as newick format in $output_file ; 
+	else
+		quote - Gene trees saved as TNT format in $output_file ; 
+	end
+	quote - Input file  $input_file ;
+	if ('guichsch' == 0 ) 
+		quote - Type of search: Traditional Search  ;
+	else
+		quote - Type of search: New. Tech. Search ;
+                quote - Number of hits: 'nuhits' ;  
+	end
+	quote - Search Level: 'origlvl' ;
+
+	if ('doreduced')
+		quote - A tnt file (reduced_dataset.tnt) including the selected genes has been generated ; 
+	end 
+	if ('nopiwe') 
+		quote - Dataset analyzed with Equal weighting ; 
+	else
+		quote - Weighting against homoplasy ;
+		if ('guichvar' == 0)
+			quote - Strength of weighting K = 'kval' ;
+		else
+		  if ('round' > 0 ) 
+		    quote - The k value calculated for the given range of weights ('nval') was higher than 1000 (TNT maximum);
+		    quote  k value set to 1000 ; 
+		  else
+		    quote - Weighting strength using range of weights N = 'nval' ;
+		  end
+		end
+	end
+	if ('allblocks' == 0)
+		quote - Search in blocks $listblocks ;
+	else
+		quote - Search in every block  ;
+	end	
+	
+end
+quote ; 
+if ('lawarn' ) 
+	quote - Warning= some genes have less than four taxa. A tree including taxa 0,1 and 2 was saved for those genes  ; 
+end
+silent = all ;
+procedure $output_file ;
+silent - all ;
+quote The script SearchGeneTrees.run was successfully run! ;
+quote - Outputfile generated: $output_file ;
+quote WARNING: keeping  gene trees in memory ;
+silent = all ;
+macreport - ;
+report = ;
+macro - ;
+silent - all ;
+; procedure / ;
+
+     
+label SEARCHES
+	set skip 0 ; 
+	ccode [. ; taxcode +. ;
+	keep 0;  
+	k 0 ; 
+	quote bloque #bl ; 
+	set nta 0 ; 
+	if (('nopiwe' == 0) && ('guichvar' == 1)) 
+		goto CALCULATE_R ; 
+	end
+	if ('guichsch' == 1) 
+		loop=xa 0 ntax
+		  if (!taxinblock[#xa #bl]) 
+		    set nta ++ ;  
+		  end
+		stop 
+		if ('nta' < 80) 
+		  xmult : norss noxss nocss ; 
+		end
+	end 
+	set sip 0 ; 
+	loop=tx 0 ntax
+		if (taxinblock[#tx #bl])
+			set sip++ ; 
+			if ('sip' > 3 ) 
+				endloop ; 
+			end 
+		end
+	stop 
+	if ('sip' <= 3 )
+		set skip 1 ;
+		randtrees 1 ; 
+		pruntax 0/. - 0 1 3 ; 
+		set lawarn 1 ; 
+	end 
+	if (!'skip')
+		block = #bl ;
+		if ('guichsch' == 0)
+			mult  ;
+		else
+			xmult ; 
+		end 
+		bb =fillonly; 
+	end 
+	if (ntrees  == ('totjold'-1))
+		set nutr (ntrees-1 ) ; 
+		tchoose 0.'nutr' ;  
+	end
+	if (!'skip') 
+		nelsen * ;
+	end
+	tchoose / ; 
+	save ; 
+	keep 0 ; 
+	set vta++ ;
+procedure / ;
+
+
+label CALCULATE_R 
+        set round 0 ; 
+        if ('nval' < 1.5)
+         errms Error! Give a weighting range value (N) larger than 1  ; 
+        end 
+	set n -999999 ; 
+	loop=la (blockstart['caca']) (blockend['caca']) 
+		if ( 'n' < maxstepsact[#la] ) 
+			set n maxstepsact[#la] ; 
+		end 
+	stop 
+	set a blockstart['caca'] ; 
+	set b blockend['caca']  ; 
+	set r 'nval' ;				/*   ***** THIS IS THE WEIGHT RANGE!!   ***  */ 
+	set k 20 ; 
+	set lolim 0.001 ; 
+	set uplim 10000 ; 
+	loop 1 1 
+		set lis 1 / ( 'k' + 1 ) ; 
+		set ris 'r' * 
+		( ( 'k' / ( 'k' + 'n' ) ) - ( 'k' / ( 'k' + 'n' + 1 ) ) ) ; 
+		if ( 'lis' == 'ris' ) 
+			endloop ; 
+		end
+		if ( 'lis' > 'ris' ) 
+			if ( 'lis' < ( 'ris' + 0.0001 ) )
+				endloop ;
+			end 
+			set lolim 'k' ; 
+			set k ( 'k' + 'uplim' ) / 2 ; 
+		else 
+			if ( 'ris' < ( 'lis' + 0.0001) )
+				endloop ;
+			end 
+			set uplim 'k' ; 
+			set k ( 'k' + 'lolim' ) / 2 ; 
+		end 
+		setloop 1 ; 
+	stop 
+	if ('k' > 1000) 
+	 set round 'k' ;
+	 set k 1000 ; 
+	end 
+	piwe = 'k' ; 	
+procedure / ;
+
+
+label AYUDA ;
+lquote = ; lquote [ ;
+cls ; clbuffer ;
+silent - all ;
+/* =======================  HELP OF THE SCRIPT  ======================= */	
+quote
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&10
+TNT script:  SearchGeneTrees.run                                                              
+Updated:     2021-01-30.                                                                 
+Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
+Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
+Depends:     TNT version 1.5 
+             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
+License:     GPL (3). Citation: Torres et al. 2021 (Cladistics)                          
+Description: Calculates the gene trees from a TNT dataset where each 
+             gene is in a different block (e.g. a dataset generated by 
+             the script CompileGenes.run). The script generates a file 
+             including a strict consensus of the most parsimonious trees 
+             (collapsing the trees with TBR), for each gene. The search 
+             can be restricted to a subset of blocks. When the script is 
+             run with the TNT Windows GUI version, it opens a dialog box 
+             to define the settings. Search options, weighting schemes 
+             and gap treatment are available as in 
+             PhylogenomicSearches.run script. In command-driven versions, 
+             the script must be run with arguments. Search strength can 
+             be set to 0-10 (see below).
+Usage:       run SearchGeneTrees.run  input dataset.tnt search nt level 2 &10
+             &32&32&32&32 hits 1 weights range strength 12 blocks all output tnt&59                  
+Arguments:   input    name of input file.
+             search   (optional) type of search (&34nt&34&32 for New 
+                      Techs. search and &34tra&34&32 for traditional search).
+             level    (optional) level of searching strength (0-10). The 
+                      fastest and least accurate is 0, the slowest and 
+                      most accurate is 10.
+             hits     (optional) number of hits to best length (1-5). 
+                      The fastest and least accurate option is 1, the 
+                      slowest and most accurate is 5.
+             weights  (optional) weight against homoplasious characters. 
+                      Use &34equal&34&32 to assign equal weights to all 
+                      characters, &34k&34&32 for implied weighting using a k 
+                      value defined by the user, and &34range&34&32 for using a k 
+                      value such that the maximum possible ratio for the 
+                      implied weights cannot exceed the value set with 
+                      strength (see Goloboff et al., 2008b).
+             strength (optional) the k (or n) value used when any kind 
+                      of implied weighting scheme is performed. If 
+                      equally weighted parsimony is used, this argument 
+                      is skipped (default is 5 for k, and 15 for n).
+             blocks   (optional) &34all&34&32 performs phylogenetic searches for 
+                      all the blocks in the dataset. If given a range 
+                      (in the form of two numbers separated by a period 
+                      and no spaces in between&59&32 e.g. &34 3.10&34), the script 
+                      will perform phylogenetic searches only for the 
+                      blocks in the range.
+             output   (optional) output format of the resulting 
+                      trees (&34tnt&34&32 for TNT format and &34newick&34&32 
+                      for Newick format). If not specified, default is 
+                      TNT format.
+&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
+&10 ;
+lquote - ;
+silent = all ;
+set helped 1;
+if(windows)
+else
+	view ;
+end
+procedure / ;
+/* ==================================================================== */
