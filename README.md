@@ -16,7 +16,7 @@ We provide sample datasets in the link below that may be used for testing the sc
 https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=sharing
 
 ## List of scripts
-0. easy.run
+0. easy.run (CHANGE THE NAME "Prosopis.tnt" FOR THE NAME OF YOUR OWN DATASET IN THE SCRIPT!)
 <ol>
 <li>CompileGenes.run</li>
 <li>GeneOccupancy.run</li>
