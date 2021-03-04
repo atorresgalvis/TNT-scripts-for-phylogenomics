@@ -1,6 +1,6 @@
 macro =;                                 /* Activate Macro language to allow comments.         */ 
 xwipe;                                   /* Clean the memory (allows changing settings).       */ 
-procedure Prosopis.tnt;                  /* Read the dataset from Prosopis.tnt.                */
+procedure Prosopis.tnt;                  /* Read the dataset from Prosopis.tnt. CHANGE THE NAME "Prosopis.tnt" FOR THE NAME OF YOUR OWN DATASET */
 hold 200;                                /* Make space in memory for 200 trees.                */ 
 mult = replic 2 hold 2;                  /* Perform 10 replicates of traditional search 
                                             holding space for 2 trees.                         */
