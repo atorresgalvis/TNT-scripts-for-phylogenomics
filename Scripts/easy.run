@@ -1,0 +1,31 @@
+macro =;                                 /* Activate Macro language to allow comments.         */ 
+xwipe;                                   /* Clean the memory (allows changing settings).       */ 
+procedure Prosopis.tnt;                  /* Read the dataset from Prosopis.tnt.                */
+hold 200;                                /* Make space in memory for 200 trees.                */ 
+mult = replic 2 hold 2;                  /* Perform 10 replicates of traditional search 
+                                            holding space for 2 trees.                         */
+bbreak = fillonly;                       /* Swap obtained trees to get more MTP's until 
+                                            tree buffer is filled (200 trees in this case).    */
+tsave * mpts.tre; s; ts /;               /* Save MPTs in a tree file in parenthetical notation.*/ 
+if ( windows )                           
+  tp ];                                  /* If the script is run in Windows do not show tree 
+                                            in preview windows.                                */  
+end                                      
+nelsen *;                                /* Calculate strict consensus and store it as the last 
+                                            tree in memory.                                    */
+tchoose /;                               /* Choose the last tree in memory -strict consensus- 
+                                            and discard the rest.                              */ 
+ttags =;                                 /* Start storing tree tags.                           */  
+resample jak replications 100                    
+         [mult = replic 1 hold 2]      
+         probability 50 frequency                    
+         from 0 nogc;                    /* Perform jackknifing with 100 replicates, a deletion 
+                                            prob. of 0.5, keeping the freqs. for groups in the 
+                                            strict consensus.                                  */ 
+ttags &StrictWithSup.svg;                /* Generate a svg file with support values printed on 
+                                            the strict consensus.                              */
+export < StrictWithSup.nex;              /* Generate a nexus tree file with support values 
+                                            printed on the strict consensus.                   */
+procedure /;                             /* End of instructions.                               */
+
+
