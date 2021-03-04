@@ -16,7 +16,7 @@ We provide sample datasets in the link below that may be used for testing the sc
 https://drive.google.com/file/d/1lTyVPjFP0HSw_-Kn13nfpXb3lakHx3WS/view?usp=sharing
 
 ## List of scripts
-0. easy.run (script to familiarize with the TNT scripting structure and with the basic TNT commands. *Change the name "Prosopis.tnt" for the name of your own dataset in the script!*)
+0. easy.run (script to familiarize with the TNT scripting structure and with the basic TNT commands. **Change the name "Prosopis.tnt" for the name of your own dataset in the script!**)
 <ol>
 <li>CompileGenes.run</li>
 <li>GeneOccupancy.run</li>
