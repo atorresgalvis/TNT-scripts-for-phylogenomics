@@ -50,7 +50,7 @@ This script generates submatrices with sampling of taxa/genes that present a lev
 ### 3. PhylogenomicSearch.run
 This script performs phylogenetic inference for phylogenomic datasets. The script enables the users to define multiple settings in a very simple way (e.g. the treatment of the gaps in the alignments, the use of different implied weighting schemes, the format of the output files, etc.) When the script is run from TNT Windows-menu version, a dialog box is opened to define the settings (Fig. 4).
 <p align="center">
-<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig5.png" alt="alt text" width="855" height="498">
+<img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig4.png" alt="alt text" width="855" height="498">
 </p>
 
 **Figure 4.** Dialog box for *PhylogenomicSearch.run*.
