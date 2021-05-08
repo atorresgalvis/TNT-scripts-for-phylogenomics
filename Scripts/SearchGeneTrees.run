@@ -427,7 +427,11 @@ if ('lawarn' )
 	quote - Warning= some genes have less than four taxa. A tree including taxa 0,1 and 2 was saved for those genes  ; 
 end
 silent = all ;
-procedure $output_file ;
+if ('isnewick')
+	procedure [ $output_file ;
+else
+	procedure $output_file ;
+end
 silent - all ;
 quote The script SearchGeneTrees.run was successfully run! ;
 quote - Outputfile generated: $output_file ;
