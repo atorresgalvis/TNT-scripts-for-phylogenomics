@@ -4,6 +4,8 @@ The scripts are completely described here and most of them can be executed using
 
     run NameOfTheScript.run help;
 
+## Multimedia tutorials on the use of the scripts: https://www.youtube.com/channel/UCpIgK8sVH-yK0Bo3fK62IxA/featured
+
 <p align="center">
 <img src="https://github.com/atorresgalvis/TNT-scripts-for-phylogenomics/blob/main/Figures/Fig1.png" alt="alt text" width="840" height="352">
 </p>
