@@ -239,7 +239,7 @@ forfiles *.$ext
 	else
 		procedure $gename ;
 	end
-	if ('doremo' == 0)
+	if ('doremo' == 1)
 		set xinfo 0 ;
 		loop=tixi 0 nchar
 			if ( isinfo [#tixi] )
