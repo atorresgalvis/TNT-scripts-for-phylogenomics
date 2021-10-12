@@ -136,6 +136,7 @@ else
 						set contargs ++ ;
 					else
 						if ( eqstring [ %(#parseo) species ] )
+							set spec_num 0;
 							set parce #parseo + 1 ;		 
 							set arg_thr %('parce') ;
 							set contargs ++ ;
@@ -383,7 +384,7 @@ cls ; clbuffer ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  CompileGenes.run                                                              
-Updated:     2021-09-15.                                                                 
+Updated:     2021-10-11.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
 Depends:     TNT version 1.5 
