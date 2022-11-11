@@ -244,8 +244,8 @@ forfiles *.$ext
         end
         if ('doremo' == 1)
                 set xinfo 0 ;
-                loop=tixi 0 nchar
-                        if ( isinfo [#tixi] )
+                loop 0 nchar
+                        if ( isinfo [#2] )
                                 set xinfo ++ ;
                         end
                 stop
@@ -386,7 +386,7 @@ cls ; clbuffer ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  CompileGenes.run                                                              
-Updated:     2021-10-22.                                                                 
+Updated:     2022-11-11.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
 Depends:     TNT version 1.5 
