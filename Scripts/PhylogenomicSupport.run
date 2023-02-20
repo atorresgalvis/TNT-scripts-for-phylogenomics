@@ -2,9 +2,9 @@ macro - ;
 macreport - ; 
 report - ;
 costs <; tshrink !;
+macro = ;
 macro [ 80000 ;   /* Increase this value to analyze datasets with N° sp > 3000. Howewer, be aware that more memory will be needed*/;
 macro *80 80000 ; /* Increase this value to analyze datasets with N° sp > 3000. Howewer, be aware that more memory will be needed*/;
-macro = ; 
 					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
 var - ; 
 xwipe ; 
