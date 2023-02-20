@@ -30,7 +30,8 @@
     missformed; if you get rid of the "| - \ -" in some labels, then the tree 
     can be read ok). (Tested on Win. FIXED)
   - The "resbremer" option was renamed as "combremer". (Changed made)
-  - The "xboost" option was renamed as "FAR" (Fast approximate resampling). (Change made) 
+  - The "xboost" option was renamed as "FAR" (Fast approximate resampling). (Change made)
+  - The script was setted to analyze up to 3000 sp. However, user must be sure about having the needed memory.
 
 *TreeDistMatrix* 
   - if you open this script without having read a dataset, it causes an error. (Tested on Win. FIXED)
