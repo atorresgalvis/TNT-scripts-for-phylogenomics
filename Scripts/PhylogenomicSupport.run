@@ -1,9 +1,9 @@
 macro - ;
 macreport - ; 
 report - ;
-costs <; tshrink !;
-macro [ 10000 ; 
-macro *20 20000 ; 
+tshrink !;
+macro [ 80000 ;   /* Increase this value to analyze datasets with N° sp > 3000. Howewer, be aware that more memory will be needed*/;
+macro *80 80000 ; /* Increase this value to analyze datasets with N° sp > 3000. Howewer, be aware that more memory will be needed*/;
 macro = ; 
 					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
 var - ; 
@@ -15,7 +15,7 @@ silent = all ;
 var: 
 taxsize; 
 macfloat 7 ; 
-set taxsize 1000 ; /* change this value to analyze datasets with N� sp > 1000 */; 
+set taxsize 3000 ; /* change this value to analyze datasets with N° sp > 3000 */; 
 var:   absterm[('taxsize'*2)]   alto[5]                    ancho[5]
        arg_one[10]              arg_thr[10]                arg_two[10] 
        bolas[30]                gename[300]                input_file[300]
@@ -533,8 +533,8 @@ loop 0 ntax
 	end
 stop 
 
-if (((ntax + 1)*2) > 'taxsize')
-	errmsg The script is set to analyze up to 1000 sp. change the value of 'taxsize' at the begining of the script to analyze larger datasets  ;
+if (((ntax + 1)*2) > ('taxsize'*2))
+	errmsg The script is set to analyze up to 3000 sp. change some values (including 'taxsize') at the begining of the script to analyze biger datasets  ;
 	proc/; 
 end
 
@@ -1191,7 +1191,7 @@ silent - all ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  PhylogenomicSupport.run                                                              
-Updated:     2021-05-18.                                                                 
+Updated:     2023-02-20.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
 Depends:     TNT version 1.5 
