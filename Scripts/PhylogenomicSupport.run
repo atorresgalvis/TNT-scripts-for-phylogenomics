@@ -2,9 +2,10 @@ macro - ;
 macreport - ; 
 report - ;
 costs <; tshrink !;
-macro [ 80000 ;   /* Increase this value to analyze datasets with N° sp > 3000. Howewer, be aware that more memory will be needed*/;
-macro *80 80000 ; /* Increase this value to analyze datasets with N° sp > 3000. Howewer, be aware that more memory will be needed*/;
-macro = ;					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
+macro [ 80000 ;   
+macro *80 80000 ;
+macro = ;					
+					/* HELP OF THE SCRIPT AT THE END OF THE FILE */
 
 var - ; 
 xwipe ; 
@@ -15,7 +16,9 @@ silent = all ;
 var: 
 taxsize; 
 macfloat 7 ; 
-set taxsize 3000 ; /* change this value to analyze datasets with N° sp > 3000 */; 
+set taxsize 3000 ; /* change this value to analyze datasets with N° sp > 3000 */;
+	           /* In addition, increase the values in lines 5 and 6 of the script (e.g. "macro [ 100000 ;"  and  "macro *100 100000 ;"  )*/;
+
 var:   absterm[('taxsize'*2)]   alto[5]                    ancho[5]
        arg_one[10]              arg_thr[10]                arg_two[10] 
        bolas[30]                gename[300]                input_file[300]
