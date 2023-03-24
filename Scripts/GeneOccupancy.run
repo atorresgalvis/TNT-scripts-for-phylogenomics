@@ -377,8 +377,6 @@ Arguments:   species  (optional&59&32 default is 0) include species that
              miss     (optional) generate a csv file with the percentage 
                       of missing entries for each taxon (total and for 
                       each locus). Use &34yes&34&32 or &34no&34&32 (default).         
-Notes:       to generate only the svg file, run the script without 
-             arguments (or with arguments &34species&32 0&32genes&32 0&34).
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 &10;
 lquote - ;
