@@ -7,21 +7,23 @@ taxname [ 30 ;
 set 0 ntax + 1; if ('0' == 0) xread/ 10 10 4;  end
 var: bloque                      contargs
      ctos                        ctos_sp 
-     dde                         dofile 
+     dde                         dofile
+     falta                       fsize
      fin                         helped 
      min_occu_bl                 min_occu_sp 
      nuact                       occu 
      occu_bl                     occu_sp 
      pace_x                      pace_y 
-     parce                       pos 
+     parce                       perdido
+     pos 
      pos_x                       pos_y 
      star                        star_b 
      star_x                      star_y 
      tot_hig                     tot_width
+     van
      bl_name[100]                miss_x_bl[(nblocks+1)]
      miss_x_sp[(ntax+1)]         ord_miss_x_sp[(ntax+1)] 
-     ord_miss_x_bl[(nblocks+1)] van
-     ; 
+     ord_miss_x_bl[(nblocks+1)]  zperdido[100]     ; 
 report - ; 
 silent = all ; 
 tables / 7 ;
@@ -31,10 +33,11 @@ report - ;
 warn- ; 
 cls ; clbuffer ;
 silent - all ;
+set perdido 0;
 if (!argnumber)
 	lquote = ; lquote [ ;
 	quote WARNING: arguments of the script were not indicated by the user&46&10 ;
-	quote Running the script with arguments by default &40species &61&32 0 and genes &61&32 0&41&46 &10 ;
+	quote Running the script with arguments by default &40species &61&32 0&44&32 genes &61&32 0&44&32 and missing &61&32 no&41&46 &10 ;
 	quote Use &34run GeneOccupancy&46run help&59&34&32 for help&46&10 ;
 	lquote - ;
 	set min_occu_bl 0 ; 
@@ -54,7 +57,7 @@ else
 	end
 	silent - all;
 	lquote = ; lquote [ ;
-	quote WARNING: keep in mind that the script GeneOccupancy&46run has two optional arguments (genes and species).&10 ;
+	quote WARNING: keep in mind that the script GeneOccupancy&46run has three optional arguments (genes, species and missing).&10 ;
 	quote &32         Every word or number other than the allowed arguments and options will be skipped during the execution.&10 ;
 	quote &32         Be sure that you are running the script properly (use &34run GeneOccupancy&46run help&59&34&32 for help).&10 ;
 	quote &10 ;
@@ -67,7 +70,7 @@ else
 	end 
 	set contargs 0 ;
 	loop=parseo 1 argnumber
-		if ('contargs' > 1)
+		if ('contargs' > 2)
 			endloop ;
 		else	
 			if ( eqstring [ %(#parseo) species ] )
@@ -79,8 +82,29 @@ else
 					set parce #parseo + 1 ;
 					set min_occu_bl %('parce') ;
 					set contargs ++ ;
+				else
+					if ( eqstring [ %(#parseo) miss ] )
+						set parce #parseo + 1 ;
+						set perdido 0;
+						set zperdido $no;
+						if ( (eqstring [ %('parce') yes ]) | (eqstring [ %('parce') no ])) 
+							if (eqstring [ %('parce') yes ])
+								set perdido 1 ;
+								set zperdido $yes;
+							end	
+							set contargs ++ ;
+						else
+							silent - console;
+							lquote = ; lquote [ ;
+							quote &32WARNING: option &34%('parce')&34&32 is not valid for the argument missing. Valid options are &34yes&34&32 or &34no&34. &10;
+							quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Hence, running with argument missing by default &40&61 No&41&46 &10 ;
+							quote &32 &32 &32 &32 &32 &32 &32 &32 &32 &32Use &34run GeneOccupancy&46run help&59&34&32 for help. &10&10 ;
+							lquote - ;
+							silent = all;
+						end
+					end	
 				end
-			end
+			end	
 		end
 	stop
 end
@@ -137,6 +161,49 @@ quote aca ;
 loop 0 nblocks 
 	quote 'ord_miss_x_bl[#1]' 'miss_x_bl['ord_miss_x_bl[#1]']' ; 
 stop 
+
+if ('perdido' == 1)
+	log MissingInformation.csv ;
+	lquote = ; lquote [ ;
+	silent - file;
+	quote Taxon,TotalMissing,;
+	loop 1 nblocks
+		set bl_name $$block #1 ;
+		macfloat 1 ; 
+		quote $bl_name&44; 
+		macfloat 7 ;
+	stop
+	quote &10;
+	silent = file;
+	loop 0 ntax
+		loop 0 nblocks
+			if (#2 == 0)
+				set falta ((nummissing [ #1 ] / (nchar+1)) * 100);
+				set bl_name $$taxon #1 ;
+				silent - file;
+				quote $bl_name,'falta',;
+				silent = file;
+			else
+				blocks = #2;
+				set fsize (blockend [#2] - blockstart [#2]);
+				set falta ((nummissing [ #1 ] / ('fsize' + 1)) * 100);
+				silent - file;
+				quote 'falta',;
+				silent = file;
+				ccode [ . ;
+			end
+		stop
+		silent - file;
+		quote &10;
+		silent = file;
+	stop
+	log/;
+	lquote -;
+end
+
+
+
+
 
 log GeneOccupancy_Sp'min_occu_sp'_Gen'min_occu_bl'.svg ; 
 silent - file ; 
@@ -244,9 +311,14 @@ log / ;
 report - ;
 lquote = ; lquote [ ; silent - all ;
 quote &10;
-quote The script GeneOccupancy.run was successfully run with the following settings: species &61&32 'min_occu_bl' and genes &61&32 'min_occu_sp'&46 &10 ;
-quote Produced output files: GeneOccu'min_occu_bl'_SpecOccu'min_occu_bl'.tnt and GeneOccupancy.svg. &10 ;
-quote IMPORTANT. Avoid overwriting of files: change the name of the produced output files in your directory before running the script again. &10 ;
+quote The script GeneOccupancy.run was successfully run with the following settings: species &61&32 'min_occu_bl'&44&32 genes &61&32 'min_occu_sp'&44&32 and missing &61&32 $zperdido&46 &10 ;
+if ('perdido' == 1)
+	quote Produced output files: GeneOccupancy_Sp'min_occu_sp'_Gen'min_occu_bl'.tnt, GeneOccupancy_Sp'min_occu_sp'_Gen'min_occu_bl'.svg and MissingInformation.csv &10 ; quote &10;
+else
+	quote Produced output files: GeneOccupancy_Sp'min_occu_sp'_Gen'min_occu_bl'.tnt and GeneOccupancy_Sp'min_occu_sp'_Gen'min_occu_bl'.svg &10 ; quote &10;
+end
+quote IMPORTANT&33&32 Avoid problems among runs from different settings: it is advisable to close and re-open TNT, before running the script again with different settings. &10 ;
+quote &32&32&32&32&32&32&32&32&32&32&32 Or you can remove the dataset from memory with &34xwipe&59&34. Then, read again the dataset and run the script. &10 ;
 quote &10;
 silent = all ;
 lquote - ;	
@@ -254,7 +326,7 @@ macreport - ;
 report = ;
 macro - ;
 silent - all ;
-warn=; 
+warn=;
 procedure / ; 
 
 
@@ -266,12 +338,12 @@ silent - all ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  GeneOccupancy.run                                                              
-Updated:     2021-05-18.                                                                 
+Updated:     2023-03-24.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
-Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
-Depends:     TNT version 1.5 
-             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
-License:     GPL (3). Citation: Torres et al. 2021 (Cladistics)                          
+Mantainer:   Ambrosio Torres. <atorresgalvis@gmail.com>                              
+Depends:     TNT version 1.6
+             (Goloboff and Morales, 2023. doi: 10.1111/cla.12524).      
+License:     GPL (3). Citation: Torres et al. 2022. doi: 10.1111/cla.12477.                         
 Description: Generates submatrices including only taxa or genes with (or 
              above) a level of occupancy, defined by the user. Two 
              different conditions can be determined, alone or combined: 
@@ -293,13 +365,18 @@ Description: Generates submatrices including only taxa or genes with (or
              each species. Within the SVG file, genes and species are 
              ordered by decreasing value of occupancy. In addition, 
              black lines indicate the taxon/gene sampling in the matrix 
-             generated. The dataset must have been read into TNT before 
-             executing the script.                                                          
-Usage:       run GeneOccupancy.run  species 60 genes 70 &59                  
+             generated. Finally, the script can produce a csv file with
+             the percentage of missing entries for each taxon (total and
+             for each locus. This option is time consuming). The dataset 
+             must have been read into TNT before executing the script.                                                
+Usage:       run GeneOccupancy.run  species 60 genes 70 miss no&59                  
 Arguments:   species  (optional&59&32 default is 0) include species that  
                       have S percent of gene with data (0-100).
              genes    (optional&59&32 default is 0) include genes that 
                       have G perecent of species with data (0-100).
+             miss     (optional) generate a csv file with the percentage 
+                      of missing entries for each taxon (total and for 
+                      each locus). Use &34yes&34&32 or &34no&34&32 (default).         
 Notes:       to generate only the svg file, run the script without 
              arguments (or with arguments &34species&32 0&32genes&32 0&34).
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
