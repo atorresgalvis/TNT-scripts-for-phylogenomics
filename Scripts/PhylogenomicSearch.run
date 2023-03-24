@@ -673,12 +673,12 @@ silent - all ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  PhylogenomicSearch.run                                                              
-Updated:     2021-05-18.                                                                 
+Updated:     2023-03-24.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
-Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
-Depends:     TNT version 1.5 
-             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
-License:     GPL (3). Citation: Torres et al. 2021 (Cladistics)                          
+Mantainer:   Ambrosio Torres. <atorresgalvis@gmail.com>                              
+Depends:     TNT version 1.6
+             (Goloboff and Morales, 2023. doi: 10.1111/cla.12524).      
+License:     GPL (3). Citation: Torres et al. 2022. doi: 10.1111/cla.12477.                        
 Description: Performs phylogenetic inference for phylogenomic datasets. 
              Analyses can be run using various algorithms. In all cases 
              it is possible to define a level of search strength, from 0 
