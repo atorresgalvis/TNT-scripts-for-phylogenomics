@@ -3,6 +3,9 @@
 *General updates*
   - Improvements to the dialog boxes of the scripts and improvements to the descriptions 
     available in the repository were made in 23th December 2020.
+ 
+ *GeneOccupancy*
+  - now the script can produce a csv file with the percentage of missing entries for each taxon (total and for each locus. This option is time consuming)
 
 *SearchGeneTrees*
   - if you give the script a datafile with no blocks defined, an error is 
