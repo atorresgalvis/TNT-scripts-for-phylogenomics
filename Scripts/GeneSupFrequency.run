@@ -383,12 +383,12 @@ cls ; clbuffer ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  GeneSupFrequency.run                                                              
-Updated:     2021-03-09.                                                                 
+Updated:     2023-03-24.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
-Mantainer:   Santiago A. Catalano. <sacatalano@gmail.com>                              
-Depends:     TNT version 1.5 
-             (Goloboff and Catalano, 2016. doi: 10.1111/cla.12160).      
-License:     GPL (3). Citation: Torres et al. 2021 (Cladistics)                          
+Mantainer:   Ambrosio Torres. <atorresgalvis@gmail.com>                              
+Depends:     TNT version 1.6
+             (Goloboff and Morales, 2023. doi: 10.1111/cla.12524).      
+License:     GPL (3). Citation: Torres et al. 2022. doi: 10.1111/cla.12477.                        
 Description: Given a reference tree, the script calculates the 
              percentage of individual gene trees that display, or are 
              compatible with, each group of the reference (e.g. a tree 
