@@ -1,4 +1,4 @@
-# TNT scripts for phylogenomics <a href="https://doi.org/10.1111/cla.12477"><img src="https://img.shields.io/badge/Cladistics%20paper-https://doi.org/10.1111/cla.12477-B31B1B.svg" alt="DOI"></a>
+# TNT scripts for phylogenomics <a href="https://doi.org/10.1111/cla.12477"><img src="https://img.shields.io/badge/Cladistics%20paper-https://doi.org/10.1111/cla.12477-brightgreen.svg" alt="DOI"></a>
 In this repository are included the scripts published in the paper *Parsimony analysis of phylogenomic datasets (I): scripts and guidelines for using TNT* by Ambrosio Torres, Pablo A. Goloboff and Santiago A. Catalano (Cladistics. 2022) [https://onlinelibrary.wiley.com/doi/epdf/10.1111/cla.12477?af=R]. Please cite the work mentioned if you use any tools included in this repository.
 The scripts are completely described here and most of them can be executed using the TNT Windows-menu version (Fig. 1) and using the command-line versions of TNT for Linux, Mac and Windows. The entire information about the scripts is also within the files themselves. This information is also available by typing in TNT (please make sure the script-files are in the folder where you are working):
 
