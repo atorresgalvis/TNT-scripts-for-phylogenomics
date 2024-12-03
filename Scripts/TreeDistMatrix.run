@@ -227,7 +227,7 @@ if (eqstring [ yes $grafo ] )
 				quote <text x=&34 'pos_x'&34 &32y=&34 'pos_y' &34&32 font-size=&34 12&34&32 transform=&34 rotate (-60,'pos_x','pos_y')&34 > $nome &32 'ordenes[#1]' &32 &40 'valorete'&41</text> &10 ;
 				quote <text x=&34 'pos_x2'&34 &32y=&34 'pos_y2' &34&32 font-size=&34 12&34 > $nome &32 'ordenes[#1]' &32 &40 'valorete'&41</text> &10 ; 
 			else
-				set nome $$block #1 ;
+				set nome $$block 'ordenes[#1]' ;
 			    quote <text x=&34 'pos_x'&34 &32y=&34 'pos_y' &34&32 font-size=&34 12&34&32 transform=&34 rotate (-60,'pos_x','pos_y')&34 > $nome>\'ordenes[#1]' &32 &40 'valorete'&41</text> &10 ;
 			    quote <text x=&34 'pos_x2'&34 &32y=&34 'pos_y2' &34&32 font-size=&34 12&34 > $nome>\'ordenes[#1]' &32 &40 'valorete'&41</text> &10 ; 
 			end
@@ -402,7 +402,7 @@ cls ; clbuffer ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&10
 TNT script:  TreeDistMatrix.run                                                              
-Updated:     2023-03-24.                                                                 
+Updated:     2024-12-03.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Ambrosio Torres. <atorresgalvis@gmail.com>                              
 Depends:     TNT version 1.6
