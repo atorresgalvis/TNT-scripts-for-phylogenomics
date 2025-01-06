@@ -4,7 +4,7 @@ macreport - ;
 report - ; 
 silent = all ;
 cls ; clbuffer ; xwipe ;
-var: arg_one[10]       arg_two[10]
+var:     arg_one[10]       arg_two[10]
          arg_thr[10]       ext[3]
          gename[300]       output_file[50]
          tmp [300] 
