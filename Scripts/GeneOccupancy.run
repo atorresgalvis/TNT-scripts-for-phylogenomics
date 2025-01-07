@@ -338,7 +338,7 @@ silent - all ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  GeneOccupancy.run                                                              
-Updated:     2023-03-24.                                                                 
+Updated:     2025-01-07.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Ambrosio Torres. <atorresgalvis@gmail.com>                              
 Depends:     TNT version 1.6
@@ -373,7 +373,7 @@ Usage:       run GeneOccupancy.run  species 60 genes 70 miss no&59
 Arguments:   species  (optional&59&32 default is 0) include species that  
                       have S percent of gene with data (0-100).
              genes    (optional&59&32 default is 0) include genes that 
-                      have G perecent of species with data (0-100).
+                      have G percent of species with data (0-100).
              miss     (optional) generate a csv file with the percentage 
                       of missing entries for each taxon (total and for 
                       each locus). Use &34yes&34&32 or &34no&34&32 (default).         
