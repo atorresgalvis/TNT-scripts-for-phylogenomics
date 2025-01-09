@@ -901,7 +901,8 @@ loop 1 1
         end 
         setloop 1 ; 
 stop 
-piwe = 'k' ;    
+piwe = 'k' ;
+set kkval 'k';    
 procedure / ; 
   
   
@@ -1000,7 +1001,7 @@ report - ;
 macreport - ;
 tvault - ; 
 tvault > 0 ;
-if ( 'xboost' )  /***** PABLO *********/
+if ( 'xboost' ) 
 	force =&0 ; constrain = ; bbreak = nomulp ; 
 	tvault > 0 ;   /** Vault contains: 0 reference, 1 optimized ****/
 	constrain - ; 
