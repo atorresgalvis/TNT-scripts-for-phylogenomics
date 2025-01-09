@@ -27,7 +27,7 @@
   - if user cancels datafile or treefile, the dialog is displayed anyway and 
     errors occur during execution. (Tested on Win. FIXED)
   - Some glitches in dialog box. (Tested on Win. FIXED) 
-  - The script apprently runs OK but produces no output. User doesn't know what 
+  - The script apparently runs OK but produces no output. User doesn't know what 
     to do; should he read the output treefile? (Tested on Win. FIXED)
   - Reading the output treefile causes an error (apparently branch labels are 
     missformed; if you get rid of the "| - \ -" in some labels, then the tree 
@@ -35,6 +35,9 @@
   - The "resbremer" option was renamed as "combremer". (Changed made)
   - The "xboost" option was renamed as "FAR" (Fast approximate resampling). (Change made)
   - The script was setted to analyze up to 3000 sp. However, user must be sure about having the needed memory.
+  - The search for each pseudoreplicate was optimized (faster while being precise) when the user set k (for implied weights)
+    to a value such that the maximum possible ratio for the implied weights does not exceed a certain value (thus determining the 
+    acceptable range of weights. See Goloboff et al., 2008)
 
 *TreeDistMatrix* 
   - if you open this script without having read a dataset, it causes an error. (Tested on Win. FIXED)
