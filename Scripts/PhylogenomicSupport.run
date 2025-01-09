@@ -864,6 +864,7 @@ macreport - ;
 report = ;
 macro - ;
 ttags - ;
+drift: giveup 99 fitdiff 1 rfitdiff 0.2 ;
 silent - all ;
 procedure / ;
 
