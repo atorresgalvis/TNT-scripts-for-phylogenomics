@@ -639,7 +639,12 @@ else
        end 
      end 
   drift: fitdiff 'tofit' rfitdiff 0.1 ; 
-  set schparam $ xmult = level 'guichschlvl' ; 
+  if (ntax > 100)
+	sectsch: slack 25;
+	set schparam $ xmult = level 'guichschlvl' ; 
+  else
+	set schparam $ xmult = level 'guichschlvl' norss noxss nocss;
+  end
 end
 
 
@@ -1196,7 +1201,7 @@ silent - all ;
 quote
 &61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61&61
 TNT script:  PhylogenomicSupport.run                                                              
-Updated:     2025-01-09.                                                                 
+Updated:     2025-01-30.                                                                 
 Author:      Santiago A. Catalano, Ambrosio Torres and Pablo A. Goloboff.                                                        
 Mantainer:   Ambrosio Torres. <atorresgalvis@gmail.com>                              
 Depends:     TNT version 1.6
